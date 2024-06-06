@@ -1,0 +1,22 @@
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMPodScrape
+metadata:
+  name: k10-pods
+spec:
+  podMetricsEndpoints:
+    - scheme: http
+      path: /metrics
+      relabelConfigs:
+        - action: labelmap
+          regex: __meta_kubernetes_pod_label_(.+)
+        - source_labels: [__meta_kubernetes_pod_container_port_number]
+          action: keep
+          regex: 8\d{3}
+        - targetLabel: job
+          replacement: k10-pods
+  selector:
+    matchLabels:
+      component: executor
+  namespaceSelector:
+    any: true
+

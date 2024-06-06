@@ -1,0 +1,46 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: homelab-apps
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+    - git:
+        repoURL: https://github.com/prankstr/homelab.git
+        revision: HEAD
+        directories:
+          - path: kubernetes/apps/*
+  template:
+    metadata:
+      name: "{{index .path.segments 2}}"
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/prankstr/homelab.git
+        targetRevision: HEAD
+        path: "{{.path.path}}"
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: "{{index .path.segments 2}}"
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          prune: true
+  templatePatch: |
+    {{- if eq .path.basename "metallb" }}
+    spec:
+      ignoreDifferences:
+        - group: "apiextensions.k8s.io"
+          kind: CustomResourceDefinition
+          name: bgppeers.metallb.io
+          jsonPointers:
+            - /spec/conversion/webhook/clientConfig/caBundle
+        - group: "apiextensions.k8s.io"
+          kind: CustomResourceDefinition
+          name: addresspools.metallb.io
+          jsonPointers:
+            - /spec/conversion/webhook/clientConfig/caBundle
+    {{-  end }}

@@ -1,0 +1,28 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt
+  namespace: cert-manager
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: lets-encrypt-account-key
+    solvers:
+      - dns01:
+          webhook:
+            groupName: com.github.runnerm.cert-manager-simply-webhook
+            solverName: simply-dns-solver
+            config:
+              secretName: simply-credentials
+        selector:
+          dnsZones:
+            - "{ MY_DOMAIN }"
+---
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: selfsigned-issuer
+spec:
+  selfSigned: {}
+

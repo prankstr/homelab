@@ -1,0 +1,28 @@
+global:
+  prometheus:
+    external:
+      host: vmsingle-victoria-metrics-k8s-stack.victoria-metrics.svc.cluster.local
+      port: "8429"
+prometheus:
+  server:
+    enabled: false
+grafana:
+  enabled: false
+ingress:
+  create: true
+  class: nginx
+  host: k10.{ MY_DOMAIN }
+  pathType: Prefix
+  urlPath: ""
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt"
+  tls:
+    enabled: true
+    secretName: k10.{ MY_DOMAIN }-cert
+auth:
+  tokenAuth:
+    enabled: false
+  oidcAuth:
+    enabled: true
+    secretName: "k10-oidc"
+

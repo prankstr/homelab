@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: mealie
+  name: mealie-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mealie
+  template:
+    metadata:
+      labels:
+        app: mealie
+    spec:
+      containers:
+      - env:
+        - name: TZ
+          value: Europe/Stockholm
+        - name: ALLOW_SIGNUP
+          value: "true"
+        - name: BASE_URL
+          value: "https://recept.{ MY_DOMAIN }"
+        - name: LDAP_AUTH_ENABLED
+          value: "true"
+        envFrom:
+          - secretRef:
+              name: mealie-ldap
+        image: ghcr.io/mealie-recipes/mealie:v1.1.0
+        ports:
+          - containerPort: 9000
+            name: http
+        imagePullPolicy: IfNotPresent
+        name: mealie
+        volumeMounts:
+        - mountPath: /app/data
+          name: data
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: mealie

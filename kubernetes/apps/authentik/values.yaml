@@ -1,0 +1,28 @@
+global:
+  envFrom:
+    - secretRef:
+        name: authentik-secret
+
+server:
+  ingress:
+    enabled: true
+    annotations:
+      cert-manager.io/cluster-issuer: "letsencrypt"
+    ingressClassName: nginx
+    hosts:
+      - auth.{ MY_DOMAIN }
+    tls:
+      - hosts:
+        - auth.{ MY_DOMAIN }
+        secretName: auth.{ MY_DOMAIN }-cert
+
+postgresql:
+  enabled: true
+  auth:
+    enablePostgresUser: false
+    existingSecret: authentik-secret
+    secretKeys:
+      userPasswordKey: AUTHENTIK_POSTGRESQL__PASSWORD
+
+redis:
+  enabled: true

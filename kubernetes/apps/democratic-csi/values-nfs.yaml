@@ -1,0 +1,60 @@
+csiDriver:
+  name: "nfs"
+node:
+  enabled: true
+controller:
+  driver:
+    imagePullPolicy: Always
+storageClasses:
+  - name: nfs
+    defaultClass: false
+    reclaimPolicy: Delete
+    volumeBindingMode: Immediate
+    allowVolumeExpansion: true
+    parameters:
+      fsType: nfs
+      detachedVolumesFromSnapshots: "true"
+    mountOptions:
+      - noatime
+      - nfsvers=4
+    secrets:
+      provisioner-secret:
+      controller-publish-secret:
+      node-stage-secret:
+      node-publish-secret:
+      controller-expand-secret:
+volumeSnapshotClasses:
+  - name: nfs
+    annotations:
+      k10.kasten.io/is-snapshot-class: true
+driver:
+  config:
+    driver: freenas-api-nfs
+    instance_id:
+    httpConnection:
+      protocol: https
+      host: truenas.{ MY_DOMAIN }
+      port: 443
+      apiKey: { TRUENAS_API_KEY }
+      allowInsecure: false
+      apiVersion: 2
+    zfs:
+      datasetParentName: storage/k8s/nfs/volumes
+      detachedSnapshotsDatasetParentName: storage/k8s/nfs/snapshots
+      datasetProperties:
+        "org.freenas:description": "{{ parameters.[csi.storage.k8s.io/pvc/namespace] }}/{{ parameters.[csi.storage.k8s.io/pvc/name] }}"
+      datasetEnableQuotas: true
+      datasetEnableReservation: false
+      datasetPermissionsMode: "0777"
+      datasetPermissionsUser: 0
+      datasetPermissionsGroup: 0
+    nfs:
+      shareHost: truenas.{ MY_DOMAIN }
+      shareAlldirs: false
+      shareAllowedHosts: []
+      shareAllowedNetworks: []
+      shareMaprootUser: root
+      shareMaprootGroup: root
+      shareMapallUser: ""
+      shareMapallGroup: ""
+

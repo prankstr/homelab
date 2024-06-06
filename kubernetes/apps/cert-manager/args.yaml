@@ -1,0 +1,10 @@
+- op: add
+  path: /spec/template/spec/containers/0/args/-
+  value: --leader-election-namespace=cert-manager
+- op: add
+  path: /spec/template/spec/containers/0/args/-
+  value: --dns01-recursive-nameservers-only
+- op: add
+  path: /spec/template/spec/containers/0/args/-
+  value: --dns01-recursive-nameservers="9.9.9.9:53"
+

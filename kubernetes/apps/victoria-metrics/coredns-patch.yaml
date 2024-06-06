@@ -1,0 +1,5 @@
+apiVersion: apps/v1
+kind: Service
+metadata:
+  name: victoria-metrics-k8s-stack-coredns
+  namespace: kube-system

@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: headscale
+    component: server
+  name: headscale
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: headscale
+      component: server
+  template:
+    metadata:
+      labels:
+        app: headscale
+        component: server
+    spec:
+      containers:
+        - image: headscale/headscale:0.22.3
+          args:
+            - serve
+          imagePullPolicy: IfNotPresent
+          name: headscale
+          volumeMounts:
+            - mountPath: /etc/headscale
+              name: config
+            - mountPath: /data
+              name: data
+      volumes:
+        - name: config
+          configMap:
+            name: headscale-config
+        - name: data
+          persistentVolumeClaim:
+            claimName: headscale-data
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: headscale
+    component: ui
+  name: headscale-admin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: headscale
+      component: ui
+  template:
+    metadata:
+      labels:
+        app: headscale
+        component: ui
+    spec:
+      containers:
+        - image: goodieshq/headscale-admin:latest
+          imagePullPolicy: IfNotPresent
+          name: headscale-admin
+

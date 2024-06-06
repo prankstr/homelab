@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-cm
+data:
+  kustomize.buildOptions: "--enable-helm"
+  url: https://argocd.{ MY_DOMAIN }
+  dex.config: |
+    connectors:
+    - config:
+        issuer: https://auth.{ MY_DOMAIN }/application/o/argocd/
+        clientID: fOsRHVM7umhZ5BUafh5Mw8XRF5FCUC5X1ZKCwSiO
+        clientSecret: $argocd-oidc:dex.authentik.clientSecret
+        insecureEnableGroups: true
+        scopes:
+          - openid
+          - profile
+          - email
+      name: authentik
+      type: oidc
+      id: authentik

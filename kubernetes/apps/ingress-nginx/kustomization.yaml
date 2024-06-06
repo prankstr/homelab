@@ -1,0 +1,12 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: ingress-nginx
+
+helmCharts:
+# Need to set namespace here as well, otherwise some resources are created in the wrong namespace
+- namespace: ingress-nginx
+  name: ingress-nginx 
+  releaseName: ingress-nginx
+  repo: https://kubernetes.github.io/ingress-nginx
+  includeCRDs: true
+  valuesFile: values.yaml

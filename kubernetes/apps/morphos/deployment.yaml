@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: morphos
+  name: morphos-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: morphos
+  template:
+    metadata:
+      labels:
+        app: morphos
+    spec:
+      containers:
+      - image: ghcr.io/danvergara/morphos-server:latest
+        env:
+            - name: MORPHOS_PORT
+              value: "8080"
+        ports:
+          - containerPort: 8080 
+            name: http
+        imagePullPolicy: IfNotPresent
+        name: morphos

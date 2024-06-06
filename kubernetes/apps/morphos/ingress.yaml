@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: morphos
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt"
+spec:
+  ingressClassName: nginx
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: morphos
+                port:
+                  name: http
+      host: morphos.{ MY_DOMAIN }
+  tls:
+    - hosts:
+        - morphos.{ MY_DOMAIN }
+      secretName: morphos.{ MY_DOMAIN }-cert

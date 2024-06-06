@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    grafana_datasource: "1"
+  name: tibber-datasource
+  namespace: monitoring
+data:
+  tibber.yaml: |
+    apiVersion: 1
+    datasources:
+    - name: Tibber
+      type: yesoreyeram-infinity-datasource
+      jsonData:
+        allowedHosts:
+        - https://api.tibber.com/v1-beta/gql
+        - https://tibber.se
+        auth_method: bearerToken
+      secureJsonData:
+        bearerToken: $tibber_token

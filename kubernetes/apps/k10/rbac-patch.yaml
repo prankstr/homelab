@@ -1,0 +1,6 @@
+- op: add
+  path: /subjects/-
+  value:
+    apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: https://auth.{ MY_DOMAIN }/application/o/k10/#david

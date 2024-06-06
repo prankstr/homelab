@@ -1,0 +1,33 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: headscale
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt"
+spec:
+  ingressClassName: nginx
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: headscale
+                port:
+                  name: http
+      host: vpn.{ MY_DOMAIN }
+    - http:
+        paths:
+          - path: /admin
+            pathType: Prefix
+            backend:
+              service:
+                name: headscale-admin
+                port:
+                  name: http
+      host: vpn.{ MY_DOMAIN }
+  tls:
+    - hosts:
+        - vpn.{ MY_DOMAIN }
+      secretName: vpn.{ MY_DOMAIN }-cert

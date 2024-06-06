@@ -1,0 +1,35 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: k10
+
+resources:
+  - oidc-secret.yaml
+  - vmpodscrape.yaml
+  - vmscrapeconfig.yaml
+
+patches:
+  - path: rbac-patch.yaml
+    target:
+      group: rbac.authorization.k8s.io
+      kind: ClusterRoleBinding
+      name: backup-k10-k10-cluster-admin
+      version: v1
+
+generatorOptions:
+  disableNameSuffixHash: true
+  labels:
+    grafana_dashboard: "1"
+
+configMapGenerator:
+  - files:
+      - dashboard.json
+    name: k10-dashboard
+
+# Need to set namespace here as well, otherwise some resources are created in the wrong namespace
+helmCharts:
+  - includeCRDs: true
+    name: k10
+    namespace: k10
+    releaseName: k10
+    repo: https://charts.kasten.io
+    valuesFile: values.yaml

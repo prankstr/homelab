@@ -1,0 +1,74 @@
+dashboardProviders:
+  dashboardproviders.yaml:
+    apiVersion: 1
+    providers:
+      - name: "default"
+        orgId: 1
+        folder: ""
+        type: file
+        disableDeletion: false
+        editable: true
+        options:
+          path: /var/lib/grafana/dashboards/default
+
+dashboards:
+  default:
+    argocd-operational:
+      gnetId: 19993
+      datasource: VictoriaMetrics
+    argocd-applications:
+      gnetId: 19974
+      datasource: VictoriaMetrics
+
+envFromSecret: tibber
+
+sidecar:
+  datasources:
+    enabled: true
+    searchNamespace: ALL
+  dashboards:
+    enabled: true
+    searchNamespace: ALL
+
+plugins:
+  - yesoreyeram-infinity-datasource
+
+ingress:
+  enabled: true
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt"
+  ingressClassName: nginx
+  hosts:
+    - grafana.{ MY_DOMAIN }
+  tls:
+    - secretName: grafana.{ MY_DOMAIN }-cert
+      hosts:
+        - grafana.{ MY_DOMAIN }
+
+extraSecretMounts:
+  - name: auth-generic-oauth-secret-mount
+    secretName: grafana-oidc
+    defaultMode: 0440
+    mountPath: /etc/secrets/auth_generic_oauth
+    readOnly: true
+
+grafana.ini:
+  server:
+    root_url: https://grafana.{ MY_DOMAIN }
+  auth:
+    signout_redirect_url: "https://auth.{ MY_DOMAIN }/application/o/grafana/end-session/"
+    oauth_auto_login: true
+    #https://github.com/grafana/grafana/issues/74154
+    oauth_allow_insecure_email_lookup: true
+  auth.generic_oauth:
+    name: authentik
+    enabled: true
+    client_id: $__file{/etc/secrets/auth_generic_oauth/client_id}
+    client_secret: $__file{/etc/secrets/auth_generic_oauth/client_secret}
+    scopes: "openid profile email"
+    auth_url: "https://auth.{ MY_DOMAIN }/application/o/authorize/"
+    token_url: "https://auth.{ MY_DOMAIN }/application/o/token/"
+    api_url: "https://auth.{ MY_DOMAIN }/application/o/userinfo/"
+    # Optionally map user groups to Grafana roles
+    role_attribute_path: contains(groups, 'authentik Admins') && 'Admin'
+    email_attribute_path: contains(keys(@), 'email') && email || name

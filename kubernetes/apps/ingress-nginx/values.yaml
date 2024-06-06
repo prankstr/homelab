@@ -1,0 +1,2 @@
+tcp:
+  636: "authentik/ak-outpost-ldap:636"

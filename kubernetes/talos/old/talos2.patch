@@ -1,0 +1,13 @@
+machine:
+  network:
+    hostname: talos2
+  install:
+    image: factory.talos.dev/installer/dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c36f6e95fc8586:v1.6.4
+  registries:
+    config:
+      ghcr.io:
+        auth:
+          username: prankstr
+          password: <ACCESS_TOKEN>
+cluster:
+  allowSchedulingOnControlPlanes: true

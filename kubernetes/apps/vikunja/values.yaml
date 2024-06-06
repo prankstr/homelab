@@ -1,0 +1,42 @@
+api:
+  env:
+  - name: VIKUNJA_DATABASE_TYPE
+    value: sqlite
+  - name: VIKUNJA_DATABASE_PATH
+    value: "./files/vikunja.db"
+  persistence:
+    config:
+      type: secret
+      name: vikunja-config
+  ingress:
+    main:
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt"
+      ingressClassName: "nginx"
+      hosts:
+        - host: todo.{ MY_DOMAIN }
+          paths:
+            - path: "/api/v1"
+      tls: 
+        - hosts:
+          - todo.{ MY_DOMAIN }
+          secretName: todo.{ MY_DOMAIN }-cert
+
+frontend:
+  env:
+  - name: VIKUNJA_API_URL
+    value: "https://todo.{ MY_DOMAIN }/api/v1"
+  ingress:
+    main:
+      ingressClassName: "nginx"
+      hosts:
+        - host: todo.{ MY_DOMAIN }
+          paths:
+            - path: "/"
+      tls: 
+        - hosts:
+          - todo.{ MY_DOMAIN }
+          secretName: todo.{ MY_DOMAIN }-cert
+
+postgresql:
+  enabled: false

@@ -1,0 +1,3 @@
+*.yaml
+!boot-assets.yaml
+talosconfig

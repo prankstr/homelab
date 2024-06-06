@@ -1,0 +1,19 @@
+fluent-bit:
+  enabled: true
+
+server:
+  persistentVolume:
+    enabled: true
+  ingress:
+    enabled: true
+    annotations:
+      cert-manager.io/cluster-issuer: "letsencrypt"
+    ingressClassName: nginx
+    hosts:
+      - name: logs.{ MY_DOMAIN }
+        path: /select
+        port: http
+    tls:
+      - secretName: logs.{ MY_DOMAIN }-cert
+        hosts:
+          - logs.{ MY_DOMAIN }
