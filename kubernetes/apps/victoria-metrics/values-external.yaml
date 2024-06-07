@@ -37,4 +37,3 @@ config:
         - targets:
             - truenas.{ MY_DOMAIN }:9100
             - truenas.{ MY_DOMAIN }:9134
-

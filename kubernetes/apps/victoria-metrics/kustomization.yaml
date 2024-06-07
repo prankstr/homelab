@@ -5,7 +5,8 @@ resources:
   - namespace.yaml
   - static-scrapes.yaml
   - datasource.yaml
-  - secret.yaml
+  - alertmanager-config-secret.yaml
+  - homeassistant-token-secret.yaml
 
 patches:
   - path: vmagent-patch.yaml

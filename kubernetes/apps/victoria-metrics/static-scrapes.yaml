@@ -5,15 +5,15 @@ metadata:
 spec:
   jobName: home-assistant
   targetEndpoints:
-  - targets:
-    - homeassistant.{ MY_DOMAIN }:8123
-    scheme: https
-    bearerTokenSecret:
-     name: homeassistant-authorization
-     key: token
-    path: /api/prometheus
-    tlsConfig:
-      insecureSkipVerify: true
+    - targets:
+        - homeassistant.{ MY_DOMAIN }:8123
+      scheme: https
+      bearerTokenSecret:
+        name: homeassistant-token
+        key: token
+      path: /api/prometheus
+      tlsConfig:
+        insecureSkipVerify: true
 ---
 apiVersion: operator.victoriametrics.com/v1beta1
 kind: VMStaticScrape
@@ -22,6 +22,7 @@ metadata:
 spec:
   jobName: husdata-exporter
   targetEndpoints:
-  - targets:
-    - homeassistant.{ MY_DOMAIN }:9101
-    scheme: http
+    - targets:
+        - homeassistant.{ MY_DOMAIN }:9101
+      scheme: http
+
