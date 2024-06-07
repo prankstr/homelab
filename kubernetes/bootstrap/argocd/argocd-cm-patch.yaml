@@ -4,7 +4,6 @@ metadata:
   name: argocd-cm
 data:
   kustomize.buildOptions: "--enable-helm"
-  url: https://argocd.{ MY_DOMAIN }
   dex.config: |
     connectors:
     - config:
