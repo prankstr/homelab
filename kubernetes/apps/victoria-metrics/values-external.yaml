@@ -1,8 +1,8 @@
 rbac:
   namespaced: true
 
-remoteWriteUrls: 
-- http://vmsingle-victoria-metrics-k8s-stack.monitoring.svc:8429/api/v1/write
+remoteWriteUrls:
+  - http://vmsingle-victoria-metrics-k8s-stack.victoria-metrics.svc:8429/api/v1/write
 
 service:
   enabled: true
@@ -12,13 +12,13 @@ ingress:
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt"
   hosts:
-  - name: vmagent-external.{ MY_DOMAIN }
-    path: /
-    port: http
+    - name: vmagent-external.{ MY_DOMAIN }
+      path: /
+      port: http
   tls:
-  - secretName: vmagent-external.{ MY_DOMAIN }-cert
-    hosts:
-      - vmagent-external.{ MY_DOMAIN }
+    - secretName: vmagent-external.{ MY_DOMAIN }-cert
+      hosts:
+        - vmagent-external.{ MY_DOMAIN }
   ingressClassName: nginx
   pathType: Prefix
 
@@ -29,11 +29,11 @@ config:
         - targets: ["localhost:8429"]
     - job_name: molntuss-node-exporter
       static_configs:
-      - targets: 
-        - molntuss.{ MY_DOMAIN }:9100
-        - molntuss.{ MY_DOMAIN }:9134
+        - targets:
+            - molntuss.{ MY_DOMAIN }:9100
+            - molntuss.{ MY_DOMAIN }:9134
     - job_name: truenas-node-exporter
       static_configs:
-      - targets:
-        - truenas.{ MY_DOMAIN }:9100
-        - truenas.{ MY_DOMAIN }:9134
+        - targets:
+            - truenas.{ MY_DOMAIN }:9100
+            - truenas.{ MY_DOMAIN }:9134
