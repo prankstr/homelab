@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: grafana
 
 resources:
-  - grafana-secret.yaml
+  - grafana-oidc-secret.yaml
   - tibber-secret.yaml
   - tibber-datasource.yaml
 
