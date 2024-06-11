@@ -1,3 +1,8 @@
+admin:
+  existingSecret: grafana
+  userKey: username
+  passwordKey: password
+
 dashboardProviders:
   dashboardproviders.yaml:
     apiVersion: 1
@@ -47,7 +52,7 @@ ingress:
 
 extraSecretMounts:
   - name: auth-generic-oauth-secret-mount
-    secretName: grafana-oidc
+    secretName: grafana
     defaultMode: 0440
     mountPath: /etc/secrets/auth_generic_oauth
     readOnly: true
