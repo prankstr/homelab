@@ -44,3 +44,17 @@ spec:
           jsonPointers:
             - /spec/conversion/webhook/clientConfig/caBundle
     {{-  end }}
+    {{- if eq .path.basename "k10" }}
+    spec:
+      ignoreDifferences:
+        - group: ""
+          kind: Secret
+          name: kopia-tls-cert
+          jsonPointers:
+            - /spec/data/tls.crt
+        - group: ""
+          kind: Secret
+          name: kopia-tls-key 
+          jsonPointers:
+            - /spec/data/tls.key
+    {{-  end }}

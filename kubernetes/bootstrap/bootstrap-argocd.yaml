@@ -23088,21 +23088,15 @@ spec:
           prune: true
         syncOptions:
         - CreateNamespace=true
-  templatePatch: |
-    {{- if eq .path.basename "metallb" }}
-    spec:
-      ignoreDifferences:
-        - group: "apiextensions.k8s.io"
-          kind: CustomResourceDefinition
-          name: bgppeers.metallb.io
-          jsonPointers:
-            - /spec/conversion/webhook/clientConfig/caBundle
-        - group: "apiextensions.k8s.io"
-          kind: CustomResourceDefinition
-          name: addresspools.metallb.io
-          jsonPointers:
-            - /spec/conversion/webhook/clientConfig/caBundle
-    {{-  end }}
+  templatePatch: "{{- if eq .path.basename \"metallb\" }}\nspec:\n  ignoreDifferences:\n
+    \   - group: \"apiextensions.k8s.io\"\n      kind: CustomResourceDefinition\n
+    \     name: bgppeers.metallb.io\n      jsonPointers:\n        - /spec/conversion/webhook/clientConfig/caBundle\n
+    \   - group: \"apiextensions.k8s.io\"\n      kind: CustomResourceDefinition\n
+    \     name: addresspools.metallb.io\n      jsonPointers:\n        - /spec/conversion/webhook/clientConfig/caBundle\n{{-
+    \ end }}\n{{- if eq .path.basename \"k10\" }}\nspec:\n  ignoreDifferences:\n    -
+    group: \"\"\n      kind: Secret\n      name: kopia-tls-cert\n      jsonPointers:\n
+    \       - /spec/data/tls.crt\n    - group: \"\"\n      kind: Secret\n      name:
+    kopia-tls-key \n      jsonPointers:\n        - /spec/data/tls.key\n{{-  end }}\n"
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
