@@ -51,10 +51,10 @@ spec:
           kind: Secret
           name: kopia-tls-cert
           jsonPointers:
-            - /spec/data/tls.crt
+            - /data/tls.crt
         - group: ""
           kind: Secret
           name: kopia-tls-key 
           jsonPointers:
-            - /spec/data/tls.key
+            - /data/tls.key
     {{-  end }}

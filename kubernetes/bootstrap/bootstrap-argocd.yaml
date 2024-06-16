@@ -23095,8 +23095,8 @@ spec:
     \     name: addresspools.metallb.io\n      jsonPointers:\n        - /spec/conversion/webhook/clientConfig/caBundle\n{{-
     \ end }}\n{{- if eq .path.basename \"k10\" }}\nspec:\n  ignoreDifferences:\n    -
     group: \"\"\n      kind: Secret\n      name: kopia-tls-cert\n      jsonPointers:\n
-    \       - /spec/data/tls.crt\n    - group: \"\"\n      kind: Secret\n      name:
-    kopia-tls-key \n      jsonPointers:\n        - /spec/data/tls.key\n{{-  end }}\n"
+    \       - /data/tls.crt\n    - group: \"\"\n      kind: Secret\n      name: kopia-tls-key
+    \n      jsonPointers:\n        - /data/tls.key\n{{-  end }}\n"
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
