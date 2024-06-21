@@ -29,8 +29,8 @@ vmagent:
       cluster: "molntuss-k8s"
     resources:
       limits:
-        cpu: "0m"
-        memory: "200mi"
+        cpu:
+        memory: "200Mi"
       requests:
         cpu: "200m"
         memory: "200Mi"
