@@ -27,6 +27,9 @@ vmagent:
   spec:
     externalLabels:
       cluster: "molntuss-k8s"
+    resources:
+      limits:
+        cpu: "500m"
   ingress:
     enabled: true
     annotations:
