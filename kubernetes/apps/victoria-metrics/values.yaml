@@ -29,7 +29,11 @@ vmagent:
       cluster: "molntuss-k8s"
     resources:
       limits:
-        cpu: "500m"
+        cpu: "0m"
+        memory: "200mi"
+      requests:
+        cpu: "200m"
+        memory: "200Mi"
   ingress:
     enabled: true
     annotations:
