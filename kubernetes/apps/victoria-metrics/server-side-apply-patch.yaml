@@ -1,6 +1,6 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: victoria-metrics-k8s-stack-vmagent
+  name: victoria-metrics-k8s-stack
   annotations:
     argocd.argoproj.io/sync-options: ServerSideApply=true

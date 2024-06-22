@@ -9,10 +9,14 @@ resources:
   - homeassistant-token-secret.yaml
 
 patches:
-  - path: vmagent-patch.yaml
+  - path: server-side-apply-patch.yaml
     target:
       kind: ConfigMap
       name: victoria-metrics-k8s-stack-vmagent
+  - path: server-side-apply-patch.yaml
+    target:
+      kind: ConfigMap
+      name: victoria-metrics-k8s-stack-victoriametrics
   - path: coredns-patch.yaml
     target:
       kind: Service
