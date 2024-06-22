@@ -29,7 +29,6 @@ vmagent:
       cluster: "molntuss-k8s"
     resources:
       limits:
-        cpu:
         memory: "200Mi"
       requests:
         cpu: "200m"
@@ -45,6 +44,14 @@ vmagent:
       - secretName: vmagent.{ MY_DOMAIN }-cert
         hosts:
           - vmagent.{ MY_DOMAIN }
+vmalert:
+  spec:
+    resources:
+      limits:
+        memory: "100Mi"
+      requests:
+        cpu: "100m"
+        memory: "100Mi"
 alertmanager:
   spec:
     configSecret: "alertmanager-config"
