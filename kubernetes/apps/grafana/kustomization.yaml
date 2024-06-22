@@ -24,3 +24,4 @@ helmCharts:
     repo: https://grafana.github.io/helm-charts
     includeCRDs: true
     valuesFile: values.yaml
+    version: 8.0.2

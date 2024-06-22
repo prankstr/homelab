@@ -3,19 +3,21 @@ kind: Kustomization
 namespace: vikunja
 
 resources:
-- secret.yaml
+  - secret.yaml
 
 images:
-- name: vikunja/api
-  newTag: 0.22.1
-- name: vikunja/frontend
-  newTag: 0.22.1
+  - name: vikunja/api
+    newTag: 0.22.1
+  - name: vikunja/frontend
+    newTag: 0.22.1
 
 helmCharts:
-# Need to set namespace here as well, otherwise some resources are created in the wrong namespace
-- namespace: vikunja
-  name: vikunja
-  releaseName: vikunja
-  repo: oci://kolaente.dev/vikunja
-  includeCRDs: true
-  valuesFile: values.yaml
+  # Need to set namespace here as well, otherwise some resources are created in the wrong namespace
+  - namespace: vikunja
+    name: vikunja
+    releaseName: vikunja
+    repo: oci://kolaente.dev/vikunja
+    includeCRDs: true
+    valuesFile: values.yaml
+    version: 5.0.0
+

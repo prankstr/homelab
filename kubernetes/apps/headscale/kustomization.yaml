@@ -5,6 +5,8 @@ namespace: headscale
 images:
   - name: headscale/headscale
     newTag: 0.23.0-alpha12
+  - name: goodieshq/headscale-admin
+    newTag: 0.1.12b
 
 configMapGenerator:
   - name: headscale-config

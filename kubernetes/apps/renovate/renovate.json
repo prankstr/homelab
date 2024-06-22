@@ -1,0 +1,8 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "enabledManagers": ["kustomize"],
+  "repositories": ["prankstr/homelab"],
+  "onboarding": false,
+  "requireConfig": "optional"
+}
