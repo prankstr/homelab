@@ -16,6 +16,12 @@ configMapGenerator:
   - name: heatpump-dashboard
     files:
       - dashboards/heatpump.json
+  - name: ingress-nginx-controller-dashboard
+    files:
+      - https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/grafana/dashboards/nginx.json
+  - name: ingress-nginx-request-performance-dashboard
+    files:
+      - https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/grafana/dashboards/request-handling-performance.json
 
 helmCharts:
   - namespace: grafana
