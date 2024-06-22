@@ -23071,6 +23071,10 @@ spec:
   goTemplate: true
   goTemplateOptions:
   - missingkey=error
+  ignoreApplicationDifferences:
+  - jsonPointers:
+    - /spec/source/targetRevision
+    - /spec/syncPolicy
   template:
     metadata:
       name: '{{index .path.segments 2}}'

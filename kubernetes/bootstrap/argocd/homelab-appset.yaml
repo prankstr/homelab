@@ -12,6 +12,10 @@ spec:
         revision: HEAD
         directories:
           - path: kubernetes/apps/*
+  ignoreApplicationDifferences:
+    - jsonPointers:
+        - /spec/source/targetRevision
+        - /spec/syncPolicy
   template:
     metadata:
       name: "{{index .path.segments 2}}"
