@@ -19,4 +19,4 @@ helmCharts:
     repo: https://runnerm.github.io/simply-dns-webhook/
     namespace: cert-manager
     releaseName: simply-dns
-    version: 1.5.1
+    version: 1.6.0
