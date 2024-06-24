@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: kromgo
+  name: kromgo-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kromgo
+  template:
+    metadata:
+      labels:
+        app: kromgo
+    spec:
+      containers:
+        - env:
+            - name: PROMETHEUS_URL
+              value: "http://vmsingle-victoria-metrics-k8s-stack.victoria-metrics.svc:8429"
+          image: ghcr.io/kashalls/kromgo:0.3.1
+          ports:
+            - containerPort: 8080
+              name: http
+          imagePullPolicy: IfNotPresent
+          name: kromgo
+          volumeMounts:
+            - mountPath: /kromgo/config.yaml
+              subPath: config.yaml
+              name: config
+      volumes:
+        - name: config
+          configMap:
+            name: kromgo-config
