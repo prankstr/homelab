@@ -26,6 +26,8 @@
 
 This repo is the source for my GitOps deployments as well as my personal knowledge bank with notes for my homelab. I decided to make it public in case someone finds it useful or interesting.
 
+Currently most of the content is regarding my Kubernetes cluster and the applications I run on it. I'm looking to expand it with more general homelab stuff as well as time goes on.
+
 ## 🛠️ Hardware
 
 The core of my homelab is a single server but it's sufficiently beefy to run everything I need. Specs:
@@ -51,13 +53,13 @@ Since I have just the one server I virtualize everything from my router and othe
 
 ### 🚀 Kubernetes
 
-I work with Kubernetes for a living so while some stuff might be overkill it helps me stay somewhat up to date with the tech.
+I work with Kubernetes for a living so while some stuff might be overkill it helps me stay somewhat up to date with the tech which is essentially the goal of the homelab.
 
 Here is an overview of the services I run, some of them have more detailed explanations and configuration notes in their respective folder in the [kubernetes/apps](./kubernetes/apps) folder.
 
 #### Infrastructure(i.e stuff that enables me to deploy and manage other stuff)
 
-- [1Password Connect Operator](https://github.com/1Password/onepassword-operator): Sync secrets from 1Password to Kubernetes.
+- [1Password Connect Operator](https://github.com/1Password/onepassword-operator): Secret management.Sync secrets from 1Password to Kubernetes.
 - [Argo CD](https://github.com/argoproj/argo-cd): Facilitates GitOps. Automating the deployment of applications based on manifests in this git repo.
 - [cert-manager](https://github.com/cert-manager/cert-manager): Automatically provisions and renews certificates.
 - [democratic-csi](https://github.com/democratic-csi/democratic-csi): CSI provisioner that works with TrueNAS. Provisions persistent volumes backed by TrueNAS.
