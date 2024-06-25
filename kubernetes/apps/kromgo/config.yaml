@@ -28,7 +28,7 @@ metrics:
       - { color: "red", min: 76, max: 9999 }
 
   - name: cluster_memory_usage
-    query: sum(node_memory_MemTotal_bytes{cluster="molntuss-k8s", job="node-exporter"} - node_memory_MemAvailable_bytes{cluster="molntuss-k8s", job="node-exporter"}) / sum(node_memory_MemTotal_bytes{cluster="molntuss-k8s", job="node-exporter"})
+    query: round(sum(node_memory_MemTotal_bytes{cluster="molntuss-k8s", job="node-exporter"} - node_memory_MemAvailable_bytes{cluster="molntuss-k8s", job="node-exporter"}) / sum(node_memory_MemTotal_bytes{cluster="molntuss-k8s", job="node-exporter"}) * 100, 0.1)
     suffix: "%"
     colors:
       - { color: green, min: 0, max: 60 }
