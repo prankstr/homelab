@@ -3,7 +3,6 @@
 # Homelab
 
 ![Every homelab](/assets/images/homelab.gif)
-![Every homelab](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNGVyYWpoaThqNW1hbHMwY3hiZmJlNHFmZTlncDhieWw5emxwNGJhYyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/llbEoVMhkLngWlzVVa/giphy.gif)
 
 </div>
 <div align="center">
@@ -25,7 +24,7 @@
 
 ## 📖 Overview
 
-This repo is the source my for GitOps deployments as well as my personal knowledge bank for my homelab but I decided to make it public in case someone finds it useful or interesting.
+This repo is the source for my GitOps deployments as well as my personal knowledge bank with notes for my homelab. I decided to make it public in case someone finds it useful or interesting.
 
 ## 🛠️ Hardware
 
