@@ -8,7 +8,7 @@ resources:
 
 images:
   - name: renovate/renovate
-    newTag: 37.417.1
+    newTag: 37.418.3
 
 configMapGenerator:
   - name: renovate-config
