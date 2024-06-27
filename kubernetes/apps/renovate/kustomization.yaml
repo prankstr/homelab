@@ -6,10 +6,6 @@ resources:
   - cronjob.yaml
   - secret.yaml
 
-images:
-  - name: renovate/renovate
-    newTag: 37.420.1
-
 configMapGenerator:
   - name: renovate-config
     files:
