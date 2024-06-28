@@ -2,14 +2,24 @@
 
 # Homelab
 
-![Every homelab](/assets/images/homelab.gif)
+![Homelab-gif](/assets/images/homelab.gif)<br/>
+<span style="font-size:0.75em;">_despite what this gif implies my homelab is actually quite stable, I promise_</span>
 
 </div>
+
 <div align="center">
+<br/>
 
 [![Talos](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.p6r.dev%2Fquery%3Fformat%3Dendpoint%26metric%3Dtalos_version&style=for-the-badge&logo=talos&logoColor=white&color=blue&label=%20)](https://www.talos.dev/)&nbsp;&nbsp;[![Kubernetes](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.p6r.dev%2Fquery%3Fformat%3Dendpoint%26metric%3Dkubernetes_version&style=for-the-badge&logo=kubernetes&logoColor=white&color=blue&label=%20)](https://www.talos.dev/)&nbsp;&nbsp;
 
 </div>
+
+<div align="center">
+
+![Renovate](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.p6r.dev%2Fquery%3Fformat%3Dendpoint%26metric%3Drenovate_job_time_since_last_successful_minutes&style=for-the-badge&logo=renovatebot&logoColor=white&label=LAST%20SUCCESSFUL%20RENOVATE%20JOB)
+
+</div>
+
 <div align="center">
 
 [![Age-Days](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.p6r.dev%2Fquery%3Fformat%3Dendpoint%26metric%3Dcluster_age_days&style=flat-square&label=Age)](https://github.com/kashalls/kromgo/)&nbsp;&nbsp;
