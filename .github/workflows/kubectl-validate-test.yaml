@@ -1,0 +1,61 @@
+name: kubectl-validate
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  getChangedApps:
+    runs-on: homelab-arc-runner-set
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - name: Checkout repo content
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup go
+        uses: actions/setup-go@v5
+
+      - name: Get all apps that changed
+        id: changed-apps
+        uses: tj-actions/changed-files@v44
+        with:
+          dir_names: true
+          files_yaml: |
+            apps:
+              - kubernetes/apps/**
+
+      - name: List all changed apps
+        run: echo '${{ steps.changed-apps.outputs.all_changed_files }}'
+
+      - id: set-matrix
+        run: |
+          echo "matrix={\"files\":${{ steps.changed-apps.outputs.all_changed_files }}}" >> $GITHUB_OUTPUT
+
+  k8sManifestsValidation:
+    runs-on: homelab-arc-runner-set
+    needs: [getChangedApps, installTools]
+    strategy:
+      matrix:
+        files: ${{ fromJSON(needs.getChangedApps.outputs.matrix) }}
+    steps:
+      - name: Checkout repo content
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install kubectl-validate
+        run: go install sigs.k8s.io/kubectl-validate@latest
+
+      - name: Install Kustomize
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y kustomize
+
+      - name: Kustomize Build
+        run: kustomize build --enable-helm ${{ matrix.files }} > ${{ matrix.files }}/bundle.yaml
+
+      - name: Run kubectl-validate
+        run: kubectl-validate ${{ matrix.files }}/bundle.yaml
