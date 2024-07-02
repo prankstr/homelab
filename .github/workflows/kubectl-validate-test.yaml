@@ -41,7 +41,7 @@ jobs:
     needs: changed-apps
     strategy:
       matrix:
-        app: ${{ fromJSON(needs.changed-apps.outputs.matrix }}
+        app: ${{ fromJSON(needs.changed-apps.outputs.matrix) }}
     steps:
       - name: Checkout repo content
         uses: actions/checkout@v4
