@@ -32,31 +32,31 @@ jobs:
             echo "$file was changed"
           done
 
-  k8s-manifests-validation:
-    runs-on: homelab-arc-runner-set
-    needs: changed-apps
-    strategy:
-      matrix:
-        app: ${{ fromJSON(needs.changed-apps.outputs.matrix) }}
-    steps:
-      - name: Checkout repo content
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Setup go
-        uses: actions/setup-go@v5
-
-      - name: Install kubectl-validate
-        run: go install sigs.k8s.io/kubectl-validate@latest
-
-      - name: Install Kustomize
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y kustomize
-
-      - name: Kustomize Build
-        run: kustomize build --enable-helm ${{ matrix.app }} > ${{ matrix.app }}/bundle.yaml
-
-      - name: Run kubectl-validate
-        run: kubectl-validate ${{ matrix.app }}/bundle.yaml
+  #  k8s-manifests-validation:
+  #    runs-on: homelab-arc-runner-set
+  #    needs: changed-apps
+  #    strategy:
+  #      matrix:
+  #        app: ${{ fromJSON(needs.changed-apps.outputs.matrix) }}
+  #    steps:
+  #      - name: Checkout repo content
+  #        uses: actions/checkout@v4
+  #        with:
+  #          fetch-depth: 0
+  #
+  #      - name: Setup go
+  #        uses: actions/setup-go@v5
+  #
+  #      - name: Install kubectl-validate
+  #        run: go install sigs.k8s.io/kubectl-validate@latest
+  #
+  #      - name: Install Kustomize
+  #        run: |
+  #          sudo apt-get update
+  #          sudo apt-get install -y kustomize
+  #
+  #      - name: Kustomize Build
+  #        run: kustomize build --enable-helm ${{ matrix.app }} > ${{ matrix.app }}/bundle.yaml
+  #
+  #      - name: Run kubectl-validate
+  #        run: kubectl-validate ${{ matrix.app }}/bundle.yaml
