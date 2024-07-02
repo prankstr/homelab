@@ -31,7 +31,7 @@ jobs:
         uses: tj-actions/changed-files@v44
         with:
           matrix: true
-          dir_names: true
+          #dir_names: true
           #files_yaml: |
           #  apps:
           #    - kubernetes/apps/**
