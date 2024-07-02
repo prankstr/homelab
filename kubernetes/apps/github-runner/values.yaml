@@ -1,0 +1,5 @@
+githubConfigUrl: https://github.com/prankstr/homelab
+githubConfigSecret: github-runner-controller-manager
+controllerServiceAccount:
+  namespace: github-arc
+  name: homelab-arc-gha-rs-controller
