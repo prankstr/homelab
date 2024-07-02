@@ -30,14 +30,14 @@ jobs:
       - name: Get all apps that changed
         id: changed-apps
         uses: tj-actions/changed-files@v44
-        with:
-          matrix: true
-          dir_names: true
-          files: |
-            kubernetes/apps/**
 
-      - name: List all changed apps
-        run: echo '${{ steps.changed-apps.outputs.all_changed_apps }}'
+      - name: List all changed files
+        env:
+          ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
+        run: |
+          for file in ${ALL_CHANGED_FILES}; do
+            echo "$file was changed"
+          done
 
   k8s-manifests-validation:
     runs-on: homelab-arc-runner-set
@@ -67,4 +67,3 @@ jobs:
 
       - name: Run kubectl-validate
         run: kubectl-validate ${{ matrix.app }}/bundle.yaml
-
