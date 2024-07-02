@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: 1password
 
 helmCharts:
-  - namespace: 1password
+  - namespace: 1pasword
     name: connect
     releaseName: 1password
     repo: https://1password.github.io/connect-helm-charts
