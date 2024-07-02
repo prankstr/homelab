@@ -15,7 +15,7 @@ jobs:
       - name: Checkout repo content
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 2
 
       - name: Get all apps that changed
         id: changed-apps
