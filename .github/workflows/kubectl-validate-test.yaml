@@ -5,10 +5,10 @@ on:
       - main
 
 jobs:
-  get-changed-apps:
+  changed-apps:
     runs-on: homelab-arc-runner-set
     outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
+      matrix: ${{ steps.changed-apps.outputs.all_changed_apps }}
     steps:
       - name: Ensure git is installed
         run: |
@@ -27,24 +27,21 @@ jobs:
         id: changed-apps
         uses: tj-actions/changed-files@v44
         with:
+          matrix: true
           dir_names: true
           files_yaml: |
             apps:
               - kubernetes/apps/**
 
       - name: List all changed apps
-        run: echo '${{ steps.changed-apps.outputs.all_changed_files }}'
-
-      - id: set-matrix
-        run: |
-          echo "matrix={\"files\":${{ steps.changed-apps.outputs.all_changed_files }}}" >> $GITHUB_OUTPUT
+        run: echo '${{ steps.changed-apps.outputs.all_changed_apps }}'
 
   k8s-manifests-validation:
     runs-on: homelab-arc-runner-set
     needs: get-changed-apps
     strategy:
       matrix:
-        file: ${{ fromJSON(needs.get-changed-apps.outputs.matrix).files }}
+        app: ${{ fromJSON(needs.changed-apps.outputs.matrix }}
     steps:
       - name: Checkout repo content
         uses: actions/checkout@v4
@@ -63,7 +60,7 @@ jobs:
           sudo apt-get install -y kustomize
 
       - name: Kustomize Build
-        run: kustomize build --enable-helm ${{ matrix.file }} > ${{ matrix.file }}/bundle.yaml
+        run: kustomize build --enable-helm ${{ matrix.app }} > ${{ matrix.app }}/bundle.yaml
 
       - name: Run kubectl-validate
-        run: kubectl-validate ${{ matrix.file }}/bundle.yaml
+        run: kubectl-validate ${{ matrix.app }}/bundle.yaml
