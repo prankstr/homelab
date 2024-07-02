@@ -10,18 +10,8 @@ permissions:
 jobs:
   changed-apps:
     name: Get changed apps
-    runs-on: homelab-arc-runner-set
-    outputs:
-      matrix: ${{ steps.changed-apps.outputs.all_changed_apps }}
+    runs-on: ubuntu-latest
     steps:
-      - name: Ensure git is installed
-        run: |
-          if ! command -v git &> /dev/null
-          then
-            echo "git could not be found, installing..."
-            sudo apt-get update && sudo apt-get install -y git
-          fi
-
       - name: Checkout repo content
         uses: actions/checkout@v4
         with:
