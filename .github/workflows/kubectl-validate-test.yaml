@@ -38,7 +38,7 @@ jobs:
 
   k8s-manifests-validation:
     runs-on: homelab-arc-runner-set
-    needs: get-changed-apps
+    needs: changed-apps
     strategy:
       matrix:
         app: ${{ fromJSON(needs.changed-apps.outputs.matrix }}
@@ -64,3 +64,4 @@ jobs:
 
       - name: Run kubectl-validate
         run: kubectl-validate ${{ matrix.app }}/bundle.yaml
+
