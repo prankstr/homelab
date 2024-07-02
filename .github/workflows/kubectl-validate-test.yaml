@@ -4,6 +4,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+
 jobs:
   changed-apps:
     runs-on: homelab-arc-runner-set
@@ -29,9 +32,9 @@ jobs:
         with:
           matrix: true
           dir_names: true
-          files_yaml: |
-            apps:
-              - kubernetes/apps/**
+          #files_yaml: |
+          #  apps:
+          #    - kubernetes/apps/**
 
       - name: List all changed apps
         run: echo '${{ steps.changed-apps.outputs.all_changed_apps }}'
