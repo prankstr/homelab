@@ -10,6 +10,14 @@ jobs:
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
+      - name: Ensure git is installed
+        run: |
+          if ! command -v git &> /dev/null
+          then
+            echo "git could not be found, installing..."
+            sudo apt-get update && sudo apt-get install -y git
+          fi
+
       - name: Checkout repo content
         uses: actions/checkout@v4
         with:
