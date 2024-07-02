@@ -27,9 +27,6 @@ jobs:
         uses: tj-actions/changed-files@v44
         with:
           dir_names: true
-          files_yaml: |
-            apps:
-              - kubernetes/apps/**
 
       - name: List all changed files
         env:
