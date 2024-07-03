@@ -55,9 +55,7 @@ jobs:
         run: go install sigs.k8s.io/kubectl-validate@latest
 
       - name: Install Kustomize
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y kustomize
+        run: go install sigs.k8s.io/kustomize/kustomize/v5@latest
 
       - name: Kustomize Build
         run: kustomize build --enable-helm ${{ matrix.app }} > ${{ matrix.app }}/bundle.yaml
