@@ -11,6 +11,8 @@ jobs:
   changed-apps:
     runs-on: homelab-arc-runner-set
     name: Test changed-files
+    outputs:
+      matrix: ${{ steps.changed-apps.outputs.all_changed_files }}
     steps:
       - name: Ensure git is installed
         run: |
@@ -26,6 +28,7 @@ jobs:
         id: changed-apps
         uses: tj-actions/changed-files@v44
         with:
+          matrix: true
           dir_names: true
 
       - name: List all changed files
