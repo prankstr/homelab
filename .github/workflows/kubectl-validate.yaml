@@ -1,0 +1,56 @@
+name: kubectl-validate
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  changed-apps:
+    runs-on: arc-runner-set
+    name: Find changed apps
+    container:
+      image: alpine/k8s:1.30.2
+    outputs:
+      matrix: ${{ steps.changed-apps.outputs.all_changed_files }}
+    steps:
+      - name: Checkout repo content
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get changed apps
+        id: changed-apps
+        uses: tj-actions/changed-files@v44
+        with:
+          matrix: true
+          dir_names: true
+          files: |
+            kubernetes/apps/**
+
+      - name: List all changed files
+        run: echo '${{ steps.changed-apps.outputs.all_changed_files }}'
+
+  k8s-validation:
+    runs-on: arc-runner-set
+    name: Validate ${{ matrix.app }}
+    needs: changed-apps
+    container:
+      image: alpine/k8s:1.30.2
+    strategy:
+      matrix:
+        app: ${{ fromJSON(needs.changed-apps.outputs.matrix) }}
+    steps:
+      - name: Checkout repo content
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Kustomize Build
+        run: kustomize build --enable-helm ${{ matrix.app }} > ${{ matrix.app }}/bundle.yaml
+
+      - name: Dry-run kubectl apply
+        run: |
+          kubectl apply -f ${{ matrix.app }}/bundle.yaml --dry-run=client
