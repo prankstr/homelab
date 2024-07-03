@@ -43,7 +43,7 @@ jobs:
     name: Validate ${{ matrix.app }}
     needs: changed-apps
     container:
-      image: alpine:k8s
+      image: alpine/k8s:1.30.2
     strategy:
       matrix:
         app: ${{ fromJSON(needs.changed-apps.outputs.matrix) }}
