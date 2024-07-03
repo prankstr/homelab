@@ -30,6 +30,8 @@ jobs:
         with:
           matrix: true
           dir_names: true
+          dir_names_include_files: |
+            "kubernetes/apps/**"
 
       - name: List all changed files
         run: echo '${{ steps.changed-apps.outputs.all_changed_files }}'
@@ -46,16 +48,14 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup go
-        uses: actions/setup-go@v5
-        with:
-          go-version: "stable"
+      - name: Install kubectl
+        run: curl -LO "https://dl.k8s.io/release/$(curl "https://kromgo.p6r.dev/query?metric=kubernetes_version" | jq -r .message)/bin/linux/amd64"
 
       - name: Install kubectl-validate
         run: go install sigs.k8s.io/kubectl-validate@latest
 
       - name: Install Kustomize
-        run: go install sigs.k8s.io/kustomize/kustomize/v5@latest
+        run: curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash
 
       - name: Kustomize Build
         run: kustomize build --enable-helm ${{ matrix.app }} > ${{ matrix.app }}/bundle.yaml
