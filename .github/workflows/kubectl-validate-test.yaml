@@ -30,7 +30,7 @@ jobs:
         with:
           matrix: true
           dir_names: true
-          dir_names_include_files: |
+          files: |
             kubernetes/apps/**
 
       - name: List all changed files
