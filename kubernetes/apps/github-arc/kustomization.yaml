@@ -9,7 +9,7 @@ resources:
 helmCharts:
   - namespace: github-arc
     name: gha-runner-scale-set-controller
-    releaseName: arc-controller
+    releaseName: arc
     repo: oci://ghcr.io/actions/actions-runner-controller-charts
     includeCRDs: true
   - namespace: github-arc
