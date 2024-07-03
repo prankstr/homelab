@@ -11,6 +11,8 @@ jobs:
   changed-apps:
     runs-on: homelab-arc-runner-set
     name: Find changed apps
+    container:
+      image: alpine:k8s
     outputs:
       matrix: ${{ steps.changed-apps.outputs.all_changed_files }}
     steps:
