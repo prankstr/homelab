@@ -10,7 +10,7 @@ permissions:
 jobs:
   changed-apps:
     runs-on: homelab-arc-runner-set
-    name: Test changed-files
+    name: Find changed apps
     outputs:
       matrix: ${{ steps.changed-apps.outputs.all_changed_files }}
     steps:
@@ -40,6 +40,8 @@ jobs:
     runs-on: homelab-arc-runner-set
     name: Validate ${{ matrix.app }}
     needs: changed-apps
+    container:
+      image: alpine:k8s
     strategy:
       matrix:
         app: ${{ fromJSON(needs.changed-apps.outputs.matrix) }}
@@ -49,22 +51,22 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup go
-        uses: actions/setup-go@v5
-        with:
-          go-version: "stable"
-
-      - name: Install curl and jq
-        run: sudo apt-get update && sudo apt-get install -y curl jq
-
-      - name: Install kubectl
-        run: curl -LO "https://dl.k8s.io/release/$(curl "https://kromgo.p6r.dev/query?metric=kubernetes_version" | jq -r .message)/bin/linux/amd64"
-
-      - name: Install kubectl-validate
-        run: go install sigs.k8s.io/kubectl-validate@latest
-
-      - name: Install Kustomize
-        run: curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash
+      #      - name: Setup go
+      #        uses: actions/setup-go@v5
+      #        with:
+      #          go-version: "stable"
+      #
+      #      - name: Install curl and jq
+      #        run: sudo apt-get update && sudo apt-get install -y curl jq
+      #
+      #      - name: Install kubectl
+      #        run: curl -LO "https://dl.k8s.io/release/$(curl "https://kromgo.p6r.dev/query?metric=kubernetes_version" | jq -r .message)/bin/linux/amd64"
+      #
+      #      - name: Install kubectl-validate
+      #        run: go install sigs.k8s.io/kubectl-validate@latest
+      #
+      #      - name: Install Kustomize
+      #        run: curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash
 
       - name: Kustomize Build
         run: ./kustomize build --enable-helm ${{ matrix.app }} > ${{ matrix.app }}/bundle.yaml
