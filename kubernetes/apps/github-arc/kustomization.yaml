@@ -3,17 +3,18 @@ kind: Kustomization
 namespace: github-arc
 
 resources:
+  - rbac.yaml
   - secret.yaml
 
 helmCharts:
   - namespace: github-arc
     name: gha-runner-scale-set-controller
-    releaseName: homelab-arc
+    releaseName: arc-controller
     repo: oci://ghcr.io/actions/actions-runner-controller-charts
     includeCRDs: true
   - namespace: github-arc
     name: gha-runner-scale-set
-    releaseName: homelab-arc-runner-set
+    releaseName: arc-runner-set
     repo: oci://ghcr.io/actions/actions-runner-controller-charts
     includeCRDs: true
     valuesFile: values.yaml
