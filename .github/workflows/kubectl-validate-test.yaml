@@ -16,15 +16,10 @@ jobs:
     outputs:
       matrix: ${{ steps.changed-apps.outputs.all_changed_files }}
     steps:
-      - name: Ensure git is installed
-        run: |
-          if ! command -v git &> /dev/null
-          then
-            echo "git could not be found, installing..."
-            sudo apt-get update && sudo apt-get install -y git
-          fi
-
-      - uses: actions/checkout@v4
+      - name: Checkout repo content
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Get changed apps
         id: changed-apps
@@ -53,25 +48,16 @@ jobs:
         with:
           fetch-depth: 0
 
-      #      - name: Setup go
-      #        uses: actions/setup-go@v5
-      #        with:
-      #          go-version: "stable"
-      #
-      #      - name: Install curl and jq
-      #        run: sudo apt-get update && sudo apt-get install -y curl jq
-      #
-      #      - name: Install kubectl
-      #        run: curl -LO "https://dl.k8s.io/release/$(curl "https://kromgo.p6r.dev/query?metric=kubernetes_version" | jq -r .message)/bin/linux/amd64"
-      #
-      #      - name: Install kubectl-validate
-      #        run: go install sigs.k8s.io/kubectl-validate@latest
-      #
-      #      - name: Install Kustomize
-      #        run: curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash
+      - name: Setup go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "stable"
+
+      - name: Install kubectl-validate
+        run: go install sigs.k8s.io/kubectl-validate@latest
 
       - name: Kustomize Build
-        run: ./kustomize build --enable-helm ${{ matrix.app }} > ${{ matrix.app }}/bundle.yaml
+        run: kustomize build --enable-helm ${{ matrix.app }} > ${{ matrix.app }}/bundle.yaml
 
       - name: Run kubectl-validate
         run: kubectl validate ${{ matrix.app }}/bundle.yaml
