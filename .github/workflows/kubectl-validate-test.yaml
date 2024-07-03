@@ -48,16 +48,8 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup go
-        uses: actions/setup-go@v5
-        with:
-          go-version: "stable"
-
-      - name: Install kubectl-validate
-        run: go install sigs.k8s.io/kubectl-validate@latest
-
       - name: Kustomize Build
         run: kustomize build --enable-helm ${{ matrix.app }} > ${{ matrix.app }}/bundle.yaml
 
       - name: Run kubectl-validate
-        run: kubectl validate ${{ matrix.app }}/bundle.yaml
+        run: kubectl apply -f ${{ matrix.app }}/bundle.yaml --dry-run=client
