@@ -31,7 +31,8 @@ jobs:
           matrix: true
           dir_names: true
           dir_names_include_files: |
-            "kubernetes/apps/**"
+            apps:
+              "kubernetes/apps/**"
 
       - name: List all changed files
         run: echo '${{ steps.changed-apps.outputs.all_changed_files }}'
