@@ -10,7 +10,8 @@ on:
 jobs:
   build-and-commit:
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -30,8 +31,6 @@ jobs:
         run: kustomize build --enable-helm kubernetes/bootstrap/argocd > kubernetes/bootstrap/bootstrap-argocd.yaml
 
       - name: Commit
-        env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'

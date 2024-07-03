@@ -1,9 +1,14 @@
 name: Telegram Notify
-on: push
+
+on:
+  push:
+    branches:
+      - main
+
 jobs:
-  extract-pr:
+  notify:
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    if: github.actor == 'renovate-bot'
     steps:
       - name: Extract PR Number from Commit Message
         id: extract_pr
