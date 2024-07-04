@@ -4,6 +4,7 @@ metadata:
   name: argocd-cm
 data:
   kustomize.buildOptions: "--enable-helm"
+  application.instanceLabelKey: argocd.argoproj.io/instance
   dex.config: |
     connectors:
     - config:
