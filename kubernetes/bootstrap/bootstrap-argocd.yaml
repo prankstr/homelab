@@ -21313,6 +21313,7 @@ subjects:
 ---
 apiVersion: v1
 data:
+  application.instanceLabelKey: argocd.argoproj.io/instance
   dex.config: |
     connectors:
     - config:
