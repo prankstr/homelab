@@ -8,7 +8,7 @@ on:
 jobs:
   notify:
     runs-on: ubuntu-latest
-    if: github.actor == 'renovate-bot'
+    if: github.actor == 'p6r-renovate[bot]'
     steps:
       - name: Extract PR Number from Commit Message
         id: extract_pr
@@ -32,7 +32,6 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           format: markdown
           message: |
-            New commit:
             Message: ${{ github.event.head_commit.message }}
 
             See PR: https://github.com/${{ github.repository }}/pull/${{ steps.extract_pr.outputs.pull_request_number }}
