@@ -21,7 +21,7 @@ configMapGenerator:
       - https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-system-api-server.json
   - name: k8s-views-nodes-dashboard
     files:
-      - https://github.com/dotdc/grafana-dashboards-kubernetes/blob/master/dashboards/k8s-views-nodes.json
+      - https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-nodes.json
   - name: ingress-nginx-controller-dashboard
     files:
       - https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/grafana/dashboards/nginx.json
