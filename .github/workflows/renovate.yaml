@@ -2,6 +2,22 @@ name: Renovate
 on:
   schedule:
     - cron: "0 * * * *"
+  workflow_dispatch:
+    inputs:
+      dryRun:
+        description: Dry Run
+        default: "false"
+        required: false
+      logLevel:
+        description: Log Level
+        default: info
+        required: false
+
+env:
+  LOG_LEVEL: "${{ inputs.logLevel || 'info' }}"
+  RENOVATE_DRY_RUN: "${{ inputs.dryRun == true }}"
+  RENOVATE_REPOSITORIES: "[${{ github.repository }}]"
+  RENOVATE_PLATFORM_COMMIT: true
 
 jobs:
   renovate:
