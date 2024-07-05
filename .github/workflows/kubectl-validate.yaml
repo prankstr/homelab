@@ -3,6 +3,8 @@ on:
   pull_request:
     branches:
       - main
+    paths:
+      - "kubernetes/apps/**"
 
 permissions:
   contents: read
@@ -27,8 +29,6 @@ jobs:
         with:
           matrix: true
           dir_names: true
-          files: |
-            kubernetes/apps/**
 
       - name: List all changed files
         run: echo '${{ steps.changed-apps.outputs.all_changed_files }}'
