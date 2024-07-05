@@ -16,7 +16,8 @@ on:
 env:
   LOG_LEVEL: "${{ inputs.logLevel || 'info' }}"
   RENOVATE_DRY_RUN: "${{ inputs.dryRun == true }}"
-  RENOVATE_REPOSITORIES: "[${{ github.repository }}]"
+  RENOVATE_AUTODISCOVER: true
+  RENOVATE_AUTODISCOVER_FILTER: "${{ github.repository }}"
   RENOVATE_PLATFORM: "github"
   RENOVATE_PLATFORM_COMMIT: true
 
@@ -32,7 +33,7 @@ jobs:
           app-id: ${{ secrets.APP_ID }}
 
       - name: Checkout
-        uses: actions/checkout@v4.1.7
+        uses: actions/checkout@v4
 
       - name: Self-hosted Renovate
         uses: renovatebot/github-action@v40.1.12
