@@ -15,7 +15,13 @@ generatorOptions:
 configMapGenerator:
   - name: heatpump-dashboard
     files:
-      - dashboards/heatpump.json
+      - https://raw.githubusercontent.com/prankstr/hassio-husdata-exporter/main/dashboard.json
+  - name: k8s-system-api-server-dashboard
+    files:
+      - https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-system-api-server.json
+  - name: k8s-views-nodes-dashboard
+    files:
+      - https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-nodes.json
   - name: ingress-nginx-controller-dashboard
     files:
       - https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/grafana/dashboards/nginx.json
@@ -30,4 +36,4 @@ helmCharts:
     repo: https://grafana.github.io/helm-charts
     includeCRDs: true
     valuesFile: values.yaml
-    version: 8.0.2
+    version: 8.3.2

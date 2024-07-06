@@ -1,4 +1,4 @@
-argocdReleaseOverride: "victoria-metrics"
+fullnameOverride: "victoria-metrics-k8s-stack"
 kubeEtcd:
   enabled: false
 kubeControllerManager:

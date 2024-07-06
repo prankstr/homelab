@@ -1,0 +1,32 @@
+services:
+  omni:
+    restart: unless-stopped
+    network_mode: host
+    image: ghcr.io/siderolabs/omni:v0.39.0
+    command: --name=molntuss-omni
+      --account-id=${OMNI_ACCOUNT_UUID}
+      --cert=/tls.crt
+      --key=/tls.key
+      --siderolink-api-cert=/tls.crt
+      --siderolink-api-key=/tls.key
+      --private-key-source=file:///omni.asc
+      --machine-api-cert=/tls.crt
+      --event-sink-port=8091
+      --bind-addr=0.0.0.0:443
+      --machine-api-bind-addr=0.0.0.0:8090
+      --k8s-proxy-bind-addr=0.0.0.0:8100
+      --advertised-api-url=https://omni.${MY_DOMAIN}/
+      --siderolink-api-advertised-url=https://omni.${MY_DOMAIN}:8090/
+      --siderolink-wireguard-advertised-addr=192.168.20.10:50180
+      --advertised-kubernetes-proxy-url=https://omni.${MY_DOMAIN}:8100/
+      --auth-saml-enabled=true
+      --auth-saml-url=https://auth.${MY_DOMAIN}/application/saml/omni/metadata/
+    volumes:
+      - $PWD/etcd:/_out/etcd
+      - $PWD/fullchain.pem:/tls.crt
+      - $PWD/tls.key:/tls.key
+      - $PWD/omni.asc:/omni.asc
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun

@@ -1,0 +1,2 @@
+excludeLabelPropagationPrefixes:
+  - "argocd.argoproj.io/instance"

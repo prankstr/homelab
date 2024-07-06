@@ -9,6 +9,14 @@ metrics:
     query: kubernetes_build_info{service="kubernetes"}
     label: git_version
 
+  - name: renovate_job_time_since_last_successful_minutes
+    query: round((now() - kube_cronjob_status_last_successful_time{cronjob="renovate"}) / 60)
+    suffix: "m ago"
+    colors:
+      - { color: "green", min: 0, max: 60 }
+      - { color: "orange", min: 61, max: 1440 }
+      - { color: "red", min: 1440, max: 99999 }
+
   - name: cluster_node_count
     query: count(count by (node) (kube_node_status_condition{condition="Ready"}))
     colors:
