@@ -2,21 +2,16 @@
 
 # Homelab
 
-![Homelab-gif](/assets/images/homelab.gif)<br/>
-<span style="font-size:0.75em;">_despite what this gif implies my homelab is actually quite stable, I promise_</span>
+![Homelab-gif](/assets/images/homelab.gif)
 
 </div>
 
 <div align="center">
 <br/>
 
-[![Talos](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.p6r.dev%2Fquery%3Fformat%3Dendpoint%26metric%3Dtalos_version&style=for-the-badge&logo=talos&logoColor=white&color=blue&label=%20)](https://www.talos.dev/)&nbsp;&nbsp;[![Kubernetes](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.p6r.dev%2Fquery%3Fformat%3Dendpoint%26metric%3Dkubernetes_version&style=for-the-badge&logo=kubernetes&logoColor=white&color=blue&label=%20)](https://www.talos.dev/)&nbsp;&nbsp;
-
-</div>
-
-<div align="center">
-
-![Renovate](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.p6r.dev%2Fquery%3Fformat%3Dendpoint%26metric%3Drenovate_job_time_since_last_successful_minutes&style=for-the-badge&logo=renovatebot&logoColor=white&label=LAST%20SUCCESSFUL%20RENOVATE%20JOB)
+[![Talos](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.p6r.dev%2Fquery%3Fformat%3Dendpoint%26metric%3Dtalos_version&style=for-the-badge&logo=talos&logoColor=white&color=blue&label=%20)](https://www.talos.dev/)&nbsp;&nbsp;
+[![Kubernetes](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.p6r.dev%2Fquery%3Fformat%3Dendpoint%26metric%3Dkubernetes_version&style=for-the-badge&logo=kubernetes&logoColor=white&color=blue&label=%20)](https://www.talos.dev/)&nbsp;&nbsp;
+![Renovate](https://img.shields.io/github/actions/workflow/status/prankstr/homelab/renovate.yaml?branch=main&label=&logo=renovate&style=for-the-badge&color=blue)
 
 </div>
 
@@ -33,6 +28,8 @@
 </div>
 
 ## 📖 Overview
+
+Kubernetes Homelab built on Talos Linux, managed with GitOps using ArgoCD and Renovate.
 
 This repo is the source for my GitOps deployments as well as my personal knowledge bank with notes for my homelab. I decided to make it public in case someone finds it useful or interesting.
 
@@ -67,13 +64,16 @@ I work with Kubernetes for a living so while some stuff might be overkill it hel
 
 Here is an overview of the services I run, some of them have more detailed explanations and configuration notes in their respective folder in the [kubernetes/apps](./kubernetes/apps) folder.
 
-#### Infrastructure(i.e stuff that enables me to deploy and manage other stuff)
+#### Platform services
 
-- [1Password Connect Operator](https://github.com/1Password/onepassword-operator): Secret management.Sync secrets from 1Password to Kubernetes.
+_(i.e stuff that enables me to deploy and manage other stuff)_
+
+- [1Password Connect Operator](https://github.com/1Password/onepassword-operator): Secret management. Sync secrets from 1Password to Kubernetes.
 - [Argo CD](https://github.com/argoproj/argo-cd): Facilitates GitOps. Automating the deployment of applications based on manifests in this git repo.
 - [cert-manager](https://github.com/cert-manager/cert-manager): Automatically provisions and renews certificates.
-- [democratic-csi](https://github.com/democratic-csi/democratic-csi): CSI provisioner that works with TrueNAS. Provisions persistent volumes backed by TrueNAS.
+- [democratic-csi](https://github.com/democratic-csi/democratic-csi): CSI provisioner for TrueNAS. Provisions persistent volumes backed by TrueNAS.
 - [ExternalDNS](https://github.com/kubernetes-sigs/external-dns): Integrated with AdGuard Home and automatically configures DNS records from Kubernetes.
+- [Github ARC](https://github.com/actions/actions-runner-controller): Github Actions Runner Controller. Runs Github Actions runners in the cluster.
 - [Grafana](https://github.com/grafana/grafana): Visualization tool. Used to visualize metrics from the cluster and other sources.
 - [Ingress-Nginx](https://github.com/kubernetes/ingress-nginx): Ingress controller. A reverse proxy for services in the cluster.
 - [K10](https://docs.kasten.io/latest/index.html): Backup solution for Kubernetes applications. Since I deploy with GitOps this is mainly used for backing up data.
@@ -90,4 +90,4 @@ Here is an overview of the services I run, some of them have more detailed expla
 - [Morphos](https://github.com/danvergara/morphos): Self-hosted file converter.
 - [Vikunja](https://vikunja.io/): Self-hosted todo app.
 
-The ratio is a bit skewed but the infra stuff is where the learning is at 😎
+The ratio is a bit skewed but the platform stuff is where the learning is at 😎
