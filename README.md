@@ -68,7 +68,9 @@ I work with Kubernetes for a living so while some stuff might be overkill it hel
 
 Here is an overview of the services I run, some of them have more detailed explanations and configuration notes in their respective folder in the [kubernetes/apps](./kubernetes/apps) folder.
 
-#### Platform services(i.e stuff that enables me to deploy and manage other stuff)
+#### Platform services
+
+_(i.e stuff that enables me to deploy and manage other stuff)_
 
 - [1Password Connect Operator](https://github.com/1Password/onepassword-operator): Secret management. Sync secrets from 1Password to Kubernetes.
 - [Argo CD](https://github.com/argoproj/argo-cd): Facilitates GitOps. Automating the deployment of applications based on manifests in this git repo.
