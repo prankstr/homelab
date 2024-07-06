@@ -2,8 +2,7 @@
 
 # Homelab
 
-![Homelab-gif](/assets/images/homelab.gif)<br/>
-<span style="font-size:0.70em;">_despite what this gif implies my homelab is actually quite stable, I promise_</span>
+![Homelab-gif](/assets/images/homelab.gif)
 
 </div>
 
