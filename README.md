@@ -29,6 +29,8 @@
 
 ## 📖 Overview
 
+Kubernetes Homelab built on Talos Linux, managed with GitOps using ArgoCD and Renovate.
+
 This repo is the source for my GitOps deployments as well as my personal knowledge bank with notes for my homelab. I decided to make it public in case someone finds it useful or interesting.
 
 Currently most of the content is regarding my Kubernetes cluster and the applications I run on it. I'm looking to expand it with more general homelab stuff as well as time goes on.
