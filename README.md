@@ -2,6 +2,8 @@
 
 # Homelab
 
+##### Kubernetes Homelab built on Talos Linux, managed with GitOps using ArgoCD and Renovate
+
 ![Homelab-gif](/assets/images/homelab.gif)
 
 </div>
