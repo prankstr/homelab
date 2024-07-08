@@ -13,4 +13,4 @@ helmCharts:
     repo: https://kubernetes.github.io/ingress-nginx
     includeCRDs: true
     valuesFile: values.yaml
-    version: 4.10.1
+    version: 4.11.0
