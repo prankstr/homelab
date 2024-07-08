@@ -1,6 +1,11 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended", ":automergeMinor", ":semanticCommits"],
+  "extends": [
+    "config:recommended",
+    ":automergeMinor",
+    ":automergeBranch",
+    ":semanticCommits"
+  ],
   "enabledManagers": ["kustomize", "docker-compose"],
   "packageRules": [
     {
