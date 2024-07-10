@@ -54,3 +54,15 @@ jobs:
       - name: Dry-run kubectl apply
         run: |
           kubectl apply -f ${{ matrix.app }}/bundle.yaml --dry-run=client
+
+  # Can't use previous job as a required status check since it's a matrix
+  # This only runs if the previous job was successful and is used as a required status check for PRs
+  completion:
+    runs-on: arc-runner-set
+    name: Validation completed
+    needs: k8s-validation
+    container:
+      image: alpine/k8s:1.30.2
+    steps:
+      - name: Echo
+        run: echo 'Validation completed successfully'
