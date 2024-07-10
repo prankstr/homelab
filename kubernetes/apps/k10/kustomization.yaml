@@ -22,7 +22,7 @@ generatorOptions:
 
 configMapGenerator:
   - files:
-      - dashboard.json
+      - k10-dashboard.json
     name: k10-dashboard
 
 # Need to set namespace here as well, otherwise some resources are created in the wrong namespace
