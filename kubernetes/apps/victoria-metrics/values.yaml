@@ -11,6 +11,10 @@ defaultRules:
 vmsingle:
   spec:
     retentionPeriod: "99y"
+    storage:
+      resources:
+        requests:
+          storage: 30Gi
   ingress:
     enabled: true
     annotations:
