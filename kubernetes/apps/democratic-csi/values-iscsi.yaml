@@ -5,10 +5,6 @@ controller:
     imagePullPolicy: Always
 node:
   hostPID: true
-  mount:
-    checkFilesystem:
-      ext4:
-        enabled: true
   driver:
     extraEnv:
       - name: ISCSIADM_HOST_STRATEGY
@@ -50,6 +46,11 @@ driver:
       apiKey: { TRUENAS_API_KEY }
       allowInsecure: false
       apiVersion: 2
+    node:
+      mount:
+        checkFilesystem:
+          ext4:
+            enabled: true
     zfs:
       datasetParentName: storage/k8s/iscsi/volumes
       detachedSnapshotsDatasetParentName: storage/k8s/iscsi/snapshots
