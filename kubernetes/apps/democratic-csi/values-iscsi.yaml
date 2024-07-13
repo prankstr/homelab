@@ -5,6 +5,10 @@ controller:
     imagePullPolicy: Always
 node:
   hostPID: true
+  mount:
+    checkFilesystem:
+      ext4:
+        enabled: true
   driver:
     extraEnv:
       - name: ISCSIADM_HOST_STRATEGY
@@ -73,4 +77,3 @@ driver:
       extentBlocksize: 512
       extentRpm: "SSD"
       extentAvailThreshold: 0
-
