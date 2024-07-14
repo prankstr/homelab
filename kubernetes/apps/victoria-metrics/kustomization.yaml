@@ -32,7 +32,6 @@ helmCharts:
 
   - name: victoria-metrics-single
     namespace: victoria-metrics
-    releaseName: lts
     repo: https://victoriametrics.github.io/helm-charts/
     valuesFile: values-single-lts.yaml
     version: 0.9.24
