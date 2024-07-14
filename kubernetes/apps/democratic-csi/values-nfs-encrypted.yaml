@@ -2,9 +2,15 @@ csiDriver:
   name: "nfs-encrypted"
 controller:
   driver:
-    imagePullPolicy: Always
+    resources:
+      requests:
+        memory: 60Mi
 node:
   enabled: true
+  driver:
+    resources:
+      requests:
+        memory: 75Mi
 storageClasses:
   - name: nfs-encrypted
     defaultClass: false
@@ -57,4 +63,3 @@ driver:
       shareMaprootGroup: root
       shareMapallUser: ""
       shareMapallGroup: ""
-

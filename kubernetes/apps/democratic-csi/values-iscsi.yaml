@@ -3,6 +3,9 @@ csiDriver:
 controller:
   driver:
     imagePullPolicy: Always
+    resources:
+      requests:
+        memory: 60Mi
 node:
   hostPID: true
   driver:
@@ -13,6 +16,9 @@ node:
         value: /usr/local/sbin/iscsiadm
     iscsiDirHostPath: /usr/local/etc/iscsi
     iscsiDirHostPathType: ""
+    resources:
+      requests:
+        memory: 75Mi
 storageClasses:
   - name: iscsi
     defaultClass: true
