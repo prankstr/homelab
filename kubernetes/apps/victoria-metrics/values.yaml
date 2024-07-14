@@ -10,7 +10,7 @@ defaultRules:
     Watchdog: true
 vmsingle:
   spec:
-    retentionPeriod: "99y"
+    retentionPeriod: 1 # month
     resources:
       requests:
         memory: "1Gi"

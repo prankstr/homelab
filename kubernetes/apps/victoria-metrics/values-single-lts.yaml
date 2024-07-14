@@ -1,0 +1,50 @@
+rbac:
+  namespaced: true
+
+server:
+  retentionPeriod: 99 # months
+  ingress:
+    enabled: true
+    annotations:
+      cert-manager.io/cluster-issuer: "letsencrypt"
+    hosts:
+      - name: metrics-external.{ MY_DOMAIN }
+        path: /
+        port: http
+    tls:
+      - secretName: metrics-external.{ MY_DOMAIN }-cert
+        hosts:
+          - metrics-external.{ MY_DOMAIN }
+    ingressClassName: nginx
+    pathType: Prefix
+  scrape:
+    config:
+      scrape_configs:
+        - job_name: victoriametrics
+          static_configs:
+            - targets: ["localhost:8428"]
+        - job_name: molntuss-node-exporter
+          static_configs:
+            - targets:
+                - molntuss.{ MY_DOMAIN }:9100
+                - molntuss.{ MY_DOMAIN }:9134
+        - job_name: truenas-node-exporter
+          static_configs:
+            - targets:
+                - truenas.{ MY_DOMAIN }:9100
+                - truenas.{ MY_DOMAIN }:9134
+        - job_name: homeassistant
+          static_configs:
+            - targets:
+                - homeassistant.{ MY_DOMAIN }:8123
+              scheme: https
+              bearerTokenSecret:
+                name: homeassistant-token
+                key: token
+              path: /api/prometheus
+              tlsConfig:
+                insecureSkipVerify: true
+        - job_name: husdata-exporter
+          static_configs:
+            - targets:
+                - homeassistant.{ MY_DOMAIN }:9101

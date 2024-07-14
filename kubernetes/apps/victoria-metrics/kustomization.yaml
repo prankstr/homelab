@@ -3,8 +3,7 @@ kind: Kustomization
 
 resources:
   - namespace.yaml
-  - static-scrapes.yaml
-  - datasource.yaml
+  - datasources.yaml
   - alertmanager-config-secret.yaml
   - homeassistant-token-secret.yaml
 
@@ -31,12 +30,12 @@ helmCharts:
     valuesFile: values.yaml
     version: 0.24.1
 
-  - name: victoria-metrics-agent
+  - name: victoria-metrics-single
     namespace: victoria-metrics
-    releaseName: external-monitoring
+    releaseName: long-term-storage
     repo: https://victoriametrics.github.io/helm-charts/
-    valuesFile: values-external.yaml
-    version: 0.10.10
+    valuesFile: values-single-lts.yaml
+    version: 0.9.24
 
   - name: victoria-logs-single
     repo: https://victoriametrics.github.io/helm-charts/
