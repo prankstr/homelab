@@ -10,11 +10,10 @@ spec:
       name: lets-encrypt-account-key
     solvers:
       - dns01:
-          webhook:
-            groupName: com.github.runnerm.cert-manager-simply-webhook
-            solverName: simply-dns-solver
-            config:
-              secretName: simply-credentials
+          cloudflare:
+            apiTokenSecretRef:
+              name: cloudflare
+              key: api-token
         selector:
           dnsZones:
             - "{ MY_DOMAIN }"
@@ -25,4 +24,3 @@ metadata:
   name: selfsigned-issuer
 spec:
   selfSigned: {}
-
