@@ -2,9 +2,16 @@ csiDriver:
   name: "nfs"
 node:
   enabled: true
+  driver:
+    resources:
+      requests:
+        memory: 60Mi
 controller:
   driver:
     imagePullPolicy: Always
+    resources:
+      requests:
+        memory: 75Mi
 storageClasses:
   - name: nfs
     defaultClass: false
@@ -57,4 +64,3 @@ driver:
       shareMaprootGroup: root
       shareMapallUser: ""
       shareMapallGroup: ""
-
