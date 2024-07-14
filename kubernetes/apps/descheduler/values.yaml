@@ -1,0 +1,4 @@
+service:
+  enabled: true
+serviceMonitor:
+  enabled: true
