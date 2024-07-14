@@ -18,6 +18,13 @@ server:
           - metrics-lts.{ MY_DOMAIN }
     ingressClassName: nginx
     pathType: Prefix
+  extraVolumes:
+    - name: homeassistant-token
+      secret:
+        secretName: homeassistant-token
+  extraVolumeMounts:
+    - name: homeassistant-token
+      mountPath: /homeassistant
   scrape:
     enabled: true
     config:
@@ -39,13 +46,11 @@ server:
           static_configs:
             - targets:
                 - homeassistant.{ MY_DOMAIN }:8123
-              scheme: https
-              bearerTokenSecret:
-                name: homeassistant-token
-                key: token
-              path: /api/prometheus
-              tlsConfig:
-                insecureSkipVerify: true
+          scheme: https
+          bearer_token_file: /homeassistant/token
+          path: /api/prometheus
+          tls_config:
+            insecure_skip_verify: true
         - job_name: husdata-exporter
           static_configs:
             - targets:
