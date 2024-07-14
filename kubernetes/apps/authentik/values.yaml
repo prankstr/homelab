@@ -18,17 +18,17 @@ server:
   resources:
     requests:
       cpu: 100m
-      memory: 512mi
+      memory: 512Mi
     limits:
-      memory: 512mi
+      memory: 512Mi
 
 worker:
   resources:
     requests:
       cpu: 100m
-      memory: 512mi
+      memory: 512Mi
     limits:
-      memory: 512mi
+      memory: 512Mi
 
 postgresql:
   enabled: true
