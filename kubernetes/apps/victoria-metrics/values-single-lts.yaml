@@ -2,7 +2,7 @@ rbac:
   namespaced: true
 
 server:
-  retentionPeriod: 99m
+  retentionPeriod: 10y
   ingress:
     enabled: true
     annotations:
