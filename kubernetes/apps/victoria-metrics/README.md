@@ -10,7 +10,8 @@ I use the official charts found [here](https://github.com/VictoriaMetrics/helm-c
 - **coredns-patch.yaml:** Set namespace to kube-system for the coredns service since that's where to pods are located.
 - **static-scrapes.yaml:** Static scrape targets for vmagent.
 - **values-logs.yaml:** Values for the victoria-logs chart.
-- **values-external.yaml:** Values for a separate installation of the vmagent component. This is used for scraping external targets and avoid getting k8s related labels applied to the metrics.
+- **values-agent-external.yaml:** Values for a separate installation of the vmagent component. This is used for scraping external targets and avoid getting k8s related labels applied to the metrics.
+- **values-single-long-term.yaml:** Values for a separate long term installation of Victoria Metrics Single. This is scraping homeassistant in parallel but with a much longer retention period.
 
 ## [VictoriaLogs](https://docs.victoriametrics.com/victorialogs/)
 

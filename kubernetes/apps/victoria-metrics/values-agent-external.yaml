@@ -22,11 +22,22 @@ ingress:
   ingressClassName: nginx
   pathType: Prefix
 
+extraVolumes:
+  - name: homeassistant-token
+    secret:
+      secretName: homeassistant-token
+extraVolumeMounts:
+  - name: homeassistant-token
+    mountPath: /homeassistant
+
 config:
   scrape_configs:
     - job_name: vmagent
       static_configs:
         - targets: ["localhost:8429"]
+    - job_name: victoria-metrics-lts
+      static_configs:
+        - targets: ["victoria-metrics-lts:8429"]
     - job_name: molntuss-node-exporter
       static_configs:
         - targets:
@@ -37,3 +48,16 @@ config:
         - targets:
             - truenas.{ MY_DOMAIN }:9100
             - truenas.{ MY_DOMAIN }:9134
+    - job_name: homeassistant
+      static_configs:
+        - targets:
+            - homeassistant.{ MY_DOMAIN }:8123
+      scheme: https
+      bearer_token_file: /homeassistant/token
+      metrics_path: /api/prometheus
+      tls_config:
+        insecure_skip_verify: true
+    - job_name: husdata-exporter
+      static_configs:
+        - targets:
+            - homeassistant.{ MY_DOMAIN }:9101
