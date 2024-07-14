@@ -25,4 +25,99 @@ auth:
   oidcAuth:
     enabled: true
     secretName: "k10-oidc"
-
+aggregatedapis-svc:
+  aggregatedapis-svc:
+    requests:
+      cpu: 90m
+      memory: 200Mi
+auth-svc:
+  auth-svc:
+    requests:
+      cpu: 2m
+      memory: 64Mi
+catalog-svc:
+  catalog-svc:
+    requests:
+      cpu: 200m
+      memory: 100Mi
+  kanister-sidecar:
+    limits:
+      cpu: 1200m
+      memory: 800Mi
+    requests:
+      cpu: 100m
+      memory: 100Mi
+controllermanager-svc:
+  controllermanager-svc:
+    requests:
+      cpu: 5m
+      memory: 150Mi
+crypto-svc:
+  bloblifecyclemanager-svc:
+    requests:
+      cpu: 10m
+      memory: 150Mi
+  crypto-svc:
+    requests:
+      cpu: 1m
+      memory: 150Mi
+  events-svc:
+    requests:
+      cpu: 3m
+      memory: 150Mi
+  garbagecollector-svc:
+    requests:
+      cpu: 3m
+      memory: 150Mi
+dashboardbff-svc:
+  dashboardbff-svc:
+    requests:
+      cpu: 8m
+      memory: 200Mi
+  repositories-svc:
+    requests:
+      cpu: 10m
+      memory: 100Mi
+executor-svc:
+  executor-svc:
+    requests:
+      cpu: 3m
+      memory: 200Mi
+  tools:
+    requests:
+      cpu: 1m
+      memory: 2Mi
+frontend-svc:
+  frontend-svc:
+    requests:
+      cpu: 1m
+      memory: 40Mi
+jobs-svc:
+  jobs-svc:
+    requests:
+      cpu: 30m
+      memory: 100Mi
+kanister-svc:
+  kanister-svc:
+    requests:
+      cpu: 1m
+      memory: 100Mi
+logging-svc:
+  logging-svc:
+    requests:
+      cpu: 2m
+      memory: 100Mi
+metering-svc:
+  metering-svc:
+    requests:
+      cpu: 2m
+      memory: 150Mi
+state-svc:
+  admin-svc:
+    requests:
+      cpu: 2m
+      memory: 160Mi
+  state-svc:
+    requests:
+      cpu: 2m
+      memory: 100Mi
