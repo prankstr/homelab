@@ -48,7 +48,7 @@ server:
                 - homeassistant.{ MY_DOMAIN }:8123
           scheme: https
           bearer_token_file: /homeassistant/token
-          path: /api/prometheus
+          metrics_path: /api/prometheus
           tls_config:
             insecure_skip_verify: true
         - job_name: husdata-exporter
