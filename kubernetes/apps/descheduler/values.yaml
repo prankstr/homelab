@@ -27,11 +27,11 @@ deschedulerPolicy:
             thresholds:
               cpu: 35
               memory: 35
-              pods: 35
+              pods: 25
             targetThresholds:
               cpu: 50
               memory: 50
-              pods: 50
+              pods: 30
       plugins:
         balance:
           enabled:
@@ -44,3 +44,4 @@ deschedulerPolicy:
             - RemovePodsViolatingNodeTaints
             - RemovePodsViolatingNodeAffinity
             - RemovePodsViolatingInterPodAntiAffinity
+

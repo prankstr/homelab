@@ -11,6 +11,10 @@ defaultRules:
 vmsingle:
   spec:
     retentionPeriod: "99y"
+    resources:
+      requests:
+        memory: "1Gi"
+        cpu: "100m"
     storage:
       resources:
         requests:

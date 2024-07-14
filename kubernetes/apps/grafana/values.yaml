@@ -50,7 +50,12 @@ ingress:
       hosts:
         - grafana.{ MY_DOMAIN }
 
-extraSecretMounts:
+resources:
+  requests:
+    cpu: 100m
+    memory: 500Mi
+
+xtraSecretMounts:
   - name: auth-generic-oauth-secret-mount
     secretName: grafana
     defaultMode: 0440

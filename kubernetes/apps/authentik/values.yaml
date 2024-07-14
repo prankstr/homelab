@@ -13,8 +13,22 @@ server:
       - auth.{ MY_DOMAIN }
     tls:
       - hosts:
-        - auth.{ MY_DOMAIN }
+          - auth.{ MY_DOMAIN }
         secretName: auth.{ MY_DOMAIN }-cert
+  resources:
+    requests:
+      cpu: 100m
+      memory: 512mi
+    limits:
+      memory: 512mi
+
+worker:
+  resources:
+    requests:
+      cpu: 100m
+      memory: 512mi
+    limits:
+      memory: 512mi
 
 postgresql:
   enabled: true
@@ -26,3 +40,4 @@ postgresql:
 
 redis:
   enabled: true
+
