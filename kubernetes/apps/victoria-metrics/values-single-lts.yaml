@@ -2,23 +2,23 @@ rbac:
   namespaced: true
 
 server:
-  fullnameOverride: "vmsingle-lts"
   retentionPeriod: 10y
   ingress:
     enabled: true
     annotations:
       cert-manager.io/cluster-issuer: "letsencrypt"
     hosts:
-      - name: metrics-external.{ MY_DOMAIN }
+      - name: metrics-lts.{ MY_DOMAIN }
         path: /
         port: http
     tls:
-      - secretName: metrics-external.{ MY_DOMAIN }-cert
+      - secretName: metrics-lts.{ MY_DOMAIN }-cert
         hosts:
-          - metrics-external.{ MY_DOMAIN }
+          - metrics-lts.{ MY_DOMAIN }
     ingressClassName: nginx
     pathType: Prefix
   scrape:
+    enabled: true
     config:
       scrape_configs:
         - job_name: victoriametrics
