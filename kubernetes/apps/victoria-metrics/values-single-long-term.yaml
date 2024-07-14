@@ -2,7 +2,7 @@ rbac:
   namespaced: true
 
 server:
-  fullnameOverride: victoria-metrics-lts
+  fullnameOverride: victoria-metrics-long-term
   retentionPeriod: 10y
   ingress:
     enabled: true
