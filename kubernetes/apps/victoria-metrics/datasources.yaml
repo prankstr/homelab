@@ -11,7 +11,7 @@ data:
       jsondata: {}
     - name: VictoriaMetricsLTS
       type: prometheus
-      url: http://victoria-metrics-lts.victoria-metrics.svc:8429/
+      url: http://victoria-metrics-lts.victoria-metrics.svc:8428/
       access: proxy
       isDefault: false
       jsonData: {}
