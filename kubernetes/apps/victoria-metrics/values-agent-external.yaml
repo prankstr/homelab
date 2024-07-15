@@ -37,7 +37,7 @@ config:
         - targets: ["localhost:8429"]
     - job_name: victoria-metrics-lts
       static_configs:
-        - targets: ["victoria-metrics-long-term:8429"]
+        - targets: ["victoria-metrics-long-term:8428"]
     - job_name: molntuss-node-exporter
       static_configs:
         - targets:
