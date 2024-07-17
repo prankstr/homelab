@@ -28,7 +28,7 @@ jobs:
           curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 
       - name: Kustomize Build
-        run: kustomize build --enable-helm kubernetes/bootstrap/argocd > kubernetes/bootstrap/bootstrap-argocd.yaml
+        run: kustomize build --enable-helm kubernetes/apps/argocd > kubernetes/bootstrap/bootstrap-argocd.yaml
 
       - name: Commit
         run: |
