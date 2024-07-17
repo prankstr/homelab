@@ -37,6 +37,9 @@ jobs:
     runs-on: arc-runner-set
     name: Validate ${{ matrix.app }}
     needs: changed-apps
+    # Even though this job only runs on "kubernetes/apps/**" the bootstrap job will build and change a file outside the apps directory
+    # Hence this if to limit the job to run on apps
+    if: contains(needs.changed-apps.outputs.matrix, 'kubernetes/apps')
     container:
       image: alpine/k8s:1.30.2
     strategy:
