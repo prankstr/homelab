@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - "kubernetes/bootstrap/argocd/**"
+      - "kubernetes/apps/argocd/**"
 
 jobs:
   build-and-commit:
