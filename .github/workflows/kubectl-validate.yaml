@@ -33,6 +33,8 @@ jobs:
       - name: List all changed files
         run: echo '${{ steps.changed-apps.outputs.all_changed_files }}'
 
+      # Even though this workflow only runs on "kubernetes/apps/**" other workflows might change other files
+      # To avoid a polluted matrix we only include apps that have changed
       - name: Filter apps matrix
         id: filter-apps
         run: |
@@ -47,7 +49,7 @@ jobs:
           done
           APPS_MATRIX=$(printf '%s\n' "${APPS[@]}" | jq -R . | jq -s .)
           echo "Filtered matrix: $APPS_MATRIX"
-          echo "APPS_MATRIX=$APPS_MATRIX" >> $GITHUB_ENV
+          echo "apps_matrix=$APPS_MATRIX" >> $GITHUB_ENV
           echo "::set-output name=apps_matrix::$APPS_MATRIX"
         shell: bash
 
@@ -55,14 +57,11 @@ jobs:
     runs-on: arc-runner-set
     name: Validate ${{ matrix.app }}
     needs: changed-apps
-    # Even though this job only runs on "kubernetes/apps/**" the bootstrap job will build and change a file outside the apps directory
-    # Hence this if to limit the job to run on apps
-    if: contains(needs.changed-apps.outputs.matrix, 'kubernetes/apps')
     container:
       image: alpine/k8s:1.30.2
     strategy:
       matrix:
-        app: ${{ fromJSON(needs.changed-apps.outputs.matrix) }}
+        app: ${{ fromJSON(needs.changed-apps.outputs.apps_matrix) }}
     steps:
       - name: Checkout repo content
         uses: actions/checkout@v4
