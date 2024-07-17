@@ -9,7 +9,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: kubernetes/bootstrap/argocd
+    path: kubernetes/apps/argocd
     repoURL: https://github.com/prankstr/homelab.git
     targetRevision: HEAD
   syncPolicy:

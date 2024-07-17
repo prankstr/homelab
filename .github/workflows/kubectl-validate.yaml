@@ -16,22 +16,39 @@ jobs:
     container:
       image: alpine/k8s:1.30.2
     outputs:
-      matrix: ${{ steps.changed-apps.outputs.all_changed_files }}
+      apps_matrix: ${{ steps.changed-apps.outputs.apps_matrix }}
     steps:
       - name: Checkout repo content
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Get changed apps
-        id: changed-apps
+      - name: Get changed files
+        id: changed-files
         uses: tj-actions/changed-files@v44
         with:
           matrix: true
           dir_names: true
 
       - name: List all changed files
-        run: echo '${{ steps.changed-apps.outputs.all_changed_files }}'
+        run: echo '${{ steps.changed-files.outputs.all_changed_files }}'
+
+      - name: Filter apps matrix
+        id: changed-apps
+        run: |
+          echo "Filtering matrix entries for 'kubernetes/apps'"
+          CHANGED_FILES="${{ steps.changed-files.outputs.all_changed_files }}"
+          echo "Changed files: $CHANGED_FILES"
+          APPS=()
+          for FILE in ${CHANGED_FILES//,/ }; do
+            if [[ "$FILE" == kubernetes/apps* ]]; then
+              APPS+=("$FILE")
+            fi
+          done
+          APPS_MATRIX=$(printf '%s\n' "${APPS[@]}" | jq -R . | jq -sc .)
+          echo "Filtered matrix: $APPS_MATRIX"
+          echo apps_matrix=$APPS_MATRIX >> $GITHUB_OUTPUT
+        shell: bash
 
   k8s-validation:
     runs-on: arc-runner-set
@@ -41,7 +58,7 @@ jobs:
       image: alpine/k8s:1.30.2
     strategy:
       matrix:
-        app: ${{ fromJSON(needs.changed-apps.outputs.matrix) }}
+        app: ${{ fromJSON(needs.changed-apps.outputs.apps_matrix) }}
     steps:
       - name: Checkout repo content
         uses: actions/checkout@v4
