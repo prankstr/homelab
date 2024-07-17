@@ -16,7 +16,6 @@ jobs:
     container:
       image: alpine/k8s:1.30.2
     outputs:
-      files_matrix: ${{ steps.changed-files.outputs.all_changed_files }}
       apps_matrix: ${{ steps.changed-apps.outputs.apps_matrix }}
     steps:
       - name: Checkout repo content
@@ -24,7 +23,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Get changed apps
+      - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v44
         with:
@@ -34,8 +33,6 @@ jobs:
       - name: List all changed files
         run: echo '${{ steps.changed-files.outputs.all_changed_files }}'
 
-      # Even though this workflow only runs on "kubernetes/apps/**" other workflows might change other files
-      # To avoid a polluted matrix we only include apps that have changed
       - name: Filter apps matrix
         id: changed-apps
         run: |
@@ -52,7 +49,7 @@ jobs:
           echo "Filtered matrix: $APPS_MATRIX"
           # Ensure no leading/trailing whitespace
           echo "apps_matrix=$(echo $APPS_MATRIX | xargs)" >> $GITHUB_ENV
-          cat $GITHUB_ENV
+          echo "::set-output name=apps_matrix::$(echo $APPS_MATRIX | xargs)"
         shell: bash
 
   k8s-validation:
