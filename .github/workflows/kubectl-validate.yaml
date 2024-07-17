@@ -52,6 +52,7 @@ jobs:
           echo "Filtered matrix: $APPS_MATRIX"
           # Ensure no leading/trailing whitespace
           echo "apps_matrix=$(echo $APPS_MATRIX | xargs)" >> $GITHUB_ENV
+          cat $GITHUB_ENV
         shell: bash
 
   k8s-validation:
