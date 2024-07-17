@@ -17,7 +17,6 @@ jobs:
       image: alpine/k8s:1.30.2
     outputs:
       matrix: ${{ steps.changed-apps.outputs.all_changed_files }}
-      apps_matrix: ${{ steps.changed-apps.outputs.apps_matrix }}
     steps:
       - name: Checkout repo content
         uses: actions/checkout@v4
@@ -38,14 +37,14 @@ jobs:
         id: filter-apps
         run: |
           echo "Filtering matrix entries for 'kubernetes/apps'"
-          CHANGED_FILES=${{ steps.changed-apps.outputs.all_changed_files }}
+          CHANGED_FILES="${{ steps.changed-apps.outputs.all_changed_files }}"
           APPS=()
           for FILE in ${CHANGED_FILES}; do
             if [[ "$FILE" == kubernetes/apps* ]]; then
               APPS+=("$FILE")
             fi
           done
-          echo "apps_matrix=$(printf '%s\n' "${APPS[@]}" | jq -R . | jq -s .)" >> $GITHUB_ENV
+          echo "::set-output name=apps_matrix::$(printf '%s\n' "${APPS[@]}" | jq -R . | jq -s .)"
         shell: bash
 
   k8s-validation:
@@ -59,7 +58,7 @@ jobs:
       image: alpine/k8s:1.30.2
     strategy:
       matrix:
-        app: ${{ fromJSON(needs.changed-apps.outputs.apps_matrix) }}
+        app: ${{ fromJSON(needs.changed-apps.outputs.matrix) }}
     steps:
       - name: Checkout repo content
         uses: actions/checkout@v4
