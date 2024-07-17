@@ -38,13 +38,17 @@ jobs:
         run: |
           echo "Filtering matrix entries for 'kubernetes/apps'"
           CHANGED_FILES="${{ steps.changed-apps.outputs.all_changed_files }}"
+          echo "Changed files: $CHANGED_FILES"
           APPS=()
-          for FILE in ${CHANGED_FILES}; do
+          for FILE in ${CHANGED_FILES//,/ }; do
             if [[ "$FILE" == kubernetes/apps* ]]; then
               APPS+=("$FILE")
             fi
           done
-          echo "::set-output name=apps_matrix::$(printf '%s\n' "${APPS[@]}" | jq -R . | jq -s .)"
+          APPS_MATRIX=$(printf '%s\n' "${APPS[@]}" | jq -R . | jq -s .)
+          echo "Filtered matrix: $APPS_MATRIX"
+          echo "APPS_MATRIX=$APPS_MATRIX" >> $GITHUB_ENV
+          echo "::set-output name=apps_matrix::$APPS_MATRIX"
         shell: bash
 
   k8s-validation:
