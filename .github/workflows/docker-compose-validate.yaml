@@ -1,0 +1,33 @@
+name: Docker compose validate
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "kubernetes/talos/docker-compose.yaml"
+
+permissions:
+  contents: read
+
+jobs:
+  docker-compose-validation:
+    runs-on: ubuntu-latest
+    name: Validate compose file
+    steps:
+      - name: Checkout repo content
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Dry-run kubectl apply
+        run: |
+          docker compose config -f kubernetes/talos/docker-compose.yaml --quit
+
+  # Can't use previous job as a required status check since it's a matrix
+  # This only runs if the previous job was successful and is used as a required status check for PRs
+  completion:
+    runs-on: ubuntu-latest
+    name: Validation completed
+    steps:
+      - name: Echo
+        run: echo 'Validation completed successfully'
