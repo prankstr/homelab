@@ -49,8 +49,8 @@ jobs:
           done
           APPS_MATRIX=$(printf '%s\n' "${APPS[@]}" | jq -R . | jq -s .)
           echo "Filtered matrix: $APPS_MATRIX"
-          echo "apps_matrix=$APPS_MATRIX" >> $GITHUB_ENV
-          echo "::set-output name=apps_matrix::$APPS_MATRIX"
+          # Ensure no leading/trailing whitespace
+          echo "apps_matrix=$(echo $APPS_MATRIX | xargs)" >> $GITHUB_ENV
         shell: bash
 
   k8s-validation:
