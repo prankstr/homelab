@@ -45,10 +45,9 @@ jobs:
               APPS+=("$FILE")
             fi
           done
-          APPS_MATRIX=$(printf '%s\n' "${APPS[@]}" | jq -R . | jq -s .)
+          APPS_MATRIX=$(printf '%s\n' "${APPS[@]}" | jq -R . | jq -sc .)
           echo "Filtered matrix: $APPS_MATRIX"
-          # Ensure no leading/trailing whitespace
-          echo "apps_matrix=$(echo $APPS_MATRIX | xargs)" >> $GITHUB_OUTPUT
+          echo apps_matrix=$APPS_MATRIX >> $GITHUB_OUTPUT
         shell: bash
 
   k8s-validation:
