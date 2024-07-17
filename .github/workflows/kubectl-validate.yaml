@@ -17,6 +17,7 @@ jobs:
       image: alpine/k8s:1.30.2
     outputs:
       matrix: ${{ steps.changed-apps.outputs.all_changed_files }}
+      apps_matrix: ${{ steps.changed-apps.outputs.apps_matrix }}
     steps:
       - name: Checkout repo content
         uses: actions/checkout@v4
