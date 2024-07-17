@@ -4,7 +4,7 @@ on:
     branches:
       - main
     paths:
-      - "kubernetes/apps/**"
+      - "kubernetes/**"
 
 permissions:
   contents: read
@@ -33,10 +33,11 @@ jobs:
       - name: List all changed files
         run: echo '${{ steps.changed-apps.outputs.all_changed_files }}'
 
-  k8s-validation:
+  k8s-validation-apps:
     runs-on: arc-runner-set
     name: Validate ${{ matrix.app }}
     needs: changed-apps
+    if: ${{ needs.changed-apps.outputs.matrix && contains(needs.changed-apps.outputs.matrix, 'kubernetes/apps/') }}
     container:
       image: alpine/k8s:1.30.2
     strategy:
@@ -55,12 +56,33 @@ jobs:
         run: |
           kubectl apply -f ${{ matrix.app }}/bundle.yaml --dry-run=client
 
+  k8s-validation-bootstrap:
+    runs-on: arc-runner-set
+    name: Validate ${{ matrix.app }}
+    needs: changed-apps
+    if: ${{ needs.changed-apps.outputs.matrix && contains(needs.changed-apps.outputs.matrix, 'kubernetes/bootstrap/') }}
+    container:
+      image: alpine/k8s:1.30.2
+    strategy:
+      matrix:
+        app: ${{ fromJSON(needs.changed-apps.outputs.matrix) }}
+    steps:
+      - name: Checkout repo content
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Dry-run kubectl apply
+        run: |
+          kubectl apply -f ${{ matrix.app }}/bootstrap.yaml --dry-run=client
+
   # Can't use previous job as a required status check since it's a matrix
   # This only runs if the previous job was successful and is used as a required status check for PRs
   completion:
     runs-on: arc-runner-set
     name: Validation completed
-    needs: k8s-validation
+    needs: [k8s-validation-apps, k8s-validation-bootstrap]
+    if: ${{ needs.k8s-validation-apps.result == 'success' || needs.k8s-validation-bootstrap.result == 'success' }}
     container:
       image: alpine/k8s:1.30.2
     steps:
