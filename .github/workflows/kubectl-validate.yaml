@@ -37,7 +37,7 @@ jobs:
     runs-on: arc-runner-set
     name: Validate ${{ matrix.app }}
     needs: changed-apps
-    if: ${{ needs.changed-apps.outputs.matrix && contains(needs.changed-apps.outputs.matrix, 'kubernetes/apps/') }}
+    if: contains(needs.changed-apps.outputs.matrix, 'kubernetes/apps/')
     container:
       image: alpine/k8s:1.30.2
     strategy:
@@ -60,7 +60,7 @@ jobs:
     runs-on: arc-runner-set
     name: Validate ${{ matrix.app }}
     needs: changed-apps
-    if: ${{ needs.changed-apps.outputs.matrix && contains(needs.changed-apps.outputs.matrix, 'kubernetes/bootstrap/') }}
+    if: contains(needs.changed-apps.outputs.matrix, 'kubernetes/bootstrap/')
     container:
       image: alpine/k8s:1.30.2
     strategy:
@@ -82,7 +82,10 @@ jobs:
     runs-on: arc-runner-set
     name: Validation completed
     needs: [k8s-validation-apps, k8s-validation-bootstrap]
-    if: ${{ needs.k8s-validation-apps.result == 'success' || needs.k8s-validation-bootstrap.result == 'success' }}
+    if: |
+      always()
+      && contains(needs.*.result, 'success')
+      && !contains(needs.*.result, 'failure')
     container:
       image: alpine/k8s:1.30.2
     steps:
