@@ -16,7 +16,7 @@ jobs:
     container:
       image: alpine/k8s:1.30.2
     outputs:
-      matrix: ${{ steps.changed-apps.outputs.all_changed_files }}
+      files_matrix: ${{ steps.changed-files.outputs.all_changed_files }}
       apps_matrix: ${{ steps.changed-apps.outputs.apps_matrix }}
     steps:
       - name: Checkout repo content
@@ -25,22 +25,22 @@ jobs:
           fetch-depth: 0
 
       - name: Get changed apps
-        id: changed-apps
+        id: changed-files
         uses: tj-actions/changed-files@v44
         with:
           matrix: true
           dir_names: true
 
       - name: List all changed files
-        run: echo '${{ steps.changed-apps.outputs.all_changed_files }}'
+        run: echo '${{ steps.changed-files.outputs.all_changed_files }}'
 
       # Even though this workflow only runs on "kubernetes/apps/**" other workflows might change other files
       # To avoid a polluted matrix we only include apps that have changed
       - name: Filter apps matrix
-        id: filter-apps
+        id: changed-apps
         run: |
           echo "Filtering matrix entries for 'kubernetes/apps'"
-          CHANGED_FILES="${{ steps.changed-apps.outputs.all_changed_files }}"
+          CHANGED_FILES="${{ steps.changed-files.outputs.all_changed_files }}"
           echo "Changed files: $CHANGED_FILES"
           APPS=()
           for FILE in ${CHANGED_FILES//,/ }; do
