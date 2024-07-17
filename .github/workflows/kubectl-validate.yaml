@@ -50,7 +50,7 @@ jobs:
           echo apps_matrix=$APPS_MATRIX >> $GITHUB_OUTPUT
         shell: bash
 
-  k8s-validation:
+  validation:
     runs-on: arc-runner-set
     name: Validate ${{ matrix.app }}
     needs: changed-apps
@@ -73,13 +73,19 @@ jobs:
           kubectl apply -f ${{ matrix.app }}/bundle.yaml --dry-run=client
 
   # Can't use previous job as a required status check since it's a matrix
-  # This only runs if the previous job was successful and is used as a required status check for PRs
-  completion:
+  # Simple job to report success/fail based on previous job to use as a status check
+  validation-result:
     runs-on: arc-runner-set
-    name: Validation completed
-    needs: k8s-validation
+    name: Validation result
+    needs: validation
     container:
       image: alpine/k8s:1.30.2
     steps:
-      - name: Echo
-        run: echo 'Validation completed successfully'
+      - name: Set status based on build
+        run: |
+          if [ "${{ needs.validation.result }}" == "success" ]; then
+            echo "Validation succeeded."
+          else
+            echo "Validation failed."
+            exit 1
+          fi
