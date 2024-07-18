@@ -39,7 +39,10 @@ jobs:
         id: changed-apps
         run: |
           echo "Filtering matrix entries for 'kubernetes/apps'"
+
           MATRIX=${{ steps.changed-files.outputs.all_changed_files }}
+          echo $MATRIX
+
           CHANGED_FILES=$(echo $MATRIX | jq -r '.[]')
           echo "Changed files: $CHANGED_FILES"
 
