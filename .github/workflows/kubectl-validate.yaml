@@ -33,11 +33,13 @@ jobs:
       - name: List all changed files
         run: echo '${{ steps.changed-files.outputs.all_changed_files }}'
 
+      # Sort out changes to just kubernetes/apps/*
+      # Even though the workflow only triggers on changes to kubernetes/apps other workflows might update more files
       - name: Filter apps matrix
         id: changed-apps
         run: |
           echo "Filtering matrix entries for 'kubernetes/apps'"
-          CHANGED_FILES="${{ steps.changed-files.outputs.all_changed_files }}"
+          CHANGED_FILES=$(echo "${{ steps.changed-files.outputs.all_changed_files }}" | jq -r '.[]')
           echo "Changed files: $CHANGED_FILES"
           APPS=()
           for FILE in ${CHANGED_FILES//,/ }; do
