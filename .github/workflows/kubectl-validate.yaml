@@ -39,15 +39,21 @@ jobs:
         id: changed-apps
         run: |
           echo "Filtering matrix entries for 'kubernetes/apps'"
-          CHANGED_FILES=$(echo "${{ steps.changed-files.outputs.all_changed_files }}" | jq -r '.[]')
+          CHANGES_FILES="${{ steps.changed-files.outputs.all_changed_files }}"
+          CHANGED_FILES=$(echo $CHANGED_FILES | jq -r '.[]')
+
           echo "Changed files: $CHANGED_FILES"
+
           APPS=()
-          for FILE in ${CHANGED_FILES//,/ }; do
+          for FILE in $CHANGED_FILES; do
+            echo "Processing file: $FILE"
             if [[ "$FILE" == kubernetes/apps* ]]; then
               APPS+=("$FILE")
             fi
           done
+
           APPS_MATRIX=$(printf '%s\n' "${APPS[@]}" | jq -R . | jq -sc .)
+
           echo "Filtered matrix: $APPS_MATRIX"
           echo apps_matrix=$APPS_MATRIX >> $GITHUB_OUTPUT
         shell: bash
