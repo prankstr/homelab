@@ -38,9 +38,9 @@ jobs:
       - name: Filter apps matrix
         id: changed-apps
         run: |
+          CHANGED_FILES='${{ steps.changed-files.outputs.all_changed_files }}'
           APPS=$(echo $CHANGED_FILES | jq -r '.[] | select(startswith("kubernetes/apps"))' | jq -R . | jq -sc .)
           echo "Filtered matrix: $APPS"
-
           echo apps_matrix=$APPS >> $GITHUB_OUTPUT
         shell: bash
 
