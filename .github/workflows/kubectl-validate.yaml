@@ -5,6 +5,7 @@ on:
       - main
     paths:
       - "kubernetes/apps/**"
+      - "kubernetes/bootstrap/bootstrap-argocd.yaml"
 
 permissions:
   contents: read
