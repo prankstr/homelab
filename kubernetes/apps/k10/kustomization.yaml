@@ -33,4 +33,4 @@ helmCharts:
     releaseName: k10
     repo: https://charts.kasten.io
     valuesFile: values.yaml
-    version: 7.0.4
+    version: 7.0.5
