@@ -21,7 +21,7 @@ jobs:
 
       - name: Dry-run kubectl apply
         run: |
-          docker compose -f kubernetes/talos/docker-compose.yaml config --quit
+          docker compose -f kubernetes/talos/docker-compose.yaml config --quiet
 
   # Can't use previous job as a required status check since it's a matrix
   # This only runs if the previous job was successful and is used as a required status check for PRs
