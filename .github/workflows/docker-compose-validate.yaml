@@ -27,7 +27,7 @@ jobs:
   # This only runs if the previous job was successful and is used as a required status check for PRs
   completion:
     runs-on: ubuntu-latest
-    name: Validation completed
+    name: Validation result
     steps:
       - name: Echo
         run: echo 'Validation completed successfully'
