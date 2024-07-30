@@ -2,6 +2,9 @@ fluent-bit:
   enabled: true
 
 server:
+  resources:
+    requests:
+      memory: "100Mi"
   persistentVolume:
     enabled: true
   ingress:
