@@ -4,6 +4,9 @@ rbac:
 server:
   fullnameOverride: victoria-metrics-long-term
   retentionPeriod: 10y
+  resources:
+    requests:
+      memory: "200Mb"
   ingress:
     enabled: true
     annotations:
