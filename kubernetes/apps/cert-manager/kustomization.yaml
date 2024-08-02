@@ -13,10 +13,3 @@ patches:
       version: v1
       kind: Deployment
       name: cert-manager
-
-helmCharts:
-  - name: simply-dns-webhook
-    repo: https://runnerm.github.io/simply-dns-webhook/
-    namespace: cert-manager
-    releaseName: simply-dns
-    version: 1.6.0

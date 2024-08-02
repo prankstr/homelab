@@ -3,9 +3,8 @@ kind: Kustomization
 namespace: argocd
 
 resources:
+  - github.com/argoproj/argo-cd/manifests/cluster-install?ref=v2.11.7
   - namespace.yaml
-  - github.com/argoproj/argo-cd/manifests/cluster-install?ref=v2.11.4
-  - argocd-app.yaml
   - homelab-appset.yaml
   - ingress.yaml
   - cmp-secrets.yaml

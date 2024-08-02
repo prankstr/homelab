@@ -5,6 +5,7 @@ on:
       - main
     paths:
       - "kubernetes/apps/**"
+      - "kubernetes/bootstrap/bootstrap-argocd.yaml"
 
 permissions:
   contents: read
@@ -16,24 +17,35 @@ jobs:
     container:
       image: alpine/k8s:1.30.2
     outputs:
-      matrix: ${{ steps.changed-apps.outputs.all_changed_files }}
+      apps_matrix: ${{ steps.changed-apps.outputs.apps_matrix }}
     steps:
       - name: Checkout repo content
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Get changed apps
-        id: changed-apps
+      - name: Get changed files
+        id: changed-files
         uses: tj-actions/changed-files@v44
         with:
           matrix: true
           dir_names: true
 
       - name: List all changed files
-        run: echo '${{ steps.changed-apps.outputs.all_changed_files }}'
+        run: echo '${{ steps.changed-files.outputs.all_changed_files }}'
 
-  k8s-validation:
+      # Sort out changes to just kubernetes/apps/*
+      # Even though the workflow only triggers on changes to kubernetes/apps other workflows might update more files
+      - name: Filter apps matrix
+        id: changed-apps
+        run: |
+          CHANGED_FILES='${{ steps.changed-files.outputs.all_changed_files }}'
+          APPS=$(echo $CHANGED_FILES | jq -r '.[] | select(startswith("kubernetes/apps"))' | jq -R . | jq -sc .)
+          echo "Filtered matrix: $APPS"
+          echo apps_matrix=$APPS >> $GITHUB_OUTPUT
+        shell: bash
+
+  validation:
     runs-on: arc-runner-set
     name: Validate ${{ matrix.app }}
     needs: changed-apps
@@ -41,7 +53,7 @@ jobs:
       image: alpine/k8s:1.30.2
     strategy:
       matrix:
-        app: ${{ fromJSON(needs.changed-apps.outputs.matrix) }}
+        app: ${{ fromJSON(needs.changed-apps.outputs.apps_matrix) }}
     steps:
       - name: Checkout repo content
         uses: actions/checkout@v4
@@ -56,13 +68,19 @@ jobs:
           kubectl apply -f ${{ matrix.app }}/bundle.yaml --dry-run=client
 
   # Can't use previous job as a required status check since it's a matrix
-  # This only runs if the previous job was successful and is used as a required status check for PRs
-  completion:
+  # Simple job to report success/fail based on previous job to use as a status check
+  validation-result:
     runs-on: arc-runner-set
-    name: Validation completed
-    needs: k8s-validation
+    name: Validation result
+    needs: validation
     container:
       image: alpine/k8s:1.30.2
     steps:
-      - name: Echo
-        run: echo 'Validation completed successfully'
+      - name: Set status based on build
+        run: |
+          if [ "${{ needs.validation.result }}" == "success" ]; then
+            echo "Validation succeeded."
+          else
+            echo "Validation failed."
+            exit 1
+          fi

@@ -1,7 +1,8 @@
-service:
-  enabled: true
-serviceMonitor:
-  enabled: true
+kind: Deployment
+resources:
+  requests:
+    cpu: 10m
+    memory: 20Mi
 deschedulerPolicy:
   profiles:
     - name: default
@@ -26,8 +27,8 @@ deschedulerPolicy:
           args:
             thresholds:
               cpu: 35
-              memory: 35
-              pods: 25
+              memory: 40
+              pods: 40
             targetThresholds:
               cpu: 40
               memory: 55

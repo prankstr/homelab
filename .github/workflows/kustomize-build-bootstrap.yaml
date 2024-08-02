@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - "kubernetes/bootstrap/argocd/**"
+      - "kubernetes/apps/argocd/**"
 
 jobs:
   build-and-commit:
@@ -28,12 +28,12 @@ jobs:
           curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 
       - name: Kustomize Build
-        run: kustomize build --enable-helm kubernetes/bootstrap/argocd > kubernetes/bootstrap/bootstrap-argocd.yaml
+        run: kustomize build --enable-helm kubernetes/apps/argocd > kubernetes/bootstrap/bootstrap-argocd.yaml
 
       - name: Commit
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add kubernetes/bootstrap/bootstrap-argocd.yaml
-          git commit -m "Update argocd bootstrap manifest"
+          git diff-index --quiet HEAD || git commit -m "Update argocd bootstrap manifest"
           git push https://$GITHUB_TOKEN@github.com/prankstr/homelab.git ${{ github.head_ref }}
