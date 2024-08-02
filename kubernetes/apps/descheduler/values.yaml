@@ -29,8 +29,8 @@ deschedulerPolicy:
               memory: 35
               pods: 25
             targetThresholds:
-              cpu: 50
-              memory: 60
+              cpu: 40
+              memory: 55
               pods: 35
       plugins:
         balance:
