@@ -16,12 +16,26 @@ spec:
     spec:
       containers:
         - env:
+            - name: SERVER_HOST
+              value: 0.0.0.0
+            - name: HEALTH_HOST
+              value: 0.0.0.0
             - name: PROMETHEUS_URL
               value: "http://vmsingle-victoria-metrics-k8s-stack.victoria-metrics.svc:8429"
           image: ghcr.io/kashalls/kromgo:0.3.1
           ports:
             - containerPort: 8080
               name: http
+            - containerPort: 8888
+              name: health
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: health
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: health
           imagePullPolicy: IfNotPresent
           name: kromgo
           volumeMounts:
