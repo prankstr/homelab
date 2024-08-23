@@ -2,6 +2,7 @@ fluent-bit:
   enabled: true
 
 server:
+  retentionPeriod: 14d
   resources:
     requests:
       memory: "100Mi"
