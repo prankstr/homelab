@@ -35,7 +35,7 @@ server:
         - job_name: homeassistant
           static_configs:
             - targets:
-                - homeassistant.{ MY_DOMAIN }:8123
+                - homeassistant.{ MY_DOMAIN }
           scheme: https
           bearer_token_file: /homeassistant/token
           metrics_path: /api/prometheus
