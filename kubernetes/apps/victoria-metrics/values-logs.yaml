@@ -1,6 +1,3 @@
-fluent-bit:
-  enabled: true
-
 server:
   retentionPeriod: 14d
   resources:
@@ -21,3 +18,19 @@ server:
       - secretName: logs.{ MY_DOMAIN }-cert
         hosts:
           - logs.{ MY_DOMAIN }
+
+fluent-bit:
+  enabled: true
+  config:
+    outputs: |
+      [OUTPUT]
+          Name http
+          Match kube.*
+          Host victoria-logs-single-server
+          port 9428
+          compress gzip
+          uri /insert/jsonline?_stream_fields=stream,kubernetes_pod_name,kubernetes_container_name,kubernetes_namespace_name&_msg_field=log&_time_field=date
+          format json_lines
+          json_date_format iso8601
+          header AccountID 0
+          header ProjectID 0

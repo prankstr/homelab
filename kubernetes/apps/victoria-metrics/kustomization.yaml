@@ -16,6 +16,10 @@ patches:
     target:
       kind: ConfigMap
       name: victoria-metrics-k8s-stack-victoriametrics
+  - path: server-side-apply-patch.yaml
+    target:
+      kind: ConfigMap
+      name: victoria-metrics-k8s-stack-node-exporter-full
   - path: coredns-patch.yaml
     target:
       kind: Service
