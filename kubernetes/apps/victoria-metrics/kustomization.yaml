@@ -16,6 +16,10 @@ patches:
     target:
       kind: ConfigMap
       name: victoria-metrics-k8s-stack-victoriametrics
+  - path: server-side-apply-patch.yaml
+    target:
+      kind: ConfigMap
+      name: victoria-metrics-k8s-stack-node-exporter-full
   - path: coredns-patch.yaml
     target:
       kind: Service
@@ -28,21 +32,21 @@ helmCharts:
     releaseName: victoria-metrics-k8s-stack
     repo: https://victoriametrics.github.io/helm-charts/
     valuesFile: values.yaml
-    version: 0.25.10
+    version: 0.25.16
 
   - name: victoria-metrics-agent
     releaseName: external
     namespace: victoria-metrics
     repo: https://victoriametrics.github.io/helm-charts/
     valuesFile: values-agent-external.yaml
-    version: 0.12.0
+    version: 0.12.2
 
   - name: victoria-metrics-single
     releaseName: long-term
     namespace: victoria-metrics
     repo: https://victoriametrics.github.io/helm-charts/
     valuesFile: values-single-long-term.yaml
-    version: 0.11.0
+    version: 0.11.2
 
   - name: victoria-logs-single
     repo: https://victoriametrics.github.io/helm-charts/
@@ -50,4 +54,4 @@ helmCharts:
     includeCRDs: true
     releaseName: victoria-logs-single
     valuesFile: values-logs.yaml
-    version: 0.6.0
+    version: 0.6.3
