@@ -4,7 +4,7 @@ namespace: morphos
 
 images:
   - name: ghcr.io/danvergara/morphos-server
-    newTag: 0.5.0
+    newTag: 0.6.0
 
 resources:
   - deployment.yaml
