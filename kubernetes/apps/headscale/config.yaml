@@ -198,10 +198,17 @@ log:
   format: text
   level: info
 
-# Path to a file containg ACL policies.
-# ACLs can be defined as YAML or HUJSON.
-# https://tailscale.com/kb/1018/acls/
-acl_policy_path: ""
+## Policy
+# headscale supports Tailscale's ACL policies.
+# Please have a look to their KB to better
+# understand the concepts: https://tailscale.com/kb/1018/acls/
+policy:
+  # The mode can be "file" or "database" that defines
+  # where the ACL policies are stored and read from.
+  mode: file
+  # If the mode is set to "file", the path to a
+  # HuJSON file containing ACL policies.
+  path: ""
 
 ## DNS
 #
@@ -212,59 +219,62 @@ acl_policy_path: ""
 # - https://tailscale.com/kb/1081/magicdns/
 # - https://tailscale.com/blog/2021-09-private-dns-with-magicdns/
 #
-dns_config:
-  # Whether to prefer using Headscale provided DNS or use local.
-  override_local_dns: true
+# Please note that for the DNS configuration to have any effect,
+# clients must have the `--accept-dns=true` option enabled. This is the
+# default for the Tailscale client. This option is enabled by default
+# in the Tailscale client.
+#
+# Setting _any_ of the configuration and `--accept-dns=true` on the
+# clients will integrate with the DNS manager on the client or
+# overwrite /etc/resolv.conf.
+# https://tailscale.com/kb/1235/resolv-conf
+#
+# If you want stop Headscale from managing the DNS configuration
+# all the fields under `dns` should be set to empty values.
+dns:
+  # Whether to use [MagicDNS](https://tailscale.com/kb/1081/magicdns/).
+  magic_dns: true
+
+  # Defines the base domain to create the hostnames for MagicDNS.
+  # This domain _must_ be different from the server_url domain.
+  # `base_domain` must be a FQDN, without the trailing dot.
+  # The FQDN of the hosts will be
+  # `hostname.base_domain` (e.g., _myhost.example.com_).
+  base_domain: { MY_DOMAIN }
 
   # List of DNS servers to expose to clients.
   nameservers:
-    - 192.168.1.53
+    global:
+      - 192.168.1.53
 
-  # NextDNS (see https://tailscale.com/kb/1218/nextdns/).
-  # "abc123" is example NextDNS ID, replace with yours.
-  #
-  # With metadata sharing:
-  # nameservers:
-  #   - https://dns.nextdns.io/abc123
-  #
-  # Without metadata sharing:
-  # nameservers:
-  #   - 2a07:a8c0::ab:c123
-  #   - 2a07:a8c1::ab:c123
+      # NextDNS (see https://tailscale.com/kb/1218/nextdns/).
+      # "abc123" is example NextDNS ID, replace with yours.
+      # - https://dns.nextdns.io/abc123
 
-  # Split DNS (see https://tailscale.com/kb/1054/dns/),
-  # list of search domains and the DNS to query for each one.
-  #
-  # restricted_nameservers:
-  #   foo.bar.com:
-  #     - 1.1.1.1
-  #   darp.headscale.net:
-  #     - 1.1.1.1
-  #     - 8.8.8.8
+    # Split DNS (see https://tailscale.com/kb/1054/dns/),
+    # a map of domains and which DNS server to use for each.
+    split:
+      {}
+      # foo.bar.com:
+      #   - 1.1.1.1
+      # darp.headscale.net:
+      #   - 1.1.1.1
+      #   - 8.8.8.8
 
-  # Search domains to inject.
-  domains: []
+  # Set custom DNS search domains. With MagicDNS enabled,
+  # your tailnet base_domain is always the first search domain.
+  search_domains: []
 
   # Extra DNS records
   # so far only A-records are supported (on the tailscale side)
   # See https://github.com/juanfont/headscale/blob/main/docs/dns-records.md#Limitations
-  # extra_records:
+  extra_records: []
   #   - name: "grafana.myvpn.example.com"
   #     type: "A"
   #     value: "100.64.0.3"
   #
   #   # you can also put it in one line
   #   - { name: "prometheus.myvpn.example.com", type: "A", value: "100.64.0.3" }
-
-  # Whether to use [MagicDNS](https://tailscale.com/kb/1081/magicdns/).
-  # Only works if there is at least a nameserver defined.
-  magic_dns: true
-
-  # Defines the base domain to create the hostnames for MagicDNS.
-  # `base_domain` must be a FQDNs, without the trailing dot.
-  # The FQDN of the hosts will be
-  # `hostname.user.base_domain` (e.g., _myhost.myuser.example.com_).
-  base_domain: { MY_DOMAIN }
 
 # Unix socket used for the CLI to connect without authentication
 # Note: for production you will want to set this to something like:
@@ -335,4 +345,3 @@ logtail:
 # default static port 41641. This option is intended as a workaround for some buggy
 # firewall devices. See https://tailscale.com/kb/1181/firewalls/ for more information.
 randomize_client_port: false
-
