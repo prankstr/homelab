@@ -1,8 +1,8 @@
 rbac:
   namespaced: true
 
-remoteWriteUrls:
-  - http://vmsingle-victoria-metrics-k8s-stack.victoria-metrics.svc:8429/api/v1/write
+remoteWrite:
+  - url: http://vmsingle-victoria-metrics-k8s-stack.victoria-metrics.svc:8429/api/v1/write
 
 service:
   enabled: true
