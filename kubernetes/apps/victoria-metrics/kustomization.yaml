@@ -39,7 +39,7 @@ helmCharts:
     namespace: victoria-metrics
     repo: https://victoriametrics.github.io/helm-charts/
     valuesFile: values-agent-external.yaml
-    version: 0.14.1
+    version: 0.14.2
 
   - name: victoria-metrics-single
     releaseName: long-term
