@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: oura-exporter
+  name: oura-exporter-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: oura-exporter
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: oura-exporter
+    spec:
+      containers:
+        - env:
+            - name: TZ
+              value: Europe/Stockholm
+            - name: OURA_ACCESS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  key: personal_access_token
+                  name: oura
+          image: legnoh/oura-exporter
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+              name: http
+              protocol: TCP

@@ -1,0 +1,12 @@
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMServiceScrape
+metadata:
+  name: oura-exporter
+  labels:
+    app: oura-exporter
+spec:
+  selector:
+    matchLabels:
+      app: oura
+  endpoints:
+    - port: http
