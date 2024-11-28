@@ -21,23 +21,23 @@ helmCharts:
     repo: https://democratic-csi.github.io/charts/
     namespace: democratic-csi
     releaseName: nfs
-    version: 0.14.6
+    version: 0.14.7
     valuesFile: values-nfs.yaml
   - name: democratic-csi
     repo: https://democratic-csi.github.io/charts/
     namespace: democratic-csi
     releaseName: nfs-encrypted
-    version: 0.14.6
+    version: 0.14.7
     valuesFile: values-nfs-encrypted.yaml
   - name: democratic-csi
     repo: https://democratic-csi.github.io/charts/
     namespace: democratic-csi
     releaseName: iscsi
-    version: 0.14.6
+    version: 0.14.7
     valuesFile: values-iscsi.yaml
   - name: democratic-csi
     repo: https://democratic-csi.github.io/charts/
     namespace: democratic-csi
     releaseName: iscsi-encrypted
-    version: 0.14.6
+    version: 0.14.7
     valuesFile: values-iscsi-encrypted.yaml

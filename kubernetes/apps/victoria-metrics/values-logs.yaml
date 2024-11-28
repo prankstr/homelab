@@ -2,7 +2,7 @@ server:
   retentionPeriod: 14d
   resources:
     requests:
-      memory: "100Mi"
+      memory: "500Mi"
   persistentVolume:
     enabled: true
   ingress:
