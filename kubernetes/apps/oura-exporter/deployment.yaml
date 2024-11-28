@@ -25,6 +25,7 @@ spec:
                 secretKeyRef:
                   key: personal_access_token
                   name: oura
+          name: oura-exporter
           image: legnoh/oura-exporter
           imagePullPolicy: Always
           ports:
