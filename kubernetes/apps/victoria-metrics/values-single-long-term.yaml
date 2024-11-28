@@ -45,3 +45,7 @@ server:
           static_configs:
             - targets:
                 - homeassistant.{ MY_DOMAIN }:9101
+        - job_name: oura-exporter
+          static_configs:
+            - targets:
+                - oura-exporter.oura-exporter
