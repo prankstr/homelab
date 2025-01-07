@@ -9,4 +9,4 @@ helmCharts:
     repo: https://kubernetes-sigs.github.io/descheduler
     includeCRDs: true
     valuesFile: values.yaml
-    version: 0.32.0
+    version: 0.32.1
