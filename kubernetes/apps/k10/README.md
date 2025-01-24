@@ -11,5 +11,6 @@ Noteworthy files:
 - **vmscrapeconfig.yaml**: Http discovery scrape config for K10 pods needed for the dashboard
 - **oidc-secret.yaml**: OIDC secret to configure K10 towards Authentik.
 - **rbac-path:yaml:** Updates a cluster role binding with permission for Authentik to authenticate users.
+- **k10-metering-config-patch.yaml:** Patches the K10 metering configmap to exclude the gateway service from being scraped as it doesn't provide any metrics. This is a workaround for a bug in the chart(I think).
 
 ![k10 overview](/assets/images/k10-overview.png)
