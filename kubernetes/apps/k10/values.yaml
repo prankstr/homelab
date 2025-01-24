@@ -8,6 +8,8 @@ prometheus:
     enabled: false
 grafana:
   enabled: false
+service:
+  externalPort: 80
 ingress:
   create: true
   class: nginx
