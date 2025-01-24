@@ -8,38 +8,16 @@ resources:
   - vmscrapeconfig.yaml
 
 patches:
-  - target:
+  - path: k10-metering-config-patch.yaml
+    target:
+      kind: ConfigMap
+      name: k10-k10-metering-config
+  - path: rbac-patch.yaml
+    target:
       group: rbac.authorization.k8s.io
       kind: ClusterRoleBinding
       name: backup-k10-k10-cluster-admin
       version: v1
-    patch: |
-      - op: add
-        path: /subjects/-
-        value:
-          apiGroup: rbac.authorization.k8s.io
-          kind: User
-          name: https://auth.{ MY_DOMAIN }/application/o/k10/#david
-  - target:
-      group: ""
-      version: v1
-      kind: Service
-      name: gateway
-      namespace: k10
-    patch: |
-      - op: replace
-        path: /metadata/name
-        value: gateway-svc
-  - target:
-      group: networking.k8s.io
-      version: v1
-      kind: Ingress
-      name: k10-ingress
-      namespace: k10
-    patch: |
-      - op: replace
-        path: /spec/rules/0/http/paths/0/backend/service/name
-        value: gateway-svc
 
 generatorOptions:
   disableNameSuffixHash: true
