@@ -62,3 +62,16 @@ spec:
           jsonPointers:
             - /data/tls.key
     {{-  end }}
+    {{- if eq .path.basename "victoria-metrics" }}
+    spec:
+      ignoreDifferences:
+        - kind: Secret
+          name: victoria-metrics-k8s-stack-victoria-metrics-operator-validation
+          jsonPointers:
+            - /data
+        - group: admissionregistration.k8s.io
+          kind: ValidatingWebhookConfiguration
+          name: victoria-metrics-k8s-stack-victoria-metrics-operator-admission
+          jqPathExpressions:
+            - .webhooks[]?.clientConfig.caBundle
+    {{-  end }}
