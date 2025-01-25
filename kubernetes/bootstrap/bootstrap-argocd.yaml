@@ -24532,7 +24532,12 @@ spec:
     \ end }}\n{{- if eq .path.basename \"k10\" }}\nspec:\n  ignoreDifferences:\n    -
     group: \"\"\n      kind: Secret\n      name: kopia-tls-cert\n      jsonPointers:\n
     \       - /data/tls.crt\n    - group: \"\"\n      kind: Secret\n      name: kopia-tls-key
-    \n      jsonPointers:\n        - /data/tls.key\n{{-  end }}\n"
+    \n      jsonPointers:\n        - /data/tls.key\n{{-  end }}\n{{- if eq .path.basename
+    \"victoria-metrics\" }}\nspec:\n  ignoreDifferences:\n    - kind: Secret\n      name:
+    victoria-metrics-k8s-stack-victoria-metrics-operator-validation\n      jsonPointers:\n
+    \       - /data\n    - group: admissionregistration.k8s.io\n      kind: ValidatingWebhookConfiguration\n
+    \     name: victoria-metrics-k8s-stack-victoria-metrics-operator-admission\n      jqPathExpressions:\n
+    \       - .webhooks[]?.clientConfig.caBundle\n{{-  end }}\n"
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
