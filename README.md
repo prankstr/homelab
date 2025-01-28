@@ -68,7 +68,7 @@ Here is an overview of the services I run, some of them have more detailed expla
 
 _(i.e stuff that enables me to deploy and manage other stuff)_
 
-- [1Password Connect Operator](https://github.com/1Password/onepassword-operator): Secret management. Sync secrets from 1Password to Kubernetes.
+- [1Password Connect & 1Password Operator](https://github.com/1Password/onepassword-operator): Secret management. Sync secrets from 1Password to Kubernetes.
 - [Argo CD](https://github.com/argoproj/argo-cd): Facilitates GitOps. Automating the deployment of applications based on manifests in this git repo.
 - [cert-manager](https://github.com/cert-manager/cert-manager): Automatically provisions and renews certificates.
 - [democratic-csi](https://github.com/democratic-csi/democratic-csi): CSI provisioner for TrueNAS. Provisions persistent volumes backed by TrueNAS.
