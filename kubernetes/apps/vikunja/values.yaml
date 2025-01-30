@@ -9,6 +9,16 @@ vikunja:
   env:
     VIKUNJA_DATABASE_TYPE: sqlite
     VIKUNJA_DATABASE_PATH: ./files/vikunja.db
+global:
+  postgresql:
+    enabled: false
+
+api:
+  env:
+    - name: VIKUNJA_DATABASE_TYPE
+      value: sqlite
+    - name: VIKUNJA_DATABASE_PATH
+      value: "./files/vikunja.db"
   persistence:
     config:
       type: secret
@@ -21,8 +31,25 @@ vikunja:
       hosts:
         - host: todo.{ MY_DOMAIN }
           paths:
+            - path: "/api/v1"
+      tls:
+        - hosts:
+            - todo.{ MY_DOMAIN }
+          secretName: todo.{ MY_DOMAIN }-cert
+
+frontend:
+  env:
+    - name: VIKUNJA_API_URL
+      value: "https://todo.{ MY_DOMAIN }/api/v1"
+  ingress:
+    main:
+      ingressClassName: "nginx"
+      hosts:
+        - host: todo.{ MY_DOMAIN }
+          paths:
             - path: "/"
       tls:
         - hosts:
             - todo.{ MY_DOMAIN }
           secretName: todo.{ MY_DOMAIN }-cert
+
