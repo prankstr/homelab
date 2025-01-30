@@ -19,4 +19,4 @@ helmCharts:
     repo: oci://kolaente.dev/vikunja
     includeCRDs: true
     valuesFile: values.yaml
-    version: 0.4.3
+    version: 1.0.0
