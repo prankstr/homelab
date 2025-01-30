@@ -6,10 +6,8 @@ resources:
   - secret.yaml
 
 images:
-  - name: vikunja/api
-    newTag: 0.22.1
-  - name: vikunja/frontend
-    newTag: 0.22.1
+  - name: vikunja/vikunja
+    newTag: 0.24.6
 
 helmCharts:
   # Need to set namespace here as well, otherwise some resources are created in the wrong namespace
