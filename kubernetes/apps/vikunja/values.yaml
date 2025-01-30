@@ -29,7 +29,7 @@ vikunja:
       hosts:
         - host: todo.{ MY_DOMAIN }
           paths:
-            - path: "/api/v1"
+            - path: "/"
       tls:
         - hosts:
             - todo.{ MY_DOMAIN }
