@@ -33,6 +33,7 @@ helmCharts:
     repo: https://victoriametrics.github.io/helm-charts/
     valuesFile: values.yaml
     version: 0.48.1
+    version: 0.35.1
 
   - name: victoria-metrics-agent
     releaseName: external
