@@ -8,6 +8,7 @@ images:
     newTag: v0.24.2
   - name: goodieshq/headscale-admin
     newTag: 0.25.6
+    newTag: 0.24.5
 
 configMapGenerator:
   - name: headscale-config
