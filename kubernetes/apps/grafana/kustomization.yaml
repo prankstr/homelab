@@ -37,3 +37,4 @@ helmCharts:
     includeCRDs: true
     valuesFile: values.yaml
     version: 9.2.0
+    version: 8.8.6
