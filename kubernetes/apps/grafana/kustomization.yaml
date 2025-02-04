@@ -38,3 +38,4 @@ helmCharts:
     valuesFile: values.yaml
     version: 9.2.0
     version: 8.8.6
+    version: 8.9.0
