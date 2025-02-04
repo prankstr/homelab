@@ -24663,6 +24663,7 @@ spec:
               optional: true
         image: quay.io/argoproj/argocd:v2.14.11
         image: quay.io/argoproj/argocd:v2.14.0-rc7
+        image: quay.io/argoproj/argocd:v2.14.1
         imagePullPolicy: Always
         name: argocd-applicationset-controller
         ports:
@@ -24802,6 +24803,7 @@ spec:
         - /shared/argocd-dex
         image: quay.io/argoproj/argocd:v2.14.11
         image: quay.io/argoproj/argocd:v2.14.0-rc7
+        image: quay.io/argoproj/argocd:v2.14.1
         imagePullPolicy: Always
         name: copyutil
         securityContext:
@@ -24894,6 +24896,7 @@ spec:
               optional: true
         image: quay.io/argoproj/argocd:v2.14.11
         image: quay.io/argoproj/argocd:v2.14.0-rc7
+        image: quay.io/argoproj/argocd:v2.14.1
         imagePullPolicy: Always
         livenessProbe:
           tcpSocket:
@@ -24999,6 +25002,7 @@ spec:
         image: quay.io/argoproj/argocd:v2.14.11
         image: quay.io/argoproj/argocd:v2.13.4
         image: quay.io/argoproj/argocd:v2.14.0-rc7
+        image: quay.io/argoproj/argocd:v2.14.1
         imagePullPolicy: IfNotPresent
         name: secret-init
         securityContext:
@@ -25280,6 +25284,7 @@ spec:
         image: quay.io/argoproj/argocd:v2.14.11
         image: quay.io/argoproj/argocd:v2.13.4
         image: quay.io/argoproj/argocd:v2.14.0-rc7
+        image: quay.io/argoproj/argocd:v2.14.1
         imagePullPolicy: Always
         livenessProbe:
           failureThreshold: 3
@@ -25334,6 +25339,7 @@ spec:
         image: quay.io/argoproj/argocd:v2.14.11
         image: quay.io/argoproj/argocd:v2.13.4
         image: quay.io/argoproj/argocd:v2.14.0-rc7
+        image: quay.io/argoproj/argocd:v2.14.1
         name: copyutil
         securityContext:
           allowPrivilegeEscalation: false
@@ -25702,6 +25708,7 @@ spec:
         image: quay.io/argoproj/argocd:v2.14.11
         image: quay.io/argoproj/argocd:v2.13.4
         image: quay.io/argoproj/argocd:v2.14.0-rc7
+        image: quay.io/argoproj/argocd:v2.14.1
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
@@ -26059,6 +26066,7 @@ spec:
         image: quay.io/argoproj/argocd:v2.14.11
         image: quay.io/argoproj/argocd:v2.13.4
         image: quay.io/argoproj/argocd:v2.14.0-rc7
+        image: quay.io/argoproj/argocd:v2.14.1
         imagePullPolicy: Always
         name: argocd-application-controller
         ports:
