@@ -35,6 +35,7 @@ helmCharts:
     version: 0.48.1
     version: 0.35.1
     version: 0.35.2
+    version: 0.35.3
 
   - name: victoria-metrics-agent
     releaseName: external
