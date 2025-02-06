@@ -6,6 +6,7 @@ resources:
   - github.com/argoproj/argo-cd/manifests/cluster-install?ref=v2.14.11
   - github.com/argoproj/argo-cd/manifests/cluster-install?ref=v2.14.0
   - github.com/argoproj/argo-cd/manifests/cluster-install?ref=v2.14.1
+  - github.com/argoproj/argo-cd/manifests/cluster-install?ref=v2.14.2
   - namespace.yaml
   - homelab-appset.yaml
   - ingress.yaml
