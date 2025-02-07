@@ -3,14 +3,12 @@
   "extends": ["config:recommended", ":automergeMinor", ":semanticCommits"],
   "enabledManagers": ["kustomize", "docker-compose"],
   "packageRules": [
-    {
-      "managers": ["docker-compose"],
-      "ignoreTests": true
-    }
+    { "matchManagers": ["docker-compose"], "ignoreTests": true }
   ],
-  "regexManagers": [
+  "customManagers": [
     {
-      "fileMatch": "kubernetes/apps/.*/kustomization.yaml",
+      "customType": "regex",
+      "fileMatch": ["(^|/)kustomization\\.ya?ml$"],
       "matchStrings": [
         "https://github\\.com/(?<depName>.*/.*?)/releases/download/(?<currentValue>.*?)/"
       ],
