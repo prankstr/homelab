@@ -7,5 +7,14 @@
       "managers": ["docker-compose"],
       "ignoreTests": true
     }
+  ],
+  "regexManagers": [
+    {
+      "fileMatch": "kubernetes/apps/.*/kustomization.yaml",
+      "matchStrings": [
+        "https://github\\.com/(?<depName>.*/.*?)/releases/download/(?<currentValue>.*?)/"
+      ],
+      "datasourceTemplate": "github-releases"
+    }
   ]
 }
