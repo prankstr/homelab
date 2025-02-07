@@ -15,9 +15,10 @@
       "datasourceTemplate": "github-releases"
     }
   ],
-  "regexManagers": [
+  "customManagers": [
     {
-      "fileMatch": "kubernetes/apps/.*/kustomization.yaml",
+      "customType": "regex",
+      "fileMatch": ["(^|/)kustomization\\.ya?ml$"],
       "matchStrings": [
         "https://github\\.com/(?<depName>.*/.*?)/releases/download/(?<currentValue>.*?)/"
       ],
