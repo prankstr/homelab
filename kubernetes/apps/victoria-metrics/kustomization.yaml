@@ -64,3 +64,4 @@ helmCharts:
     valuesFile: values-logs.yaml
     version: 0.9.8
     version: 0.8.15
+    version: 0.8.16
