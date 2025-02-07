@@ -6,6 +6,7 @@ images:
   - name: headscale/headscale
     newTag: v0.26.0
     newTag: v0.24.2
+    newTag: v0.24.3
   - name: goodieshq/headscale-admin
     newTag: 0.25.6
     newTag: 0.24.5
