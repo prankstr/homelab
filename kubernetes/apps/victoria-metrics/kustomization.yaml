@@ -48,6 +48,7 @@ helmCharts:
     valuesFile: values-agent-external.yaml
     version: 0.20.1
     version: 0.15.7
+    version: 0.15.8
 
   - name: victoria-metrics-single
     releaseName: long-term
