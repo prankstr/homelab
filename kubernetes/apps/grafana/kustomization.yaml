@@ -41,3 +41,4 @@ helmCharts:
     version: 8.9.0
     version: 8.9.1
     version: 8.10.0
+    version: 8.10.1
