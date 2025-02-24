@@ -5,6 +5,7 @@ services:
     image: ghcr.io/siderolabs/omni:v0.50.0
     image: ghcr.io/siderolabs/omni:v0.46.2
     image: ghcr.io/siderolabs/omni:v0.46.3
+    image: ghcr.io/siderolabs/omni:v0.47.0
     command: --name=molntuss-omni
       --account-id=${OMNI_ACCOUNT_UUID}
       --cert=/tls.crt
