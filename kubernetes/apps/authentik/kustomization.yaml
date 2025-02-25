@@ -12,3 +12,4 @@ helmCharts:
     releaseName: authentik
     valuesFile: values.yaml
     version: 2025.4.1
+    version: 2025.2.0
