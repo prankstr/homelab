@@ -8,6 +8,7 @@ images:
     newTag: v0.24.2
     newTag: v0.24.3
     newTag: v0.25.0
+    newTag: v0.25.1
   - name: goodieshq/headscale-admin
     newTag: 0.25.6
     newTag: 0.24.5
