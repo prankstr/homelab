@@ -20,6 +20,7 @@ images:
     newTag: 0.25.1
     newTag: 0.25.2
     newTag: 0.25.3
+    newTag: 0.25.4
 
 configMapGenerator:
   - name: headscale-config
