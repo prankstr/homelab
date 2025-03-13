@@ -46,7 +46,7 @@ helmCharts:
     namespace: victoria-metrics
     repo: https://victoriametrics.github.io/helm-charts/
     valuesFile: values-single-long-term.yaml
-    version: 0.14.3
+    version: 0.15.0
 
   - name: victoria-logs-single
     repo: https://victoriametrics.github.io/helm-charts/
