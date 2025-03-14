@@ -60,6 +60,7 @@ helmCharts:
     version: 0.16.1
     version: 0.16.2
     version: 0.17.0
+    version: 0.17.1
 
   - name: victoria-metrics-single
     releaseName: long-term
