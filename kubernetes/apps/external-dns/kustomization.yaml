@@ -4,7 +4,7 @@ namespace: external-dns
 
 images:
   - name: registry.k8s.io/external-dns/external-dns
-    newTag: v0.16.0
+    newTag: v0.16.1
   - name: ghcr.io/muhlba91/external-dns-provider-adguard
     newTag: v8.0.0
 
