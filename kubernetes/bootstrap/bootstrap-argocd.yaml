@@ -384,6 +384,11 @@ spec:
                             description: ForceCommonLabels specifies whether to force
                               applying common labels to resources for Kustomize apps
                             type: boolean
+                          ignoreMissingComponents:
+                            description: IgnoreMissingComponents prevents kustomize
+                              from failing when components do not exist locally by
+                              not appending them to kustomization file
+                            type: boolean
                           images:
                             description: Images is a list of Kustomize image override
                               specifications
@@ -397,6 +402,10 @@ spec:
                               KubeVersion specifies the Kubernetes API version to pass to Helm when templating manifests. By default, Argo CD
                               uses the Kubernetes version of the target cluster.
                             type: string
+                          labelIncludeTemplates:
+                            description: LabelIncludeTemplates specifies whether to
+                              apply common labels to resource templates or not
+                            type: boolean
                           labelWithoutSelector:
                             description: LabelWithoutSelector specifies whether to
                               apply common labels to resource selectors or not
@@ -764,6 +773,11 @@ spec:
                                 force applying common labels to resources for Kustomize
                                 apps
                               type: boolean
+                            ignoreMissingComponents:
+                              description: IgnoreMissingComponents prevents kustomize
+                                from failing when components do not exist locally
+                                by not appending them to kustomization file
+                              type: boolean
                             images:
                               description: Images is a list of Kustomize image override
                                 specifications
@@ -777,6 +791,10 @@ spec:
                                 KubeVersion specifies the Kubernetes API version to pass to Helm when templating manifests. By default, Argo CD
                                 uses the Kubernetes version of the target cluster.
                               type: string
+                            labelIncludeTemplates:
+                              description: LabelIncludeTemplates specifies whether
+                                to apply common labels to resource templates or not
+                              type: boolean
                             labelWithoutSelector:
                               description: LabelWithoutSelector specifies whether
                                 to apply common labels to resource selectors or not
@@ -1254,6 +1272,11 @@ spec:
                         description: ForceCommonLabels specifies whether to force
                           applying common labels to resources for Kustomize apps
                         type: boolean
+                      ignoreMissingComponents:
+                        description: IgnoreMissingComponents prevents kustomize from
+                          failing when components do not exist locally by not appending
+                          them to kustomization file
+                        type: boolean
                       images:
                         description: Images is a list of Kustomize image override
                           specifications
@@ -1267,6 +1290,10 @@ spec:
                           KubeVersion specifies the Kubernetes API version to pass to Helm when templating manifests. By default, Argo CD
                           uses the Kubernetes version of the target cluster.
                         type: string
+                      labelIncludeTemplates:
+                        description: LabelIncludeTemplates specifies whether to apply
+                          common labels to resource templates or not
+                        type: boolean
                       labelWithoutSelector:
                         description: LabelWithoutSelector specifies whether to apply
                           common labels to resource selectors or not
@@ -1682,6 +1709,11 @@ spec:
                           description: ForceCommonLabels specifies whether to force
                             applying common labels to resources for Kustomize apps
                           type: boolean
+                        ignoreMissingComponents:
+                          description: IgnoreMissingComponents prevents kustomize
+                            from failing when components do not exist locally by not
+                            appending them to kustomization file
+                          type: boolean
                         images:
                           description: Images is a list of Kustomize image override
                             specifications
@@ -1695,6 +1727,10 @@ spec:
                             KubeVersion specifies the Kubernetes API version to pass to Helm when templating manifests. By default, Argo CD
                             uses the Kubernetes version of the target cluster.
                           type: string
+                        labelIncludeTemplates:
+                          description: LabelIncludeTemplates specifies whether to
+                            apply common labels to resource templates or not
+                          type: boolean
                         labelWithoutSelector:
                           description: LabelWithoutSelector specifies whether to apply
                             common labels to resource selectors or not
@@ -2223,6 +2259,11 @@ spec:
                                 force applying common labels to resources for Kustomize
                                 apps
                               type: boolean
+                            ignoreMissingComponents:
+                              description: IgnoreMissingComponents prevents kustomize
+                                from failing when components do not exist locally
+                                by not appending them to kustomization file
+                              type: boolean
                             images:
                               description: Images is a list of Kustomize image override
                                 specifications
@@ -2236,6 +2277,10 @@ spec:
                                 KubeVersion specifies the Kubernetes API version to pass to Helm when templating manifests. By default, Argo CD
                                 uses the Kubernetes version of the target cluster.
                               type: string
+                            labelIncludeTemplates:
+                              description: LabelIncludeTemplates specifies whether
+                                to apply common labels to resource templates or not
+                              type: boolean
                             labelWithoutSelector:
                               description: LabelWithoutSelector specifies whether
                                 to apply common labels to resource selectors or not
@@ -2605,6 +2650,11 @@ spec:
                                   force applying common labels to resources for Kustomize
                                   apps
                                 type: boolean
+                              ignoreMissingComponents:
+                                description: IgnoreMissingComponents prevents kustomize
+                                  from failing when components do not exist locally
+                                  by not appending them to kustomization file
+                                type: boolean
                               images:
                                 description: Images is a list of Kustomize image override
                                   specifications
@@ -2618,6 +2668,11 @@ spec:
                                   KubeVersion specifies the Kubernetes API version to pass to Helm when templating manifests. By default, Argo CD
                                   uses the Kubernetes version of the target cluster.
                                 type: string
+                              labelIncludeTemplates:
+                                description: LabelIncludeTemplates specifies whether
+                                  to apply common labels to resource templates or
+                                  not
+                                type: boolean
                               labelWithoutSelector:
                                 description: LabelWithoutSelector specifies whether
                                   to apply common labels to resource selectors or
@@ -3137,6 +3192,12 @@ spec:
                                       to force applying common labels to resources
                                       for Kustomize apps
                                     type: boolean
+                                  ignoreMissingComponents:
+                                    description: IgnoreMissingComponents prevents
+                                      kustomize from failing when components do not
+                                      exist locally by not appending them to kustomization
+                                      file
+                                    type: boolean
                                   images:
                                     description: Images is a list of Kustomize image
                                       override specifications
@@ -3150,6 +3211,11 @@ spec:
                                       KubeVersion specifies the Kubernetes API version to pass to Helm when templating manifests. By default, Argo CD
                                       uses the Kubernetes version of the target cluster.
                                     type: string
+                                  labelIncludeTemplates:
+                                    description: LabelIncludeTemplates specifies whether
+                                      to apply common labels to resource templates
+                                      or not
+                                    type: boolean
                                   labelWithoutSelector:
                                     description: LabelWithoutSelector specifies whether
                                       to apply common labels to resource selectors
@@ -3539,6 +3605,12 @@ spec:
                                         to force applying common labels to resources
                                         for Kustomize apps
                                       type: boolean
+                                    ignoreMissingComponents:
+                                      description: IgnoreMissingComponents prevents
+                                        kustomize from failing when components do
+                                        not exist locally by not appending them to
+                                        kustomization file
+                                      type: boolean
                                     images:
                                       description: Images is a list of Kustomize image
                                         override specifications
@@ -3552,6 +3624,11 @@ spec:
                                         KubeVersion specifies the Kubernetes API version to pass to Helm when templating manifests. By default, Argo CD
                                         uses the Kubernetes version of the target cluster.
                                       type: string
+                                    labelIncludeTemplates:
+                                      description: LabelIncludeTemplates specifies
+                                        whether to apply common labels to resource
+                                        templates or not
+                                      type: boolean
                                     labelWithoutSelector:
                                       description: LabelWithoutSelector specifies
                                         whether to apply common labels to resource
@@ -4053,6 +4130,11 @@ spec:
                                   force applying common labels to resources for Kustomize
                                   apps
                                 type: boolean
+                              ignoreMissingComponents:
+                                description: IgnoreMissingComponents prevents kustomize
+                                  from failing when components do not exist locally
+                                  by not appending them to kustomization file
+                                type: boolean
                               images:
                                 description: Images is a list of Kustomize image override
                                   specifications
@@ -4066,6 +4148,11 @@ spec:
                                   KubeVersion specifies the Kubernetes API version to pass to Helm when templating manifests. By default, Argo CD
                                   uses the Kubernetes version of the target cluster.
                                 type: string
+                              labelIncludeTemplates:
+                                description: LabelIncludeTemplates specifies whether
+                                  to apply common labels to resource templates or
+                                  not
+                                type: boolean
                               labelWithoutSelector:
                                 description: LabelWithoutSelector specifies whether
                                   to apply common labels to resource selectors or
@@ -4447,6 +4534,11 @@ spec:
                                     to force applying common labels to resources for
                                     Kustomize apps
                                   type: boolean
+                                ignoreMissingComponents:
+                                  description: IgnoreMissingComponents prevents kustomize
+                                    from failing when components do not exist locally
+                                    by not appending them to kustomization file
+                                  type: boolean
                                 images:
                                   description: Images is a list of Kustomize image
                                     override specifications
@@ -4460,6 +4552,11 @@ spec:
                                     KubeVersion specifies the Kubernetes API version to pass to Helm when templating manifests. By default, Argo CD
                                     uses the Kubernetes version of the target cluster.
                                   type: string
+                                labelIncludeTemplates:
+                                  description: LabelIncludeTemplates specifies whether
+                                    to apply common labels to resource templates or
+                                    not
+                                  type: boolean
                                 labelWithoutSelector:
                                   description: LabelWithoutSelector specifies whether
                                     to apply common labels to resource selectors or
@@ -4632,15 +4729,16 @@ spec:
                 description: Resources is a list of Kubernetes resources managed by
                   this application
                 items:
-                  description: |-
-                    ResourceStatus holds the current sync and health status of a resource
-                    TODO: describe members of this type
+                  description: ResourceStatus holds the current synchronization and
+                    health status of a Kubernetes resource.
                   properties:
                     group:
+                      description: Group represents the API group of the resource
+                        (e.g., "apps" for Deployments).
                       type: string
                     health:
-                      description: HealthStatus contains information about the currently
-                        observed health state of an application or resource
+                      description: Health indicates the health status of the resource
+                        (e.g., Healthy, Degraded, Progressing).
                       properties:
                         lastTransitionTime:
                           description: LastTransitionTime is the time the HealthStatus
@@ -4657,25 +4755,42 @@ spec:
                           type: string
                       type: object
                     hook:
+                      description: Hook is true if the resource is used as a lifecycle
+                        hook in an Argo CD application.
                       type: boolean
                     kind:
+                      description: Kind specifies the type of the resource (e.g.,
+                        "Deployment", "Service").
                       type: string
                     name:
+                      description: Name is the unique name of the resource within
+                        the namespace.
                       type: string
                     namespace:
+                      description: Namespace defines the Kubernetes namespace where
+                        the resource is located.
                       type: string
                     requiresDeletionConfirmation:
+                      description: RequiresDeletionConfirmation is true if the resource
+                        requires explicit user confirmation before deletion.
                       type: boolean
                     requiresPruning:
+                      description: RequiresPruning is true if the resource needs to
+                        be pruned (deleted) as part of synchronization.
                       type: boolean
                     status:
-                      description: SyncStatusCode is a type which represents possible
-                        comparison results
+                      description: Status represents the synchronization state of
+                        the resource (e.g., Synced, OutOfSync).
                       type: string
                     syncWave:
+                      description: |-
+                        SyncWave determines the order in which resources are applied during a sync operation.
+                        Lower values are applied first.
                       format: int64
                       type: integer
                     version:
+                      description: Version indicates the API version of the resource
+                        (e.g., "v1", "v1beta1").
                       type: string
                   type: object
                 type: array
@@ -5161,6 +5276,11 @@ spec:
                                   force applying common labels to resources for Kustomize
                                   apps
                                 type: boolean
+                              ignoreMissingComponents:
+                                description: IgnoreMissingComponents prevents kustomize
+                                  from failing when components do not exist locally
+                                  by not appending them to kustomization file
+                                type: boolean
                               images:
                                 description: Images is a list of Kustomize image override
                                   specifications
@@ -5174,6 +5294,11 @@ spec:
                                   KubeVersion specifies the Kubernetes API version to pass to Helm when templating manifests. By default, Argo CD
                                   uses the Kubernetes version of the target cluster.
                                 type: string
+                              labelIncludeTemplates:
+                                description: LabelIncludeTemplates specifies whether
+                                  to apply common labels to resource templates or
+                                  not
+                                type: boolean
                               labelWithoutSelector:
                                 description: LabelWithoutSelector specifies whether
                                   to apply common labels to resource selectors or
@@ -5555,6 +5680,11 @@ spec:
                                     to force applying common labels to resources for
                                     Kustomize apps
                                   type: boolean
+                                ignoreMissingComponents:
+                                  description: IgnoreMissingComponents prevents kustomize
+                                    from failing when components do not exist locally
+                                    by not appending them to kustomization file
+                                  type: boolean
                                 images:
                                   description: Images is a list of Kustomize image
                                     override specifications
@@ -5568,6 +5698,11 @@ spec:
                                     KubeVersion specifies the Kubernetes API version to pass to Helm when templating manifests. By default, Argo CD
                                     uses the Kubernetes version of the target cluster.
                                   type: string
+                                labelIncludeTemplates:
+                                  description: LabelIncludeTemplates specifies whether
+                                    to apply common labels to resource templates or
+                                    not
+                                  type: boolean
                                 labelWithoutSelector:
                                   description: LabelWithoutSelector specifies whether
                                     to apply common labels to resource selectors or
@@ -6020,12 +6155,16 @@ spec:
                                           type: boolean
                                         forceCommonLabels:
                                           type: boolean
+                                        ignoreMissingComponents:
+                                          type: boolean
                                         images:
                                           items:
                                             type: string
                                           type: array
                                         kubeVersion:
                                           type: string
+                                        labelIncludeTemplates:
+                                          type: boolean
                                         labelWithoutSelector:
                                           type: boolean
                                         namePrefix:
@@ -6292,12 +6431,16 @@ spec:
                                             type: boolean
                                           forceCommonLabels:
                                             type: boolean
+                                          ignoreMissingComponents:
+                                            type: boolean
                                           images:
                                             items:
                                               type: string
                                             type: array
                                           kubeVersion:
                                             type: string
+                                          labelIncludeTemplates:
+                                            type: boolean
                                           labelWithoutSelector:
                                             type: boolean
                                           namePrefix:
@@ -6692,12 +6835,16 @@ spec:
                                           type: boolean
                                         forceCommonLabels:
                                           type: boolean
+                                        ignoreMissingComponents:
+                                          type: boolean
                                         images:
                                           items:
                                             type: string
                                           type: array
                                         kubeVersion:
                                           type: string
+                                        labelIncludeTemplates:
+                                          type: boolean
                                         labelWithoutSelector:
                                           type: boolean
                                         namePrefix:
@@ -6964,12 +7111,16 @@ spec:
                                             type: boolean
                                           forceCommonLabels:
                                             type: boolean
+                                          ignoreMissingComponents:
+                                            type: boolean
                                           images:
                                             items:
                                               type: string
                                             type: array
                                           kubeVersion:
                                             type: string
+                                          labelIncludeTemplates:
+                                            type: boolean
                                           labelWithoutSelector:
                                             type: boolean
                                           namePrefix:
@@ -7363,12 +7514,16 @@ spec:
                                           type: boolean
                                         forceCommonLabels:
                                           type: boolean
+                                        ignoreMissingComponents:
+                                          type: boolean
                                         images:
                                           items:
                                             type: string
                                           type: array
                                         kubeVersion:
                                           type: string
+                                        labelIncludeTemplates:
+                                          type: boolean
                                         labelWithoutSelector:
                                           type: boolean
                                         namePrefix:
@@ -7635,12 +7790,16 @@ spec:
                                             type: boolean
                                           forceCommonLabels:
                                             type: boolean
+                                          ignoreMissingComponents:
+                                            type: boolean
                                           images:
                                             items:
                                               type: string
                                             type: array
                                           kubeVersion:
                                             type: string
+                                          labelIncludeTemplates:
+                                            type: boolean
                                           labelWithoutSelector:
                                             type: boolean
                                           namePrefix:
@@ -8014,12 +8173,16 @@ spec:
                                           type: boolean
                                         forceCommonLabels:
                                           type: boolean
+                                        ignoreMissingComponents:
+                                          type: boolean
                                         images:
                                           items:
                                             type: string
                                           type: array
                                         kubeVersion:
                                           type: string
+                                        labelIncludeTemplates:
+                                          type: boolean
                                         labelWithoutSelector:
                                           type: boolean
                                         namePrefix:
@@ -8286,12 +8449,16 @@ spec:
                                             type: boolean
                                           forceCommonLabels:
                                             type: boolean
+                                          ignoreMissingComponents:
+                                            type: boolean
                                           images:
                                             items:
                                               type: string
                                             type: array
                                           kubeVersion:
                                             type: string
+                                          labelIncludeTemplates:
+                                            type: boolean
                                           labelWithoutSelector:
                                             type: boolean
                                           namePrefix:
@@ -8690,12 +8857,16 @@ spec:
                                                     type: boolean
                                                   forceCommonLabels:
                                                     type: boolean
+                                                  ignoreMissingComponents:
+                                                    type: boolean
                                                   images:
                                                     items:
                                                       type: string
                                                     type: array
                                                   kubeVersion:
                                                     type: string
+                                                  labelIncludeTemplates:
+                                                    type: boolean
                                                   labelWithoutSelector:
                                                     type: boolean
                                                   namePrefix:
@@ -8962,12 +9133,16 @@ spec:
                                                       type: boolean
                                                     forceCommonLabels:
                                                       type: boolean
+                                                    ignoreMissingComponents:
+                                                      type: boolean
                                                     images:
                                                       items:
                                                         type: string
                                                       type: array
                                                     kubeVersion:
                                                       type: string
+                                                    labelIncludeTemplates:
+                                                      type: boolean
                                                     labelWithoutSelector:
                                                       type: boolean
                                                     namePrefix:
@@ -9362,12 +9537,16 @@ spec:
                                                     type: boolean
                                                   forceCommonLabels:
                                                     type: boolean
+                                                  ignoreMissingComponents:
+                                                    type: boolean
                                                   images:
                                                     items:
                                                       type: string
                                                     type: array
                                                   kubeVersion:
                                                     type: string
+                                                  labelIncludeTemplates:
+                                                    type: boolean
                                                   labelWithoutSelector:
                                                     type: boolean
                                                   namePrefix:
@@ -9634,12 +9813,16 @@ spec:
                                                       type: boolean
                                                     forceCommonLabels:
                                                       type: boolean
+                                                    ignoreMissingComponents:
+                                                      type: boolean
                                                     images:
                                                       items:
                                                         type: string
                                                       type: array
                                                     kubeVersion:
                                                       type: string
+                                                    labelIncludeTemplates:
+                                                      type: boolean
                                                     labelWithoutSelector:
                                                       type: boolean
                                                     namePrefix:
@@ -10033,12 +10216,16 @@ spec:
                                                     type: boolean
                                                   forceCommonLabels:
                                                     type: boolean
+                                                  ignoreMissingComponents:
+                                                    type: boolean
                                                   images:
                                                     items:
                                                       type: string
                                                     type: array
                                                   kubeVersion:
                                                     type: string
+                                                  labelIncludeTemplates:
+                                                    type: boolean
                                                   labelWithoutSelector:
                                                     type: boolean
                                                   namePrefix:
@@ -10305,12 +10492,16 @@ spec:
                                                       type: boolean
                                                     forceCommonLabels:
                                                       type: boolean
+                                                    ignoreMissingComponents:
+                                                      type: boolean
                                                     images:
                                                       items:
                                                         type: string
                                                       type: array
                                                     kubeVersion:
                                                       type: string
+                                                    labelIncludeTemplates:
+                                                      type: boolean
                                                     labelWithoutSelector:
                                                       type: boolean
                                                     namePrefix:
@@ -10684,12 +10875,16 @@ spec:
                                                     type: boolean
                                                   forceCommonLabels:
                                                     type: boolean
+                                                  ignoreMissingComponents:
+                                                    type: boolean
                                                   images:
                                                     items:
                                                       type: string
                                                     type: array
                                                   kubeVersion:
                                                     type: string
+                                                  labelIncludeTemplates:
+                                                    type: boolean
                                                   labelWithoutSelector:
                                                     type: boolean
                                                   namePrefix:
@@ -10956,12 +11151,16 @@ spec:
                                                       type: boolean
                                                     forceCommonLabels:
                                                       type: boolean
+                                                    ignoreMissingComponents:
+                                                      type: boolean
                                                     images:
                                                       items:
                                                         type: string
                                                       type: array
                                                     kubeVersion:
                                                       type: string
+                                                    labelIncludeTemplates:
+                                                      type: boolean
                                                     labelWithoutSelector:
                                                       type: boolean
                                                     namePrefix:
@@ -11343,12 +11542,16 @@ spec:
                                                     type: boolean
                                                   forceCommonLabels:
                                                     type: boolean
+                                                  ignoreMissingComponents:
+                                                    type: boolean
                                                   images:
                                                     items:
                                                       type: string
                                                     type: array
                                                   kubeVersion:
                                                     type: string
+                                                  labelIncludeTemplates:
+                                                    type: boolean
                                                   labelWithoutSelector:
                                                     type: boolean
                                                   namePrefix:
@@ -11615,12 +11818,16 @@ spec:
                                                       type: boolean
                                                     forceCommonLabels:
                                                       type: boolean
+                                                    ignoreMissingComponents:
+                                                      type: boolean
                                                     images:
                                                       items:
                                                         type: string
                                                       type: array
                                                     kubeVersion:
                                                       type: string
+                                                    labelIncludeTemplates:
+                                                      type: boolean
                                                     labelWithoutSelector:
                                                       type: boolean
                                                     namePrefix:
@@ -12221,12 +12428,16 @@ spec:
                                                     type: boolean
                                                   forceCommonLabels:
                                                     type: boolean
+                                                  ignoreMissingComponents:
+                                                    type: boolean
                                                   images:
                                                     items:
                                                       type: string
                                                     type: array
                                                   kubeVersion:
                                                     type: string
+                                                  labelIncludeTemplates:
+                                                    type: boolean
                                                   labelWithoutSelector:
                                                     type: boolean
                                                   namePrefix:
@@ -12493,12 +12704,16 @@ spec:
                                                       type: boolean
                                                     forceCommonLabels:
                                                       type: boolean
+                                                    ignoreMissingComponents:
+                                                      type: boolean
                                                     images:
                                                       items:
                                                         type: string
                                                       type: array
                                                     kubeVersion:
                                                       type: string
+                                                    labelIncludeTemplates:
+                                                      type: boolean
                                                     labelWithoutSelector:
                                                       type: boolean
                                                     namePrefix:
@@ -12653,6 +12868,10 @@ spec:
                                     required:
                                     - metadata
                                     - spec
+                                    type: object
+                                  values:
+                                    additionalProperties:
+                                      type: string
                                     type: object
                                 type: object
                               scmProvider:
@@ -13094,12 +13313,16 @@ spec:
                                                     type: boolean
                                                   forceCommonLabels:
                                                     type: boolean
+                                                  ignoreMissingComponents:
+                                                    type: boolean
                                                   images:
                                                     items:
                                                       type: string
                                                     type: array
                                                   kubeVersion:
                                                     type: string
+                                                  labelIncludeTemplates:
+                                                    type: boolean
                                                   labelWithoutSelector:
                                                     type: boolean
                                                   namePrefix:
@@ -13366,12 +13589,16 @@ spec:
                                                       type: boolean
                                                     forceCommonLabels:
                                                       type: boolean
+                                                    ignoreMissingComponents:
+                                                      type: boolean
                                                     images:
                                                       items:
                                                         type: string
                                                       type: array
                                                     kubeVersion:
                                                       type: string
+                                                    labelIncludeTemplates:
+                                                      type: boolean
                                                     labelWithoutSelector:
                                                       type: boolean
                                                     namePrefix:
@@ -13762,12 +13989,16 @@ spec:
                                           type: boolean
                                         forceCommonLabels:
                                           type: boolean
+                                        ignoreMissingComponents:
+                                          type: boolean
                                         images:
                                           items:
                                             type: string
                                           type: array
                                         kubeVersion:
                                           type: string
+                                        labelIncludeTemplates:
+                                          type: boolean
                                         labelWithoutSelector:
                                           type: boolean
                                         namePrefix:
@@ -14034,12 +14265,16 @@ spec:
                                             type: boolean
                                           forceCommonLabels:
                                             type: boolean
+                                          ignoreMissingComponents:
+                                            type: boolean
                                           images:
                                             items:
                                               type: string
                                             type: array
                                           kubeVersion:
                                             type: string
+                                          labelIncludeTemplates:
+                                            type: boolean
                                           labelWithoutSelector:
                                             type: boolean
                                           namePrefix:
@@ -14440,12 +14675,16 @@ spec:
                                                     type: boolean
                                                   forceCommonLabels:
                                                     type: boolean
+                                                  ignoreMissingComponents:
+                                                    type: boolean
                                                   images:
                                                     items:
                                                       type: string
                                                     type: array
                                                   kubeVersion:
                                                     type: string
+                                                  labelIncludeTemplates:
+                                                    type: boolean
                                                   labelWithoutSelector:
                                                     type: boolean
                                                   namePrefix:
@@ -14712,12 +14951,16 @@ spec:
                                                       type: boolean
                                                     forceCommonLabels:
                                                       type: boolean
+                                                    ignoreMissingComponents:
+                                                      type: boolean
                                                     images:
                                                       items:
                                                         type: string
                                                       type: array
                                                     kubeVersion:
                                                       type: string
+                                                    labelIncludeTemplates:
+                                                      type: boolean
                                                     labelWithoutSelector:
                                                       type: boolean
                                                     namePrefix:
@@ -15112,12 +15355,16 @@ spec:
                                                     type: boolean
                                                   forceCommonLabels:
                                                     type: boolean
+                                                  ignoreMissingComponents:
+                                                    type: boolean
                                                   images:
                                                     items:
                                                       type: string
                                                     type: array
                                                   kubeVersion:
                                                     type: string
+                                                  labelIncludeTemplates:
+                                                    type: boolean
                                                   labelWithoutSelector:
                                                     type: boolean
                                                   namePrefix:
@@ -15384,12 +15631,16 @@ spec:
                                                       type: boolean
                                                     forceCommonLabels:
                                                       type: boolean
+                                                    ignoreMissingComponents:
+                                                      type: boolean
                                                     images:
                                                       items:
                                                         type: string
                                                       type: array
                                                     kubeVersion:
                                                       type: string
+                                                    labelIncludeTemplates:
+                                                      type: boolean
                                                     labelWithoutSelector:
                                                       type: boolean
                                                     namePrefix:
@@ -15783,12 +16034,16 @@ spec:
                                                     type: boolean
                                                   forceCommonLabels:
                                                     type: boolean
+                                                  ignoreMissingComponents:
+                                                    type: boolean
                                                   images:
                                                     items:
                                                       type: string
                                                     type: array
                                                   kubeVersion:
                                                     type: string
+                                                  labelIncludeTemplates:
+                                                    type: boolean
                                                   labelWithoutSelector:
                                                     type: boolean
                                                   namePrefix:
@@ -16055,12 +16310,16 @@ spec:
                                                       type: boolean
                                                     forceCommonLabels:
                                                       type: boolean
+                                                    ignoreMissingComponents:
+                                                      type: boolean
                                                     images:
                                                       items:
                                                         type: string
                                                       type: array
                                                     kubeVersion:
                                                       type: string
+                                                    labelIncludeTemplates:
+                                                      type: boolean
                                                     labelWithoutSelector:
                                                       type: boolean
                                                     namePrefix:
@@ -16434,12 +16693,16 @@ spec:
                                                     type: boolean
                                                   forceCommonLabels:
                                                     type: boolean
+                                                  ignoreMissingComponents:
+                                                    type: boolean
                                                   images:
                                                     items:
                                                       type: string
                                                     type: array
                                                   kubeVersion:
                                                     type: string
+                                                  labelIncludeTemplates:
+                                                    type: boolean
                                                   labelWithoutSelector:
                                                     type: boolean
                                                   namePrefix:
@@ -16706,12 +16969,16 @@ spec:
                                                       type: boolean
                                                     forceCommonLabels:
                                                       type: boolean
+                                                    ignoreMissingComponents:
+                                                      type: boolean
                                                     images:
                                                       items:
                                                         type: string
                                                       type: array
                                                     kubeVersion:
                                                       type: string
+                                                    labelIncludeTemplates:
+                                                      type: boolean
                                                     labelWithoutSelector:
                                                       type: boolean
                                                     namePrefix:
@@ -17093,12 +17360,16 @@ spec:
                                                     type: boolean
                                                   forceCommonLabels:
                                                     type: boolean
+                                                  ignoreMissingComponents:
+                                                    type: boolean
                                                   images:
                                                     items:
                                                       type: string
                                                     type: array
                                                   kubeVersion:
                                                     type: string
+                                                  labelIncludeTemplates:
+                                                    type: boolean
                                                   labelWithoutSelector:
                                                     type: boolean
                                                   namePrefix:
@@ -17365,12 +17636,16 @@ spec:
                                                       type: boolean
                                                     forceCommonLabels:
                                                       type: boolean
+                                                    ignoreMissingComponents:
+                                                      type: boolean
                                                     images:
                                                       items:
                                                         type: string
                                                       type: array
                                                     kubeVersion:
                                                       type: string
+                                                    labelIncludeTemplates:
+                                                      type: boolean
                                                     labelWithoutSelector:
                                                       type: boolean
                                                     namePrefix:
@@ -17971,12 +18246,16 @@ spec:
                                                     type: boolean
                                                   forceCommonLabels:
                                                     type: boolean
+                                                  ignoreMissingComponents:
+                                                    type: boolean
                                                   images:
                                                     items:
                                                       type: string
                                                     type: array
                                                   kubeVersion:
                                                     type: string
+                                                  labelIncludeTemplates:
+                                                    type: boolean
                                                   labelWithoutSelector:
                                                     type: boolean
                                                   namePrefix:
@@ -18243,12 +18522,16 @@ spec:
                                                       type: boolean
                                                     forceCommonLabels:
                                                       type: boolean
+                                                    ignoreMissingComponents:
+                                                      type: boolean
                                                     images:
                                                       items:
                                                         type: string
                                                       type: array
                                                     kubeVersion:
                                                       type: string
+                                                    labelIncludeTemplates:
+                                                      type: boolean
                                                     labelWithoutSelector:
                                                       type: boolean
                                                     namePrefix:
@@ -18403,6 +18686,10 @@ spec:
                                     required:
                                     - metadata
                                     - spec
+                                    type: object
+                                  values:
+                                    additionalProperties:
+                                      type: string
                                     type: object
                                 type: object
                               scmProvider:
@@ -18844,12 +19131,16 @@ spec:
                                                     type: boolean
                                                   forceCommonLabels:
                                                     type: boolean
+                                                  ignoreMissingComponents:
+                                                    type: boolean
                                                   images:
                                                     items:
                                                       type: string
                                                     type: array
                                                   kubeVersion:
                                                     type: string
+                                                  labelIncludeTemplates:
+                                                    type: boolean
                                                   labelWithoutSelector:
                                                     type: boolean
                                                   namePrefix:
@@ -19116,12 +19407,16 @@ spec:
                                                       type: boolean
                                                     forceCommonLabels:
                                                       type: boolean
+                                                    ignoreMissingComponents:
+                                                      type: boolean
                                                     images:
                                                       items:
                                                         type: string
                                                       type: array
                                                     kubeVersion:
                                                       type: string
+                                                    labelIncludeTemplates:
+                                                      type: boolean
                                                     labelWithoutSelector:
                                                       type: boolean
                                                     namePrefix:
@@ -19516,12 +19811,16 @@ spec:
                                           type: boolean
                                         forceCommonLabels:
                                           type: boolean
+                                        ignoreMissingComponents:
+                                          type: boolean
                                         images:
                                           items:
                                             type: string
                                           type: array
                                         kubeVersion:
                                           type: string
+                                        labelIncludeTemplates:
+                                          type: boolean
                                         labelWithoutSelector:
                                           type: boolean
                                         namePrefix:
@@ -19788,12 +20087,16 @@ spec:
                                             type: boolean
                                           forceCommonLabels:
                                             type: boolean
+                                          ignoreMissingComponents:
+                                            type: boolean
                                           images:
                                             items:
                                               type: string
                                             type: array
                                           kubeVersion:
                                             type: string
+                                          labelIncludeTemplates:
+                                            type: boolean
                                           labelWithoutSelector:
                                             type: boolean
                                           namePrefix:
@@ -20174,12 +20477,16 @@ spec:
                                           type: boolean
                                         forceCommonLabels:
                                           type: boolean
+                                        ignoreMissingComponents:
+                                          type: boolean
                                         images:
                                           items:
                                             type: string
                                           type: array
                                         kubeVersion:
                                           type: string
+                                        labelIncludeTemplates:
+                                          type: boolean
                                         labelWithoutSelector:
                                           type: boolean
                                         namePrefix:
@@ -20446,12 +20753,16 @@ spec:
                                             type: boolean
                                           forceCommonLabels:
                                             type: boolean
+                                          ignoreMissingComponents:
+                                            type: boolean
                                           images:
                                             items:
                                               type: string
                                             type: array
                                           kubeVersion:
                                             type: string
+                                          labelIncludeTemplates:
+                                            type: boolean
                                           labelWithoutSelector:
                                             type: boolean
                                           namePrefix:
@@ -21052,12 +21363,16 @@ spec:
                                           type: boolean
                                         forceCommonLabels:
                                           type: boolean
+                                        ignoreMissingComponents:
+                                          type: boolean
                                         images:
                                           items:
                                             type: string
                                           type: array
                                         kubeVersion:
                                           type: string
+                                        labelIncludeTemplates:
+                                          type: boolean
                                         labelWithoutSelector:
                                           type: boolean
                                         namePrefix:
@@ -21324,12 +21639,16 @@ spec:
                                             type: boolean
                                           forceCommonLabels:
                                             type: boolean
+                                          ignoreMissingComponents:
+                                            type: boolean
                                           images:
                                             items:
                                               type: string
                                             type: array
                                           kubeVersion:
                                             type: string
+                                          labelIncludeTemplates:
+                                            type: boolean
                                           labelWithoutSelector:
                                             type: boolean
                                           namePrefix:
@@ -21484,6 +21803,10 @@ spec:
                           required:
                           - metadata
                           - spec
+                          type: object
+                        values:
+                          additionalProperties:
+                            type: string
                           type: object
                       type: object
                     scmProvider:
@@ -21925,12 +22248,16 @@ spec:
                                           type: boolean
                                         forceCommonLabels:
                                           type: boolean
+                                        ignoreMissingComponents:
+                                          type: boolean
                                         images:
                                           items:
                                             type: string
                                           type: array
                                         kubeVersion:
                                           type: string
+                                        labelIncludeTemplates:
+                                          type: boolean
                                         labelWithoutSelector:
                                           type: boolean
                                         namePrefix:
@@ -22197,12 +22524,16 @@ spec:
                                             type: boolean
                                           forceCommonLabels:
                                             type: boolean
+                                          ignoreMissingComponents:
+                                            type: boolean
                                           images:
                                             items:
                                               type: string
                                             type: array
                                           kubeVersion:
                                             type: string
+                                          labelIncludeTemplates:
+                                            type: boolean
                                           labelWithoutSelector:
                                             type: boolean
                                           namePrefix:
@@ -22668,12 +22999,16 @@ spec:
                                 type: boolean
                               forceCommonLabels:
                                 type: boolean
+                              ignoreMissingComponents:
+                                type: boolean
                               images:
                                 items:
                                   type: string
                                 type: array
                               kubeVersion:
                                 type: string
+                              labelIncludeTemplates:
+                                type: boolean
                               labelWithoutSelector:
                                 type: boolean
                               namePrefix:
@@ -22940,12 +23275,16 @@ spec:
                                   type: boolean
                                 forceCommonLabels:
                                   type: boolean
+                                ignoreMissingComponents:
+                                  type: boolean
                                 images:
                                   items:
                                     type: string
                                   type: array
                                 kubeVersion:
                                   type: string
+                                labelIncludeTemplates:
+                                  type: boolean
                                 labelWithoutSelector:
                                   type: boolean
                                 namePrefix:
@@ -23482,6 +23821,10 @@ spec:
                   description: SyncWindow contains the kind, time, duration and attributes
                     that are used to assign the syncWindows to apps
                   properties:
+                    andOperator:
+                      description: UseAndOperator use AND operator for matching applications,
+                        namespaces and clusters instead of the default OR operator
+                      type: boolean
                     applications:
                       description: Applications contains a list of applications that
                         the window will apply to
@@ -23652,6 +23995,7 @@ rules:
   - argoproj.io
   resources:
   - applications
+  - applicationsets
   - appprojects
   verbs:
   - create
@@ -24222,6 +24566,103 @@ data:
       type: oidc
       id: authentik
   kustomize.buildOptions: --enable-helm
+  resource.customizations.ignoreResourceUpdates.ConfigMap: |
+    jqPathExpressions:
+      # Ignore the cluster-autoscaler status
+      - '.metadata.annotations."cluster-autoscaler.kubernetes.io/last-updated"'
+      # Ignore the annotation of the legacy Leases election
+      - '.metadata.annotations."control-plane.alpha.kubernetes.io/leader"'
+  resource.customizations.ignoreResourceUpdates.Endpoints: |
+    jsonPointers:
+      - /metadata
+      - /subsets
+  resource.customizations.ignoreResourceUpdates.all: |
+    jsonPointers:
+      - /status
+  resource.customizations.ignoreResourceUpdates.apps_ReplicaSet: |
+    jqPathExpressions:
+      - '.metadata.annotations."deployment.kubernetes.io/desired-replicas"'
+      - '.metadata.annotations."deployment.kubernetes.io/max-replicas"'
+      - '.metadata.annotations."rollout.argoproj.io/desired-replicas"'
+  resource.customizations.ignoreResourceUpdates.argoproj.io_Application: |
+    jqPathExpressions:
+      - '.metadata.annotations."notified.notifications.argoproj.io"'
+      - '.metadata.annotations."argocd.argoproj.io/refresh"'
+      - '.metadata.annotations."argocd.argoproj.io/hydrate"'
+      - '.operation'
+  resource.customizations.ignoreResourceUpdates.argoproj.io_Rollout: |
+    jqPathExpressions:
+      - '.metadata.annotations."notified.notifications.argoproj.io"'
+  resource.customizations.ignoreResourceUpdates.autoscaling_HorizontalPodAutoscaler: |
+    jqPathExpressions:
+      - '.metadata.annotations."autoscaling.alpha.kubernetes.io/behavior"'
+      - '.metadata.annotations."autoscaling.alpha.kubernetes.io/conditions"'
+      - '.metadata.annotations."autoscaling.alpha.kubernetes.io/metrics"'
+      - '.metadata.annotations."autoscaling.alpha.kubernetes.io/current-metrics"'
+  resource.customizations.ignoreResourceUpdates.discovery.k8s.io_EndpointSlice: |
+    jsonPointers:
+      - /metadata
+      - /endpoints
+      - /ports
+  resource.exclusions: |
+    ### Network resources created by the Kubernetes control plane and excluded to reduce the number of watched events and UI clutter
+    - apiGroups:
+      - ''
+      - discovery.k8s.io
+      kinds:
+      - Endpoints
+      - EndpointSlice
+    ### Internal Kubernetes resources excluded reduce the number of watched events
+    - apiGroups:
+      - apiregistration.k8s.io
+      kinds:
+      - APIService
+    - apiGroups:
+      - coordination.k8s.io
+      kinds:
+      - Lease
+    ### Internal Kubernetes Authz/Authn resources excluded reduce the number of watched events
+    - apiGroups:
+      - authentication.k8s.io
+      - authorization.k8s.io
+      kinds:
+      - SelfSubjectReview
+      - TokenReview
+      - LocalSubjectAccessReview
+      - SelfSubjectAccessReview
+      - SelfSubjectRulesReview
+      - SubjectAccessReview
+    ### Intermediate Certificate Request excluded reduce the number of watched events
+    - apiGroups:
+      - certificates.k8s.io
+      kinds:
+      - CertificateSigningRequest
+    - apiGroups:
+      - cert-manager.io
+      kinds:
+      - CertificateRequest
+    ### Cilium internal resources excluded reduce the number of watched events and UI Clutter
+    - apiGroups:
+      - cilium.io
+      kinds:
+      - CiliumIdentity
+      - CiliumEndpoint
+      - CiliumEndpointSlice
+    ### Kyverno intermediate and reporting resources excluded reduce the number of watched events and improve performance
+    - apiGroups:
+      - kyverno.io
+      - reports.kyverno.io
+      - wgpolicyk8s.io
+      kinds:
+      - PolicyReport
+      - ClusterPolicyReport
+      - EphemeralReport
+      - ClusterEphemeralReport
+      - AdmissionReport
+      - ClusterAdmissionReport
+      - BackgroundScanReport
+      - ClusterBackgroundScanReport
+      - UpdateRequest
 kind: ConfigMap
 metadata:
   labels:
@@ -24571,6 +25012,12 @@ spec:
               key: applicationsetcontroller.log.level
               name: argocd-cmd-params-cm
               optional: true
+        - name: ARGOCD_LOG_FORMAT_TIMESTAMP
+          valueFrom:
+            configMapKeyRef:
+              key: log.format.timestamp
+              name: argocd-cmd-params-cm
+              optional: true
         - name: ARGOCD_APPLICATIONSET_CONTROLLER_DRY_RUN
           valueFrom:
             configMapKeyRef:
@@ -24661,7 +25108,7 @@ spec:
               key: applicationsetcontroller.requeue.after
               name: argocd-cmd-params-cm
               optional: true
-        image: quay.io/argoproj/argocd:v2.14.3
+        image: quay.io/argoproj/argocd:v3.0.0-rc1
         imagePullPolicy: Always
         name: argocd-applicationset-controller
         ports:
@@ -24764,6 +25211,12 @@ spec:
               key: dexserver.log.level
               name: argocd-cmd-params-cm
               optional: true
+        - name: ARGOCD_LOG_FORMAT_TIMESTAMP
+          valueFrom:
+            configMapKeyRef:
+              key: log.format.timestamp
+              name: argocd-cmd-params-cm
+              optional: true
         - name: ARGOCD_DEX_SERVER_DISABLE_TLS
           valueFrom:
             configMapKeyRef:
@@ -24799,7 +25252,7 @@ spec:
         - -n
         - /usr/local/bin/argocd
         - /shared/argocd-dex
-        image: quay.io/argoproj/argocd:v2.14.3
+        image: quay.io/argoproj/argocd:v3.0.0-rc1
         imagePullPolicy: Always
         name: copyutil
         securityContext:
@@ -24872,6 +25325,12 @@ spec:
               key: notificationscontroller.log.level
               name: argocd-cmd-params-cm
               optional: true
+        - name: ARGOCD_LOG_FORMAT_TIMESTAMP
+          valueFrom:
+            configMapKeyRef:
+              key: log.format.timestamp
+              name: argocd-cmd-params-cm
+              optional: true
         - name: ARGOCD_APPLICATION_NAMESPACES
           valueFrom:
             configMapKeyRef:
@@ -24890,7 +25349,7 @@ spec:
               key: notificationscontroller.repo.server.plaintext
               name: argocd-cmd-params-cm
               optional: true
-        image: quay.io/argoproj/argocd:v2.14.3
+        image: quay.io/argoproj/argocd:v3.0.0-rc1
         imagePullPolicy: Always
         livenessProbe:
           tcpSocket:
@@ -24977,7 +25436,7 @@ spec:
             secretKeyRef:
               key: auth
               name: argocd-redis
-        image: redis:7.0.15-alpine
+        image: redis:7.2.7-alpine
         imagePullPolicy: Always
         name: redis
         ports:
@@ -24993,7 +25452,7 @@ spec:
         - argocd
         - admin
         - redis-initial-password
-        image: quay.io/argoproj/argocd:v2.14.3
+        image: quay.io/argoproj/argocd:v3.0.0-rc1
         imagePullPolicy: IfNotPresent
         name: secret-init
         securityContext:
@@ -25092,6 +25551,12 @@ spec:
               key: reposerver.log.level
               name: argocd-cmd-params-cm
               optional: true
+        - name: ARGOCD_LOG_FORMAT_TIMESTAMP
+          valueFrom:
+            configMapKeyRef:
+              key: log.format.timestamp
+              name: argocd-cmd-params-cm
+              optional: true
         - name: ARGOCD_REPO_SERVER_PARALLELISM_LIMIT
           valueFrom:
             configMapKeyRef:
@@ -25180,6 +25645,12 @@ spec:
           valueFrom:
             configMapKeyRef:
               key: otlp.headers
+              name: argocd-cmd-params-cm
+              optional: true
+        - name: ARGOCD_REPO_SERVER_OTLP_ATTRS
+          valueFrom:
+            configMapKeyRef:
+              key: otlp.attrs
               name: argocd-cmd-params-cm
               optional: true
         - name: ARGOCD_REPO_SERVER_MAX_COMBINED_DIRECTORY_MANIFESTS_SIZE
@@ -25272,7 +25743,7 @@ spec:
           value: /helm-working-dir
         - name: HELM_DATA_HOME
           value: /helm-working-dir
-        image: quay.io/argoproj/argocd:v2.14.3
+        image: quay.io/argoproj/argocd:v3.0.0-rc1
         imagePullPolicy: Always
         livenessProbe:
           failureThreshold: 3
@@ -25324,7 +25795,7 @@ spec:
         - -n
         - /usr/local/bin/argocd
         - /var/run/argocd/argocd-cmp-server
-        image: quay.io/argoproj/argocd:v2.14.3
+        image: quay.io/argoproj/argocd:v3.0.0-rc1
         name: copyutil
         securityContext:
           allowPrivilegeEscalation: false
@@ -25624,6 +26095,12 @@ spec:
               key: otlp.headers
               name: argocd-cmd-params-cm
               optional: true
+        - name: ARGOCD_SERVER_OTLP_ATTRS
+          valueFrom:
+            configMapKeyRef:
+              key: otlp.attrs
+              name: argocd-cmd-params-cm
+              optional: true
         - name: ARGOCD_APPLICATION_NAMESPACES
           valueFrom:
             configMapKeyRef:
@@ -25690,7 +26167,13 @@ spec:
               key: hydrator.enabled
               name: argocd-cmd-params-cm
               optional: true
-        image: quay.io/argoproj/argocd:v2.14.3
+        - name: ARGOCD_SYNC_WITH_REPLACE_ALLOWED
+          valueFrom:
+            configMapKeyRef:
+              key: server.sync.replace.allowed
+              name: argocd-cmd-params-cm
+              optional: true
+        image: quay.io/argoproj/argocd:v3.0.0-rc1
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
@@ -25881,6 +26364,12 @@ spec:
               key: controller.log.level
               name: argocd-cmd-params-cm
               optional: true
+        - name: ARGOCD_LOG_FORMAT_TIMESTAMP
+          valueFrom:
+            configMapKeyRef:
+              key: log.format.timestamp
+              name: argocd-cmd-params-cm
+              optional: true
         - name: ARGOCD_APPLICATION_CONTROLLER_METRICS_CACHE_EXPIRATION
           valueFrom:
             configMapKeyRef:
@@ -25983,6 +26472,12 @@ spec:
               key: otlp.headers
               name: argocd-cmd-params-cm
               optional: true
+        - name: ARGOCD_APPLICATION_CONTROLLER_OTLP_ATTRS
+          valueFrom:
+            configMapKeyRef:
+              key: otlp.attrs
+              name: argocd-cmd-params-cm
+              optional: true
         - name: ARGOCD_APPLICATION_NAMESPACES
           valueFrom:
             configMapKeyRef:
@@ -26045,7 +26540,7 @@ spec:
               optional: true
         - name: KUBECACHEDIR
           value: /tmp/kubecache
-        image: quay.io/argoproj/argocd:v2.14.3
+        image: quay.io/argoproj/argocd:v3.0.0-rc1
         imagePullPolicy: Always
         name: argocd-application-controller
         ports:
