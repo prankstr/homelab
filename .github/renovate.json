@@ -1,11 +1,18 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended", ":automergeMinor", ":semanticCommits"],
-  "enabledManagers": ["kustomize", "docker-compose"],
+  "enabledManagers": ["kustomize", "docker-compose", "regex"],
   "packageRules": [
+    { "matchManagers": ["docker-compose"], "ignoreTests": true }
+  ],
+  "customManagers": [
     {
-      "managers": ["docker-compose"],
-      "ignoreTests": true
+      "customType": "regex",
+      "fileMatch": ["(^|/)kustomization\\.ya?ml$"],
+      "matchStrings": [
+        "https://github\\.com/(?<depName>.*/.*?)/releases/download/(?<currentValue>.*?)/"
+      ],
+      "datasourceTemplate": "github-releases"
     }
   ]
 }

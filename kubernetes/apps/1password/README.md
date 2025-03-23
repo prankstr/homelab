@@ -1,10 +1,10 @@
-# [1Password Operator](https://github.com/1Password/onepassword-operator)
+# [1Password Connect & 1Password Operator](https://github.com/1Password/onepassword-operator)
 
 1Password Operator is a Kubernetes operator for managing Kubernetes secrets in 1Password. I store all sensitive data in 1Password and this operator allows me to sync those secrets to my Kubernetes clusters.
 
-1Password Connect can also be used with the [External Secrets Operator](https://github.com/external-secrets/external-secrets/) which is something I might explore later on. That would allow for a smoother transition if I ever want to switch from 1Password to something else.
+1Password Connect is the interface that sits between the operator and 1Password. Connect can also be used with the [External Secrets Operator](https://github.com/external-secrets/external-secrets/) which is something I might explore later on. That would allow for a smoother transition if I ever want to switch from 1Password to something else.
 
-Deployed from the official [helm chart](https://1password.github.io/connect-helm-charts)
+Deployed from the official [helm chart](https://github.com/1Password/connect-helm-charts)
 
 ## Installation
 

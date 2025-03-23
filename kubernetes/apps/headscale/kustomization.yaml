@@ -4,9 +4,9 @@ namespace: headscale
 
 images:
   - name: headscale/headscale
-    newTag: v0.24.1
+    newTag: v0.25.1
   - name: goodieshq/headscale-admin
-    newTag: 0.24.4
+    newTag: 0.25.5
 
 configMapGenerator:
   - name: headscale-config
