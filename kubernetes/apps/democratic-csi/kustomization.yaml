@@ -14,7 +14,7 @@ helmCharts:
     repo: https://democratic-csi.github.io/charts/
     namespace: democratic-csi
     releaseName: snapshot-controller
-    version: 0.2.4
+    version: 0.3.0
     includeCRDs: true
     valuesFile: values-snapshot-controller.yaml
   - name: democratic-csi
