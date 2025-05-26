@@ -4,7 +4,7 @@ namespace: kromgo
 
 images:
   - name: ghcr.io/kashalls/kromgo
-    newTag: v0.6.0
+    newTag: v0.6.1
 
 resources:
   - deployment.yaml
