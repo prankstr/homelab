@@ -1,0 +1,5 @@
+- op: test
+  path: /spec/preserveUnknownFields
+  value: false
+- op: remove
+  path: /spec/preserveUnknownFields
