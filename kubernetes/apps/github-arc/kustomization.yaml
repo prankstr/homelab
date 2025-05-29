@@ -6,6 +6,13 @@ resources:
   - rbac.yaml
   - secret.yaml
 
+patches:
+  - path: remove-preserveunknownfields.yaml
+    target:
+      group: apiextensions.k8s.io
+      kind: CustomResourceDefinition
+      version: v1
+
 helmCharts:
   - namespace: github-arc
     name: gha-runner-scale-set-controller
