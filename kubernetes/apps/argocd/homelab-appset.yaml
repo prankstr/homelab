@@ -37,16 +37,16 @@ spec:
     {{- if eq .path.basename "metallb" }}
     spec:
       ignoreDifferences:
-        - group: "apiextensions.k8s.io"
+        - group: apiextensions.k8s.io
+          jsonPointers:
+          - /spec/conversion/webhook/clientConfig/caBundle
           kind: CustomResourceDefinition
           name: bgppeers.metallb.io
+        - group: apiextensions.k8s.io
           jsonPointers:
-            - /spec/conversion/webhook/clientConfig/caBundle
-        - group: "apiextensions.k8s.io"
+          - /spec/conversion/webhook/clientConfig/caBundle
           kind: CustomResourceDefinition
           name: addresspools.metallb.io
-          jsonPointers:
-            - /spec/conversion/webhook/clientConfig/caBundle
     {{-  end }}
     {{- if eq .path.basename "k10" }}
     spec:
