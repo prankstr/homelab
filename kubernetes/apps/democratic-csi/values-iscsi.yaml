@@ -27,7 +27,7 @@ storageClasses:
     allowVolumeExpansion: true
     parameters:
       fsType: ext4
-      detachedVolumesFromSnapshots: "true"
+      detachedVolumesFromSnapshots: "false"
     mountOptions: []
     secrets:
       provisioner-secret:
