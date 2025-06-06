@@ -24,9 +24,9 @@ ingress:
     secretName: k10.{ MY_DOMAIN }-cert
 auth:
   tokenAuth:
-    enabled: false
-  oidcAuth:
     enabled: true
+  oidcAuth:
+    enabled: false
     secretName: "k10-oidc"
 resources:
   aggregatedapis-svc:
