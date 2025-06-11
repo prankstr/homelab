@@ -32,21 +32,21 @@ helmCharts:
     releaseName: victoria-metrics-k8s-stack
     repo: https://victoriametrics.github.io/helm-charts/
     valuesFile: values.yaml
-    version: 0.50.1
+    version: 0.51.0
 
   - name: victoria-metrics-agent
     releaseName: external
     namespace: victoria-metrics
     repo: https://victoriametrics.github.io/helm-charts/
     valuesFile: values-agent-external.yaml
-    version: 0.21.0
+    version: 0.22.0
 
   - name: victoria-metrics-single
     releaseName: long-term
     namespace: victoria-metrics
     repo: https://victoriametrics.github.io/helm-charts/
     valuesFile: values-single-long-term.yaml
-    version: 0.20.0
+    version: 0.21.0
 
   - name: victoria-logs-single
     repo: https://victoriametrics.github.io/helm-charts/
