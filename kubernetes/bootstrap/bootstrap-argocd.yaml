@@ -26853,7 +26853,7 @@ metadata:
   name: argocd-oidc
   namespace: argocd
 spec:
-  itemPath: vaults/molntuss/items/argocd-oidc
+  itemPath: vaults/Molntuss/items/argocd-oidc
 ---
 apiVersion: onepassword.com/v1
 kind: OnePasswordItem
@@ -26861,7 +26861,7 @@ metadata:
   name: var-substitution-cmp
   namespace: argocd
 spec:
-  itemPath: vaults/molntuss/items/argocd-var-substitution-cmp
+  itemPath: vaults/Molntuss/items/argocd-var-substitution-cmp
 ---
 apiVersion: operator.victoriametrics.com/v1beta1
 kind: VMServiceScrape
