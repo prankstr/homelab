@@ -54,4 +54,4 @@ helmCharts:
     includeCRDs: true
     releaseName: victoria-logs-single
     valuesFile: values-logs.yaml
-    version: 0.11.11
+    version: 0.11.12
