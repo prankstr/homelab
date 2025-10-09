@@ -2,7 +2,7 @@ rbac:
   namespaced: true
 
 remoteWrite:
-  - url: http://vmsingle-victoria-metrics-k8s-stack.victoria-metrics.svc:8429/api/v1/write
+  - url: http://vmsingle-victoria-metrics-k8s-stack.victoria-metrics.svc:8428/api/v1/write
 
 service:
   enabled: true
@@ -61,3 +61,8 @@ config:
       static_configs:
         - targets:
             - homeassistant.{ MY_DOMAIN }:9101
+    - job_name: opnsense-node-exporter
+      static_configs:
+        - targets:
+            - opnsense.{ MY_DOMAIN }:9101
+
