@@ -5,7 +5,7 @@ data:
     datasources:
     - name: VictoriaMetrics
       type: prometheus
-      url: http://vmsingle-victoria-metrics-k8s-stack.victoria-metrics.svc:8429/
+      url: http://vmsingle-victoria-metrics-k8s-stack.victoria-metrics.svc:8428/
       access: proxy
       isdefault: true
       jsondata: {}
