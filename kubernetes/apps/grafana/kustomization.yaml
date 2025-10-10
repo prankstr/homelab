@@ -36,4 +36,4 @@ helmCharts:
     repo: https://grafana.github.io/helm-charts
     includeCRDs: true
     valuesFile: values.yaml
-    version: 10.0.0
+    version: 10.1.0
