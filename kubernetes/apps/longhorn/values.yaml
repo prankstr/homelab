@@ -1,2 +1,5 @@
 defaultSettings:
   defaultDataPath: /var/mnt/longhorn/
+  defaultReplicaCount: "2"
+persistence:
+  defaultClassReplicaCount: "2"
