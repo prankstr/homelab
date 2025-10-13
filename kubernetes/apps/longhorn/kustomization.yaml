@@ -1,12 +1,12 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: longhorn-system
+namespace: longhorn
 
 resources:
   - volumeSnapshotClass.yaml
 
 helmCharts:
-  - namespace: longhorn-system
+  - namespace: longhorn
     name: longhorn
     releaseName: lonhgorn
     repo: https://charts.longhorn.io
