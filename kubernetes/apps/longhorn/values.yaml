@@ -3,3 +3,13 @@ defaultSettings:
   defaultReplicaCount: "2"
 persistence:
   defaultClassReplicaCount: "2"
+ingress:
+  enabled: true
+  ingressClassName: nginx
+  host: longhorn.{ MY_DOMAIN }
+  tls: true
+  tlsSecret: longhorn.{ MY_DOMAIN }-cert
+  path: /
+  pathType: Prefix
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt"
