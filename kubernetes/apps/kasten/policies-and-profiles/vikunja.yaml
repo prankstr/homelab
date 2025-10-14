@@ -4,8 +4,6 @@ metadata:
   name: vikunja
   namespace: kasten
 spec:
-  comment: ""
-  paused: false
   actions:
     - action: backup
     - action: export
