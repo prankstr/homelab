@@ -9,6 +9,7 @@ resources:
   - policies-and-profiles/backblaze-location-profile.yaml
   - policies-and-profiles/standard-preset.yaml
   - policies-and-profiles/argocd.yaml
+  - policies-and-profiles/authentik.yaml
   - policies-and-profiles/headscale.yaml
   - policies-and-profiles/mealie.yaml
   - policies-and-profiles/victoria-metrics.yaml
