@@ -7,6 +7,7 @@ resources:
   - vmscrapeconfig.yaml
   - backblaze-credentials-secret.yaml
   - backblaze-location-profile.yaml
+  - policy-preset.yaml
 
 patches:
   - path: rbac-patch.yaml
