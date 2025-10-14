@@ -4,7 +4,7 @@ metadata:
   name: k10-httpservicediscovery
 spec:
   httpSDConfigs:
-    - url: http://metering-svc.k10.svc.cluster.local:8000/v0/listScrapeTargets
+    - url: http://metering-svc.kasten.svc.cluster.local:8000/v0/listScrapeTargets
   relabelConfigs:
     - targetLabel: job
       replacement: httpServiceDiscovery

@@ -1,6 +1,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: k10
+namespace: kasten
 
 resources:
   - oidc-secret.yaml
@@ -8,10 +8,6 @@ resources:
   - vmscrapeconfig.yaml
 
 patches:
-#  - path: k10-metering-config-patch.yaml
-#    target:
-#      kind: ConfigMap
-#      name: k10-k10-metering-config
   - path: rbac-patch.yaml
     target:
       group: rbac.authorization.k8s.io
@@ -26,15 +22,15 @@ generatorOptions:
 
 configMapGenerator:
   - files:
-      - k10-dashboard.json
-    name: k10-dashboard
+      - kasten-dashboard.json
+    name: kasten-dashboard
 
 # Need to set namespace here as well, otherwise some resources are created in the wrong namespace
 helmCharts:
   - includeCRDs: true
     name: k10
-    namespace: k10
-    releaseName: k10
+    namespace: kasten
+    releaseName: kasten
     repo: https://charts.kasten.io
     valuesFile: values.yaml
     version: 8.0.10

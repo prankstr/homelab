@@ -14,14 +14,14 @@ gateway:
 ingress:
   create: true
   class: nginx
-  host: k10.{ MY_DOMAIN }
+  host: kasten.{ MY_DOMAIN }
   pathType: Prefix
   urlPath: ""
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt"
   tls:
     enabled: true
-    secretName: k10.{ MY_DOMAIN }-cert
+    secretName: kasten.{ MY_DOMAIN }-cert
 auth:
   tokenAuth:
     enabled: false
