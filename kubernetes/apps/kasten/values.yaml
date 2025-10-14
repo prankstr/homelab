@@ -28,3 +28,4 @@ auth:
   oidcAuth:
     enabled: true
     secretName: "kasten-oidc"
+    refreshTokenSupport: true
