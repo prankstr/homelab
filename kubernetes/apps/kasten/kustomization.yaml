@@ -24,7 +24,6 @@ configMapGenerator:
       - kasten-dashboard.json
     name: kasten-dashboard
 
-# Need to set namespace here as well, otherwise some resources are created in the wrong namespace
 helmCharts:
   - includeCRDs: true
     name: k10
