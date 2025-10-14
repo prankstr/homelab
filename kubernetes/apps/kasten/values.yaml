@@ -27,4 +27,4 @@ auth:
     enabled: false
   oidcAuth:
     enabled: true
-    secretName: "k10-oidc"
+    secretName: "kasten-oidc"
