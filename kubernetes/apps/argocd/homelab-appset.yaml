@@ -64,7 +64,7 @@ spec:
         - group: config.kio.kasten.io
           kind: Policy
           jsonPointers:
-            - /spec/actions/1/exportParameters/receiveString
+            - /spec/actions/1/exportParameters
     {{-  end }}
     {{- if eq .path.basename "victoria-metrics" }}
     spec:
