@@ -4,7 +4,7 @@ Kasten K10 is a backup tool for Kubernetes similar to Velero. The main reason fo
 
 Deployed from official [helm chart](https://charts.kasten.io), see [values.yaml](./values.yaml) for config.
 
-I’m backing up to Backblaze(S3-compatible storage). Only apps with persistent volumes, ArgoCD, and all CRDs are included. Since everything is managed with GitOps I dont have to worry much about backing up everything but ArgoCD and the CRDs helps me get back on track if something happens, and the persistent volume backups cover the actual data I have.
+I’m backing up to Backblaze(S3-compatible storage) and I only backup apps with persistent volumes + ArgoCD and all CRDs. Since everything is managed with GitOps I dont have to worry much about backing up the stateless stuff but backing up ArgoCD and the CRDs helps me get back on track if something happens. The persistent volume backups cover the actual data I have.
 
 Noteworthy files:
 
