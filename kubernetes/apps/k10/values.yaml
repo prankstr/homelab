@@ -2,7 +2,7 @@ global:
   prometheus:
     external:
       host: vmsingle-victoria-metrics-k8s-stack.victoria-metrics.svc.cluster.local
-      port: "8429"
+      port: "8428"
 prometheus:
   server:
     enabled: false

@@ -8,15 +8,15 @@ resources:
   - vmscrapeconfig.yaml
 
 patches:
-  - path: k10-metering-config-patch.yaml
-    target:
-      kind: ConfigMap
-      name: k10-k10-metering-config
+#  - path: k10-metering-config-patch.yaml
+#    target:
+#      kind: ConfigMap
+#      name: k10-k10-metering-config
   - path: rbac-patch.yaml
     target:
       group: rbac.authorization.k8s.io
       kind: ClusterRoleBinding
-      name: backup-k10-k10-cluster-admin
+      name: kasten-cluster-admin
       version: v1
 
 generatorOptions:
