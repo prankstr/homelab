@@ -48,7 +48,7 @@ spec:
           kind: CustomResourceDefinition
           name: addresspools.metallb.io
     {{-  end }}
-    {{- if eq .path.basename "k10" }}
+    {{- if eq .path.basename "kasten" }}
     spec:
       ignoreDifferences:
         - group: ""
