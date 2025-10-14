@@ -11,7 +11,7 @@ spec:
     - action: export
       exportParameters:
         migrationToken:
-          name: argocd-migration-token
+          name: mealie-migration-token
           namespace: kasten
         receiveString: ""
   presetRef:

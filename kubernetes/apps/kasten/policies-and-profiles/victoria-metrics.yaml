@@ -11,7 +11,7 @@ spec:
     - action: export
       exportParameters:
         migrationToken:
-          name: argocd-migration-token
+          name: victoria-metrics-migration-token
           namespace: kasten
         receiveString: ""
   presetRef:
