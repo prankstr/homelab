@@ -14,7 +14,7 @@ spec:
       secretType: AwsAccessKey
     objectStore:
       endpoint: s3.eu-central-003.backblazeb2.com
-      name: kasten-backups
+      name: kasten-exports
       objectStoreType: S3
       path: k10/09f58c08-95c3-4d48-9345-0448a8769263/migration
       pathType: Directory
