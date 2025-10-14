@@ -29,3 +29,20 @@ auth:
     enabled: true
     secretName: "kasten-oidc"
     refreshTokenSupport: true
+excludedApps:
+  [
+    "1password",
+    "cert-manager",
+    "default",
+    "descheduler",
+    "external-dns",
+    "github-arc",
+    "grafana",
+    "ingress-nginx",
+    "kromgo",
+    "longhorn",
+    "metallb",
+    "morphos",
+    "renovate",
+    "snapshot-controller",
+  ]
