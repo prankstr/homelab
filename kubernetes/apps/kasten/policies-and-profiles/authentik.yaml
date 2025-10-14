@@ -1,0 +1,18 @@
+apiVersion: config.kio.kasten.io/v1alpha1
+kind: Policy
+metadata:
+  name: authentik
+  namespace: kasten
+spec:
+  actions:
+    - action: backup
+    - action: export
+  presetRef:
+    name: standard
+    namespace: kasten
+  selector:
+    matchExpressions:
+      - key: k10.kasten.io/appNamespace
+        operator: In
+        values:
+          - authentik

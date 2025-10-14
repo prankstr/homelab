@@ -1,0 +1,33 @@
+apiVersion: config.kio.kasten.io/v1alpha1
+kind: PolicyPreset
+metadata:
+  name: standard
+  namespace: kasten
+spec:
+  comment: ""
+  backup:
+    frequency: "@daily"
+    backupWindow:
+      start:
+        hour: 0
+        minute: 0
+      end:
+        hour: 2
+        minute: 0
+    enableStaggering: true
+    retention:
+      daily: 3
+      weekly: 0
+      monthly: 0
+      yearly: 0
+  export:
+    profile:
+      name: backblaze
+      namespace: kasten
+    retention:
+      daily: 7
+      weekly: 4
+      monthly: 0
+      yearly: 0
+    exportData:
+      enabled: true
