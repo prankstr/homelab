@@ -7,11 +7,6 @@ spec:
   actions:
     - action: backup
     - action: export
-      exportParameters:
-        migrationToken:
-          name: mealie-migration-token
-          namespace: kasten
-        receiveString: ""
   presetRef:
     name: standard
     namespace: kasten

@@ -4,8 +4,6 @@ metadata:
   name: argocd
   namespace: kasten
 spec:
-  comment: ""
-  paused: false
   actions:
     - action: backup
     - action: export
