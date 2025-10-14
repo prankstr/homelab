@@ -26764,8 +26764,8 @@ spec:
     \     kind: CustomResourceDefinition\n      name: bgppeers.metallb.io\n    - group:
     apiextensions.k8s.io\n      jsonPointers:\n      - /spec/conversion/webhook/clientConfig/caBundle\n
     \     kind: CustomResourceDefinition\n      name: addresspools.metallb.io\n{{-
-    \ end }}\n{{- if eq .path.basename \"k10\" }}\nspec:\n  ignoreDifferences:\n    -
-    group: \"\"\n      kind: Secret\n      name: kopia-tls-cert\n      jsonPointers:\n
+    \ end }}\n{{- if eq .path.basename \"kasten\" }}\nspec:\n  ignoreDifferences:\n
+    \   - group: \"\"\n      kind: Secret\n      name: kopia-tls-cert\n      jsonPointers:\n
     \       - /data/tls.crt\n    - group: \"\"\n      kind: Secret\n      name: kopia-tls-key
     \n      jsonPointers:\n        - /data/tls.key\n{{-  end }}\n{{- if eq .path.basename
     \"victoria-metrics\" }}\nspec:\n  ignoreDifferences:\n    - kind: Secret\n      name:
