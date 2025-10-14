@@ -1,0 +1,19 @@
+apiVersion: config.kio.kasten.io/v1alpha1
+kind: Policy
+metadata:
+  name: victoria-metrics
+  namespace: kasten
+spec:
+  comment: ""
+  paused: false
+  actions:
+    - action: backup
+  presetRef:
+    name: standard
+    namespace: kasten
+  selector:
+    matchExpressions:
+      - key: k10.kasten.io/appNamespace
+        operator: In
+        values:
+          - victoria-metrics
