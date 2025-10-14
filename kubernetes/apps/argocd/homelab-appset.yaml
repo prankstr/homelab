@@ -61,6 +61,10 @@ spec:
           name: kopia-tls-key 
           jsonPointers:
             - /data/tls.key
+        - group: config.kio.kasten.io
+          kind: Policy
+          jsonPointers:
+            - /spec/actions/1/exportParameters/receiveString
     {{-  end }}
     {{- if eq .path.basename "victoria-metrics" }}
     spec:

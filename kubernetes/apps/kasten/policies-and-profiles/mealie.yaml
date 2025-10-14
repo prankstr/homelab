@@ -8,6 +8,12 @@ spec:
   paused: false
   actions:
     - action: backup
+    - action: export
+      exportParameters:
+        migrationToken:
+          name: argocd-migration-token
+          namespace: kasten
+        receiveString: ""
   presetRef:
     name: standard
     namespace: kasten
