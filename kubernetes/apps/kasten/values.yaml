@@ -24,9 +24,9 @@ ingress:
     secretName: kasten.{ MY_DOMAIN }-cert
 auth:
   tokenAuth:
-    enabled: false
-  oidcAuth:
     enabled: true
+  oidcAuth:
+    enabled: false
     secretName: "kasten-oidc"
     refreshTokenSupport: true
 excludedApps:
