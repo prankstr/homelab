@@ -77,7 +77,6 @@ _(i.e stuff that enables me to deploy and manage other stuff)_
 - [Ingress-Nginx](https://github.com/kubernetes/ingress-nginx): Ingress controller. A reverse proxy for services in the cluster.
 - [Kasten K10](https://docs.kasten.io/latest/index.html): Backup solution for Kubernetes applications. Since I deploy with GitOps this is mainly used for backing up data.
 - [MetalLB](https://github.com/metallb/metallb): Load balancer for bare metal Kubernetes clusters.
-- [Renovate](https://github.com/renovatebot/renovate): Automated dependency update tool. Used to keep the manifests in this repo up to date.
 - [VictoriaMetrics](https://github.com/VictoriaMetrics/VictoriaMetrics): Monitoring system for metrics and logs. Drop-in replacement for Prometheus.
 
 #### Actual applications
