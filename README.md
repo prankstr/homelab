@@ -42,8 +42,8 @@ The core of my homelab is a single server but it's sufficiently beefy to run eve
 - **Motherboard:** Gigabyte MC12-LE0. Cheap server motherboard with IPMI that uses regular Ryzen CPUs.
 - **CPU:** AMD Ryzen 3700X.
 - **RAM:** 64GB of ECC memory.
-- **Boot Storage/Proxmox storage:** ZFS mirror with 2x500GB NVME drives.
-- **Data Storage:** ZFS RAIDZ1 array with 3 WD RED 3TB drives.
+- **Boot Storage/Proxmox storage:** ZFS mirror with 2x500GB NVMe drives.
+- **Data Storage:** 2x2TB Samsung 990 NVMe.
 
 ## 🥡 Software and Applications
 
@@ -53,7 +53,6 @@ Since I have just the one server I virtualize everything from my router and othe
 - [OPNsense](https://opnsense.org/)(VM): FreeBSD based firewall and router. No, virtualizing your router/firewall isn't optimal but it's a calculated risk.
 - [UniFi Network Server](https://help.ui.com/hc/en-us/articles/360012282453-Self-Hosting-a-UniFi-Network-Server)(LXC): Used to manage my UniFi devices.
 - [AdGuard Home](https://github.com/AdguardTeam/AdGuardHome)(LXC): Network-wide ad blocking, integrated with external-dns in Kubernetes.
-- [TrueNAS SCALE](https://www.truenas.com/truenas-scale/)(VM): NAS software with the WD Reds passed through, used for storage to k8s cluster via democratic-csi and as traditional NAS storage on rare occassions.
 - [Home Assistant](https://github.com/home-assistant/core)(VM): Home automation engine.
 - [Omni](https://github.com/siderolabs/omni)(LXC): Management tool for Talos Linux
 - [Talos Linux Kubernetes Cluster](https://github.com/siderolabs/talos)(VMs): A three-node Talos Linux kubernetes cluster.
@@ -71,12 +70,12 @@ _(i.e stuff that enables me to deploy and manage other stuff)_
 - [1Password Connect & 1Password Operator](https://github.com/1Password/onepassword-operator): Secret management. Sync secrets from 1Password to Kubernetes.
 - [Argo CD](https://github.com/argoproj/argo-cd): Facilitates GitOps. Automating the deployment of applications based on manifests in this git repo.
 - [cert-manager](https://github.com/cert-manager/cert-manager): Automatically provisions and renews certificates.
-- [democratic-csi](https://github.com/democratic-csi/democratic-csi): CSI provisioner for TrueNAS. Provisions persistent volumes backed by TrueNAS.
+- [Piraeus](https://github.com/piraeusdatastore/piraeus-operator): Operator for running [LINSTOR](https://github.com/LINBIT/linstor-server) cluster in Kubernetes.
 - [ExternalDNS](https://github.com/kubernetes-sigs/external-dns): Integrated with AdGuard Home and automatically configures DNS records from Kubernetes.
 - [Github ARC](https://github.com/actions/actions-runner-controller): Github Actions Runner Controller. Runs Github Actions runners in the cluster.
 - [Grafana](https://github.com/grafana/grafana): Visualization tool. Used to visualize metrics from the cluster and other sources.
 - [Ingress-Nginx](https://github.com/kubernetes/ingress-nginx): Ingress controller. A reverse proxy for services in the cluster.
-- [K10](https://docs.kasten.io/latest/index.html): Backup solution for Kubernetes applications. Since I deploy with GitOps this is mainly used for backing up data.
+- [Kasten K10](https://docs.kasten.io/latest/index.html): Backup solution for Kubernetes applications. Since I deploy with GitOps this is mainly used for backing up data.
 - [MetalLB](https://github.com/metallb/metallb): Load balancer for bare metal Kubernetes clusters.
 - [Renovate](https://github.com/renovatebot/renovate): Automated dependency update tool. Used to keep the manifests in this repo up to date.
 - [VictoriaMetrics](https://github.com/VictoriaMetrics/VictoriaMetrics): Monitoring system for metrics and logs. Drop-in replacement for Prometheus.
