@@ -113,10 +113,11 @@ Kernel driver in use: vfio-pci
 ## Kubernetes
 
 To provide storage to my apps in Kubernetes I use the Piraeus operator which manages a LINSTOR storage cluster inside Kubernetes and exposes volumes through CSI.
+
 I’m not that good with storage but after running a not-so-scientific test I ended up using LVM thin as it gave the best performance with very reasonable resource usage from what I could tell.
 
 The test was simple:
-1. Deploy each storage provider with pretty basic/default settings.
+1. Deploy each storage provider with pretty basic/default settings. The disks were clean and provided to the storage engine as a raw block devices.
 2. Create a 100 GB PVC.
 3. Run a [fio](https://github.com/axboe/fio) pod that mounts the PVC and execute:
 
@@ -138,8 +139,8 @@ Here’s a summary of the results from my environment:
 | **Average Write Latency (ms)** | 3.0 | 1.5 | 1.0 | 3.8 |
 | **99.9th Percentile Latency (ms)** | 15–25 | 8–10 | ~60 | 15–20 |
 
----
+As you can see Piraeus with LVM thin and Mayastor were very close in terms of throughput and latency but Piraeus did it while consuming very little CPU and RAM.
 
-In all tests the disks were clean and provided to the storage engine as a raw block device. As you can see Piraeus with LVM thin and Mayastor were very close in terms of throughput and latency but Piraeus did it while consuming very little CPU and RAM.
+Worty mentions are LINSTOR with LVM thick which had even better performance but it doesn’t have snapshot support in LINSTOR and that’s not something I’m willing to compromise on.
 
-Worty mentions are LINSTOR with LVM thick which had even better performance but it doesn’t have snapshot support in LINSTOR and that’s not something I’m willing to compromise on. Ceph was never evaluated because it would simply be too heavy for my environment.
+Ceph was never evaluated because it would simply be too heavy for my environment.
