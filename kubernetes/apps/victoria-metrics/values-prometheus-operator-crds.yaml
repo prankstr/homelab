@@ -1,0 +1,30 @@
+crds:
+  alertmanagerconfigs:
+    enabled: false
+
+  alertmanagers:
+    enabled: false
+
+  podmonitors:
+    enabled: true
+
+  probes:
+    enabled: false
+
+  prometheusagents:
+    enabled: false
+
+  prometheuses:
+    enabled: false
+
+  prometheusrules:
+    enabled: true
+
+  scrapeconfigs:
+    enabled: false
+
+  servicemonitors:
+    enabled: true
+
+  thanosrulers:
+    enabled: false
