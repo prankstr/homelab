@@ -55,3 +55,8 @@ helmCharts:
     releaseName: victoria-logs-single
     valuesFile: values-logs.yaml
     version: 0.11.16
+
+  - name: prometheus-operator-crds
+    releaseName: prometheus-operator-crds
+    repo: oci://ghcr.io/prometheus-community/charts/
+    valuesFile: values-prometheus-operator-crds.yaml
