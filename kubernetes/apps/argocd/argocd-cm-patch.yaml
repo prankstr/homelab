@@ -3,6 +3,7 @@ kind: ConfigMap
 metadata:
   name: argocd-cm
 data:
+  url: https://argocd.{ MY_DOMAIN }
   kustomize.buildOptions: "--enable-helm"
   application.instanceLabelKey: argocd.argoproj.io/instance
   dex.config: |
