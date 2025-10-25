@@ -11,3 +11,11 @@ resources:
   - storageClass.yaml
   - disable-talos3.yaml
   - volumeSnapshotClass.yaml
+
+patches:
+  - patch: |
+      $patch: delete
+      apiVersion: monitoring.coreos.com/v1
+      kind: PodMonitor
+      metadata:
+        name: linstor-affinity-controller
