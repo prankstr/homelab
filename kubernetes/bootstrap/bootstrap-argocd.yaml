@@ -24743,6 +24743,7 @@ data:
       - BackgroundScanReport
       - ClusterBackgroundScanReport
       - UpdateRequest
+  url: https://argocd.{ MY_DOMAIN }
 kind: ConfigMap
 metadata:
   labels:
