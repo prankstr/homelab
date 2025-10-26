@@ -11,7 +11,7 @@ spec:
     - host: piraeus.{ MY_DOMAIN }
       http:
         paths:
-          - path: /ui/
+          - path: /
             pathType: Prefix
             backend:
               service:
