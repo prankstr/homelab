@@ -16,6 +16,10 @@ spec:
       labels:
         app: opencloud
     spec:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
       containers:
         - name: opencloud
           image: opencloudeu/opencloud-rolling:latest
@@ -24,7 +28,7 @@ spec:
           args: ["opencloud init || true; opencloud server"]
           envFrom:
             - configMapRef:
-                name: opencloud-env
+                name: opencloud-envs
             - secretRef:
                 name: opencloud-secrets
           ports:

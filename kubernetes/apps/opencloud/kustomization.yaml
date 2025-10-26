@@ -3,7 +3,6 @@ kind: Kustomization
 namespace: opencloud
 
 resources:
-  - configmap-opencloud-env.yaml
   - admin-secret.yaml
   - pvc-opencloud-config.yaml
   - pvc-opencloud-data.yaml
@@ -11,3 +10,12 @@ resources:
   - deployment.yaml
   - service.yaml
   - ingress.yaml
+
+configMapGenerator:
+  - envs:
+      - opencloud-envs.env
+    name: opencloud-envs
+
+images:
+  - name: opencloudeu/opencloud-rolling
+    newTag: 3.5.0
