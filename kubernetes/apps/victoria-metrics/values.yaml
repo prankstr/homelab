@@ -63,34 +63,37 @@ vmalert:
 alertmanager:
   spec:
     configSecret: "alertmanager-config"
-  templateFiles:
-    telegram.yaml: |-
-      {{ define "__alert_list" }}{{ range . }}
+templateFiles:
+  telegram.yaml: |-
+    {{ define "__alert_list" }}{{ range . }}
+    <b>{{ .Labels.alertname | htmlEscape }}</b>
+    {{- if .Annotations.summary }}
+    Summary: {{ .Annotations.summary | htmlEscape }}
+    {{ end }}
+    {{- if .Annotations.description }}
+    Description: {{ .Annotations.description | htmlEscape }}
+    {{ end }}
+    Labels:
+    {{ range .Labels.SortedPairs }}
+      <i>{{ .Name | htmlEscape }}</i>: <code>{{ .Value | htmlEscape }}</code>
+    {{ end }}
+    {{- if .Annotations.runbook }}
+    RunBook: {{ .Annotations.runbook | htmlEscape }}
+    {{ end }}
+    {{ end }}
+    🛠 <a href="https://grafana.{ MY_DOMAIN }/">Grafana</a> 🛠
+    {{ end }}
 
-      <b>{{ .Labels.alertname }}</b>
-      {{- if .Annotations.summary }}
-      Summary: {{ .Annotations.summary }}
-      {{ end }}
-      {{- if .Annotations.description }}
-      Description: {{ .Annotations.description }}
-      {{ end }}
-      Labels:
-      {{ range .Labels.SortedPairs }}   <i>{{ .Name }}</i>: <code>{{ .Value }}</code>{{ end }}
-      RunBook: {{ .Annotations.runbook }}
-      {{ end }}
-      🛠 <a href="https://grafana.{ MY_DOMAIN }/">Grafana</a> 🛠
-      {{ end }}
-
-      {{ define "telegram.message" }}
-      {{ if gt (len .Alerts.Firing) 0 }}
-      🔥 Alerts Firing 🔥
-      {{ template "__alert_list" .Alerts.Firing }}
-      {{ end }}
-      {{ if gt (len .Alerts.Resolved) 0 }}
-      ✅ Alerts Resolved ✅
-      {{ template "__alert_list" .Alerts.Resolved }}
-      {{ end }}
-      {{ end }}
+    {{ define "telegram.message" }}
+    {{ if gt (len .Alerts.Firing) 0 }}
+    🔥 Alerts Firing 🔥
+    {{ template "__alert_list" .Alerts.Firing }}
+    {{ end }}
+    {{ if gt (len .Alerts.Resolved) 0 }}
+    ✅ Alerts Resolved ✅
+    {{ template "__alert_list" .Alerts.Resolved }}
+    {{ end }}
+    {{ end }}
   ingress:
     enabled: true
     annotations:
