@@ -86,6 +86,7 @@ _(i.e stuff that enables me to deploy and manage other stuff)_
 - [Kromgo](https://github.com/kashalls/kromgo): Sort of a reverse proxy for prometheus metrics.
 - [Mealie](https://github.com/mealie-recipes/mealie): Self-hosted recepie manager.
 - [Morphos](https://github.com/danvergara/morphos): Self-hosted file converter.
+- [OpenCloud](https://github.com/opencloud-eu): Self-hosted file storage with collaboration and sharing.
 - [Vikunja](https://vikunja.io/): Self-hosted todo app.
 
 The ratio is a bit skewed but the platform stuff is where the learning is at 😎
