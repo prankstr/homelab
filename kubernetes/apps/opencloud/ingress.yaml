@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: opencloud
+  namespace: opencloud
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: opencloud.{ MY_DOMAIN }
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: opencloud
+                port:
+                  number: 9200
+  tls:
+    - hosts:
+        - opencloud.{ MY_DOMAIN }
+      secretName: opencloud.{ MY_DOMAIN }-cert

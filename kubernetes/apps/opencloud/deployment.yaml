@@ -1,0 +1,58 @@
+# deployment-opencloud.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: opencloud
+  namespace: opencloud
+  labels:
+    app: opencloud
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: opencloud
+  template:
+    metadata:
+      labels:
+        app: opencloud
+    spec:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+      containers:
+        - name: opencloud
+          image: opencloudeu/opencloud-rolling:latest
+          imagePullPolicy: IfNotPresent
+          command: ["/bin/sh", "-c"]
+          args: ["opencloud init || true; opencloud server"]
+          envFrom:
+            - configMapRef:
+                name: opencloud-envs
+            - secretRef:
+                name: opencloud-secrets
+          ports:
+            - name: http-proxy
+              containerPort: 9200
+          volumeMounts:
+            - name: oc-config
+              mountPath: /etc/opencloud
+            - name: oc-data
+              mountPath: /var/lib/opencloud
+            - name: oc-apps
+              mountPath: /var/lib/opencloud/web/assets/apps
+          readinessProbe:
+            tcpSocket:
+              port: 9200
+            initialDelaySeconds: 10
+            periodSeconds: 10
+      volumes:
+        - name: oc-config
+          persistentVolumeClaim:
+            claimName: opencloud-config-pvc
+        - name: oc-data
+          persistentVolumeClaim:
+            claimName: opencloud-data-pvc
+        - name: oc-apps
+          persistentVolumeClaim:
+            claimName: opencloud-apps-pvc
