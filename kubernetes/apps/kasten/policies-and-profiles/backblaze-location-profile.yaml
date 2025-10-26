@@ -1,7 +1,7 @@
 apiVersion: config.kio.kasten.io/v1alpha1
 kind: Profile
 metadata:
-  name: backblaze
+  name: backblaze-immutable
   namespace: kasten
 spec:
   locationSpec:
@@ -19,6 +19,30 @@ spec:
       path: k10/09f58c08-95c3-4d48-9345-0448a8769263/migration
       pathType: Directory
       protectionPeriod: 2160h0m0s
+      region: EU
+    type: ObjectStore
+  type: Location
+---
+apiVersion: config.kio.kasten.io/v1alpha1
+kind: Profile
+metadata:
+  name: backblaze
+  namespace: kasten
+spec:
+  locationSpec:
+    credential:
+      secret:
+        apiVersion: v1
+        kind: secret
+        name: backblaze-credentials
+        namespace: kasten
+      secretType: AwsAccessKey
+    objectStore:
+      endpoint: s3.eu-central-003.backblazeb2.com
+      name: kasten-backup-exports
+      objectStoreType: S3
+      path: k10/09f58c08-95c3-4d48-9345-0448a8769263/migration
+      pathType: Directory
       region: EU
     type: ObjectStore
   type: Location
