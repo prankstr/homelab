@@ -46,6 +46,7 @@ excludedApps:
     "longhorn",
     "metallb",
     "morphos",
+    "piraeus",
     "renovate",
     "snapshot-controller",
   ]
