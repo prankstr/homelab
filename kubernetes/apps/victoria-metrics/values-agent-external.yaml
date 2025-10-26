@@ -43,11 +43,6 @@ config:
         - targets:
             - molntuss.{ MY_DOMAIN }:9100
             - molntuss.{ MY_DOMAIN }:9134
-    - job_name: truenas-node-exporter
-      static_configs:
-        - targets:
-            - truenas.{ MY_DOMAIN }:9100
-            - truenas.{ MY_DOMAIN }:9134
     - job_name: homeassistant
       static_configs:
         - targets:
@@ -65,4 +60,3 @@ config:
       static_configs:
         - targets:
             - opnsense.{ MY_DOMAIN }:9100
-
