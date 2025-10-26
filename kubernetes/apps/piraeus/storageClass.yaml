@@ -10,3 +10,4 @@ volumeBindingMode: WaitForFirstConsumer
 parameters:
   linstor.csi.linbit.com/storagePool: lvmthin
   linstor.csi.linbit.com/placementCount: "2"
+  linstor.csi.linbit.com/allowRemoteVolumeAccess: "false"
