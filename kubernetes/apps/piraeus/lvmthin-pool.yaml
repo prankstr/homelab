@@ -3,6 +3,14 @@ kind: LinstorSatelliteConfiguration
 metadata:
   name: lvmthin-pool
 spec:
+  nodeAffinity:
+    nodeSelectorTerms:
+      - matchExpressions:
+          - key: kubernetes.io/hostname
+            operator: In
+            values:
+              - talos1
+              - talos2
   storagePools:
     - name: lvmthin
       lvmThinPool:
