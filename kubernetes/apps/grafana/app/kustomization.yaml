@@ -1,0 +1,41 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: grafana
+
+resources:
+  - grafana-secret.yaml
+  - tibber-secret.yaml
+  - tibber-datasource.yaml
+  - helmrelease.yaml
+  - helmrepository.yaml
+
+generatorOptions:
+  disableNameSuffixHash: true
+  labels:
+    grafana_dashboard: "1"
+
+configMapGenerator:
+  - name: heatpump-dashboard
+    files:
+      - https://raw.githubusercontent.com/prankstr/hassio-husdata-exporter/main/dashboard.json
+  - name: k8s-system-api-server-dashboard
+    files:
+      - https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-system-api-server.json
+  - name: k8s-views-nodes-dashboard
+    files:
+      - https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-nodes.json
+  - name: ingress-nginx-controller-dashboard
+    files:
+      - https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/grafana/dashboards/nginx.json
+  - name: ingress-nginx-request-performance-dashboard
+    files:
+      - https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/grafana/dashboards/request-handling-performance.json
+
+helmCharts:
+  - namespace: grafana
+    name: grafana
+    releaseName: grafana
+    repo: https://grafana.github.io/helm-charts
+    includeCRDs: true
+    valuesFile: values.yaml
+    version: 10.1.2

@@ -1,0 +1,7 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: github-arc
+spec:
+  interval: 15m
+  url: oci://ghcr.io/actions/actions-runner-controller-charts

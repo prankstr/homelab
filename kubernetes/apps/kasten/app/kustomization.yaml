@@ -1,0 +1,36 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - oidc-secret.yaml
+  - vmpodscrape.yaml
+  - vmscrapeconfig.yaml
+  - helmrelease.yaml
+  - helmrepository.yaml
+  - policies-and-profiles/backblaze-credentials-secret.yaml
+  - policies-and-profiles/backblaze-location-profile.yaml
+  - policies-and-profiles/standard-preset.yaml
+  - policies-and-profiles/argocd.yaml
+  - policies-and-profiles/authentik.yaml
+  - policies-and-profiles/headscale.yaml
+  - policies-and-profiles/mealie.yaml
+  - policies-and-profiles/victoria-metrics.yaml
+  - policies-and-profiles/vikunja.yaml
+
+patches:
+  - path: rbac-patch.yaml
+    target:
+      group: rbac.authorization.k8s.io
+      kind: ClusterRoleBinding
+      name: kasten-cluster-admin
+      version: v1
+
+generatorOptions:
+  disableNameSuffixHash: true
+  labels:
+    grafana_dashboard: "1"
+
+configMapGenerator:
+  - files:
+      - kasten-dashboard.json
+    name: kasten-dashboard

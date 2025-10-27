@@ -4,4 +4,4 @@ metadata:
   name: 1password
 spec:
   interval: 1h
-  url: https://1password.github.io/connect-helm-charts
+  url: https://kubernetes.github.io/ingress-nginx
