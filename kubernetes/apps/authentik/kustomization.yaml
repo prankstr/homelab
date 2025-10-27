@@ -11,4 +11,4 @@ helmCharts:
     namespace: authentik
     releaseName: authentik
     valuesFile: values.yaml
-    version: 2025.8.4
+    version: 2025.10.0
