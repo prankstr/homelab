@@ -7,7 +7,7 @@ spec:
   interval: 10m
   sourceRef:
     kind: GitRepository
-    name: flux-system
+    name: flux
   path: ./kubernetes/apps/grafana/app
   prune: true
   wait: true

@@ -10,7 +10,7 @@ spec:
   ref:
     branch: feat/flux-migration
   secretRef:
-    name: flux-system
+    name: flux
   url: https://github.com/prankstr/homelab.git
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
