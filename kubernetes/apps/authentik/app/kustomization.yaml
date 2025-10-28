@@ -7,9 +7,3 @@ resources:
   - helmrelease.yaml
   - helmrepository.yaml
 
-helmCharts:
-  - name: authentik
-    namespace: authentik
-    releaseName: authentik
-    valuesFile: values.yaml
-    version: 2025.8.4

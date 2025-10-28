@@ -30,12 +30,3 @@ configMapGenerator:
   - name: ingress-nginx-request-performance-dashboard
     files:
       - https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/grafana/dashboards/request-handling-performance.json
-
-helmCharts:
-  - namespace: grafana
-    name: grafana
-    releaseName: grafana
-    repo: https://grafana.github.io/helm-charts
-    includeCRDs: true
-    valuesFile: values.yaml
-    version: 10.1.2

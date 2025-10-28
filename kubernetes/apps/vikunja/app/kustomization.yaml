@@ -4,17 +4,5 @@ namespace: vikunja
 
 resources:
   - secret.yaml
-
-images:
-  - name: vikunja/vikunja
-    newTag: 0.24.6
-
-helmCharts:
-  # Need to set namespace here as well, otherwise some resources are created in the wrong namespace
-  - namespace: vikunja
-    name: vikunja
-    releaseName: vikunja
-    repo: oci://kolaente.dev/vikunja
-    includeCRDs: true
-    valuesFile: values.yaml
-    version: 1.0.0
+  - ocirepository.yaml
+  - helmrelease.yaml
