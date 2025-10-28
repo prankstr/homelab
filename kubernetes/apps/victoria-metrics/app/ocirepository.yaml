@@ -2,6 +2,9 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
   name: prometheus-community
+  namespace: flux
 spec:
   interval: 15m
-  url: oci://ghcr.io/prometheus-community/charts/
+  url: oci://ghcr.io/prometheus-community/charts/prometheus-operator-crds
+  ref:
+    tag: 24.0.1

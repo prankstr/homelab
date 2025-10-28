@@ -4,13 +4,9 @@ metadata:
   name: prometheus-operator-crds
 spec:
   interval: 10m
-  chart:
-    spec:
-      chart: prometheus-operator-crds
-      sourceRef:
-        kind: OCIRepository
-        name: prometheus-community
-      interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: prometheus-community
   values:
     crds:
       alertmanagerconfigs:
