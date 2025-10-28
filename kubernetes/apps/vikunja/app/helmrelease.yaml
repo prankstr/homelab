@@ -4,16 +4,11 @@ metadata:
   name: vikunja
 spec:
   interval: 10m
-  chart:
-    spec:
-      chart: vikunja
-      sourceRef:
-        kind: OCIRepository
-        name: vikunja
-      interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: vikunja
   values:
     postgresql:
-
       enabled: false
       global:
         postgresql:
