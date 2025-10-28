@@ -18,4 +18,4 @@ spec:
       metrics:
         enabled: true
     tcp:
-      636: "authentik/ak-outpost-ldap:636"
+      "636": "authentik/ak-outpost-ldap:636"
