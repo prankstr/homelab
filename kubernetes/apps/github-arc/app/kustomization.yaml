@@ -6,4 +6,4 @@ resources:
   - rbac.yaml
   - secret.yaml
   - helmrelease.yaml
-  - helmrepository.yaml
+  - ocirepository.yaml

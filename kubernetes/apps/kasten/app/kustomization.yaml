@@ -34,3 +34,4 @@ configMapGenerator:
   - files:
       - kasten-dashboard.json
     name: kasten-dashboard
+    namespace: kasten
