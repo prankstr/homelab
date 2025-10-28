@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: kasten
 
 resources:
+  - rbac.yaml
   - oidc-secret.yaml
   - vmpodscrape.yaml
   - vmscrapeconfig.yaml
@@ -17,14 +18,6 @@ resources:
   - policies-and-profiles/mealie.yaml
   - policies-and-profiles/victoria-metrics.yaml
   - policies-and-profiles/vikunja.yaml
-
-patches:
-  - path: rbac-patch.yaml
-    target:
-      group: rbac.authorization.k8s.io
-      kind: ClusterRoleBinding
-      name: kasten-cluster-admin
-      version: v1
 
 generatorOptions:
   disableNameSuffixHash: true
