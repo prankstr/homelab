@@ -1,7 +1,21 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
-  name: github-arc
+  name: github-runner-scale-set-controller
+  namespace: flux-system
 spec:
-  interval: 15m
-  url: oci://ghcr.io/actions/actions-runner-controller-charts
+  interval: 1h
+  url: oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set-controller
+  ref:
+    tag: 0.13.0
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: github-runner-scale-set
+  namespace: flux-system
+spec:
+  interval: 1h
+  url: oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set
+  ref:
+    tag: 0.13.0

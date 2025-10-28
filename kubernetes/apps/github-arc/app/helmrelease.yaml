@@ -4,13 +4,9 @@ metadata:
   name: github-arc-controller
 spec:
   interval: 10m
-  chart:
-    spec:
-      chart:: gha-runner-scale-set-controller
-      sourceRef:
-        kind: OCIRepository
-        name: github-arc
-      interval: 1h
+  chartRef:
+    name: github-runner-scale-set-controller
+    kind: OCIRepository
   releaseName: arc
   values:
     flags:
@@ -23,13 +19,9 @@ metadata:
   name: github-arc-runner
 spec:
   interval: 10m
-  chart:
-    spec:
-      chart:: gha-runner-scale-set
-      sourceRef:
-        kind: OCIRepository
-        name: github-arc
-      interval: 1h
+  chartRef:
+    name: github-runner-scale-set
+    kind: OCIRepository
   releaseName: arc-runner-set
   values:
     githubConfigUrl: https://github.com/prankstr/homelab
