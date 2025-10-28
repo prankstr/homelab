@@ -11,3 +11,8 @@ spec:
   path: ./kubernetes/apps/victoria-metrics/app
   prune: true
   wait: true
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: cluster-vars
+        optional: true
