@@ -6,6 +6,8 @@ resources:
   - datasources.yaml
   - alertmanager-config-secret.yaml
   - homeassistant-token-secret.yaml
+  - helmrepository.yaml
+  - ocirepository.yaml
   - victoria-logs-single-helmrelease.yaml
   - victoria-metrics-agent-helmrelease.yaml
   - victoria-metrics-k8s-stack-helmrelease.yaml
