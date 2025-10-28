@@ -1,0 +1,63 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: victoria-metrics-single
+spec:
+  interval: 10m
+  chart:
+    spec:
+      chart: victoria-metrics-single
+      version: 0.25.2
+      sourceRef:
+        kind: HelmRepository
+        name: victoria-metrics
+      interval: 1h
+  releaseName: long-term
+  values:
+    rbac:
+      namespaced: true
+
+    server:
+      fullnameOverride: victoria-metrics-long-term
+      retentionPeriod: 10y
+      resources:
+        requests:
+          memory: "200Mi"
+      ingress:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt"
+        hosts:
+          - name: metrics-lts.${my_domain}
+            path: /
+            port: http
+        tls:
+          - secretName: metrics-lts.${my_domain}-cert
+            hosts:
+              - metrics-lts.${my_domain}
+        ingressClassName: nginx
+        pathType: Prefix
+      extraVolumes:
+        - name: homeassistant-token
+          secret:
+            secretName: homeassistant-token
+      extraVolumeMounts:
+        - name: homeassistant-token
+          mountPath: /homeassistant
+      scrape:
+        enabled: true
+        config:
+          scrape_configs:
+            - job_name: homeassistant
+              static_configs:
+                - targets:
+                    - homeassistant.${my_domain}
+              scheme: https
+              bearer_token_file: /homeassistant/token
+              metrics_path: /api/prometheus
+              tls_config:
+                insecure_skip_verify: true
+            - job_name: husdata-exporter
+              static_configs:
+                - targets:
+                    - homeassistant.${my_domain}:9101

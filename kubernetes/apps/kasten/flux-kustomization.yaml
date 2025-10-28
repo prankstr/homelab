@@ -11,3 +11,8 @@ spec:
   path: ./kubernetes/apps/kasten/app
   prune: true
   wait: true
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: cluster-vars
+        optional: true

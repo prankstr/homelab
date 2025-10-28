@@ -1,0 +1,7 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: prometheus-community
+spec:
+  interval: 15m
+  url: oci://ghcr.io/prometheus-community/charts/

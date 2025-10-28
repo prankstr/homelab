@@ -1,0 +1,52 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: victoria-logs-single
+spec:
+  interval: 10m
+  chart:
+    spec:
+      chart: victoria-logs-single
+      version: 0.25.2
+      sourceRef:
+        kind: HelmRepository
+        name: victoria-metrics
+      interval: 1h
+  releaseName: victoria-logs-single
+  values:
+    server:
+      retentionPeriod: 14d
+      resources:
+        requests:
+          memory: "500Mi"
+      persistentVolume:
+        enabled: true
+      ingress:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt"
+        ingressClassName: nginx
+        hosts:
+          - name: logs.${my_domain}
+            path: /select
+            port: http
+        tls:
+          - secretName: logs.${my_domain}-cert
+            hosts:
+              - logs.${my_domain}
+
+    fluent-bit:
+      enabled: true
+      config:
+        outputs: |
+          [OUTPUT]
+              Name http
+              Match kube.*
+              Host victoria-logs-single-server
+              port 9428
+              compress gzip
+              uri /insert/jsonline?_stream_fields=stream,kubernetes_pod_name,kubernetes_container_name,kubernetes_namespace_name&_msg_field=log&_time_field=date
+              format json_lines
+              json_date_format iso8601
+              header AccountID 0
+              header ProjectID 0
