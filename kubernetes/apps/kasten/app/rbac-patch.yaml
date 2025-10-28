@@ -3,4 +3,4 @@
   value:
     apiGroup: rbac.authorization.k8s.io
     kind: User
-    name: https://auth.{ MY_DOMAIN }/application/o/kasten/#david
+    name: https://auth.${my_domain}/application/o/kasten/#david

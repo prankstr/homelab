@@ -8,7 +8,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: opencloud.{ MY_DOMAIN }
+    - host: opencloud.${my_domain}
       http:
         paths:
           - path: /
@@ -20,5 +20,5 @@ spec:
                   number: 9200
   tls:
     - hosts:
-        - opencloud.{ MY_DOMAIN }
-      secretName: opencloud.{ MY_DOMAIN }-cert
+        - opencloud.${my_domain}
+      secretName: opencloud.${my_domain}-cert

@@ -18,8 +18,8 @@ spec:
             name: argocd-server
             port:
               name: http
-    host: argocd.{ MY_DOMAIN }
+    host: argocd.${my_domain}
   tls:
   - hosts:
-    - argocd.{ MY_DOMAIN }
-    secretName: argocd.{ MY_DOMAIN }-cert
+    - argocd.${my_domain}
+    secretName: argocd.${my_domain}-cert

@@ -10,7 +10,7 @@
 #
 # https://myheadscale.example.com:443
 #
-server_url: https://vpn.{ MY_DOMAIN }:443
+server_url: https://vpn.${my_domain}:443
 
 # Address to listen to / bind to on the server
 #
@@ -240,7 +240,7 @@ dns:
   # `base_domain` must be a FQDN, without the trailing dot.
   # The FQDN of the hosts will be
   # `hostname.base_domain` (e.g., _myhost.example.com_).
-  base_domain: tailnet.{ MY_DOMAIN }
+  base_domain: tailnet.${my_domain}
 
   # List of DNS servers to expose to clients.
   nameservers:

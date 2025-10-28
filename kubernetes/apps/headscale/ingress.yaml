@@ -16,7 +16,7 @@ spec:
                 name: headscale
                 port:
                   name: http
-      host: vpn.{ MY_DOMAIN }
+      host: vpn.${my_domain}
     - http:
         paths:
           - path: /admin
@@ -26,8 +26,8 @@ spec:
                 name: headscale-admin
                 port:
                   name: http
-      host: vpn.{ MY_DOMAIN }
+      host: vpn.${my_domain}
   tls:
     - hosts:
-        - vpn.{ MY_DOMAIN }
-      secretName: vpn.{ MY_DOMAIN }-cert
+        - vpn.${my_domain}
+      secretName: vpn.${my_domain}-cert

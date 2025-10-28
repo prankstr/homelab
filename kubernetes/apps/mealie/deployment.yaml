@@ -23,7 +23,7 @@ spec:
             - name: ALLOW_SIGNUP
               value: "true"
             - name: BASE_URL
-              value: "https://recept.{ MY_DOMAIN }"
+              value: "https://recept.${my_domain}"
             - name: LDAP_AUTH_ENABLED
               value: "true"
           envFrom:

@@ -24638,7 +24638,7 @@ data:
   dex.config: |
     connectors:
     - config:
-        issuer: https://auth.{ MY_DOMAIN }/application/o/argocd/
+        issuer: https://auth.${my_domain}/application/o/argocd/
         clientID: fOsRHVM7umhZ5BUafh5Mw8XRF5FCUC5X1ZKCwSiO
         clientSecret: $argocd-oidc:dex.authentik.clientSecret
         insecureEnableGroups: true
@@ -24743,7 +24743,7 @@ data:
       - BackgroundScanReport
       - ClusterBackgroundScanReport
       - UpdateRequest
-  url: https://argocd.{ MY_DOMAIN }
+  url: https://argocd.${my_domain}
 kind: ConfigMap
 metadata:
   labels:
@@ -26786,7 +26786,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: argocd.{ MY_DOMAIN }
+  - host: argocd.${my_domain}
     http:
       paths:
       - backend:
@@ -26798,8 +26798,8 @@ spec:
         pathType: Prefix
   tls:
   - hosts:
-    - argocd.{ MY_DOMAIN }
-    secretName: argocd.{ MY_DOMAIN }-cert
+    - argocd.${my_domain}
+    secretName: argocd.${my_domain}-cert
 ---
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
