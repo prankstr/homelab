@@ -53,6 +53,7 @@ spec:
         "default",
         "descheduler",
         "external-dns",
+        "flux",
         "github-arc",
         "grafana",
         "ingress-nginx",
