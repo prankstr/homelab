@@ -13,6 +13,8 @@ generatorOptions:
   disableNameSuffixHash: true
   labels:
     grafana_dashboard: "1"
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled
 
 configMapGenerator:
   - name: heatpump-dashboard
