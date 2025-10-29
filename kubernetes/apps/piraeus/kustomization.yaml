@@ -19,3 +19,11 @@ patches:
       kind: PodMonitor
       metadata:
         name: linstor-affinity-controller
+  - patch: |
+      - op: add
+        path: /metadata/annotations
+        value:
+          kustomize.toolkit.fluxcd.io/substitute: disabled
+    target:
+      kind: ConfigMap
+      name: piraeus-datastore-dashboard
