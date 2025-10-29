@@ -25,8 +25,3 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux
-  postBuild:
-    substituteFrom:
-      - kind: ConfigMap
-        name: cluster-vars
-        optional: true

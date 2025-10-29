@@ -1,20 +1,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: headscale
-
-images:
-  - name: headscale/headscale
-    newTag: v0.27.0
-  - name: goodieshq/headscale-admin
-    newTag: 0.26.0
-
-configMapGenerator:
-  - name: headscale-config
-    files:
-      - config.yaml
 
 resources:
-  - deployment.yaml
-  - ingress.yaml
-  - service.yaml
-  - pvc.yaml
+  - namespace.yaml
+  - flux-kustomization.yaml

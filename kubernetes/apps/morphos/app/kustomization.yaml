@@ -1,0 +1,12 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: morphos
+
+images:
+  - name: ghcr.io/danvergara/morphos-server
+    newTag: 0.6.0
+
+resources:
+  - deployment.yaml
+  - ingress.yaml
+  - service.yaml
