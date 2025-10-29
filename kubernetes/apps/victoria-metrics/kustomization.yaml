@@ -32,7 +32,7 @@ helmCharts:
     releaseName: victoria-metrics-k8s-stack
     repo: https://victoriametrics.github.io/helm-charts/
     valuesFile: values.yaml
-    version: 0.61.12
+    version: 0.61.13
 
   - name: victoria-metrics-agent
     releaseName: external
