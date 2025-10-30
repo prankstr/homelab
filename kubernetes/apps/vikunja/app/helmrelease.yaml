@@ -1,0 +1,38 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: vikunja
+spec:
+  interval: 10m
+  chartRef:
+    kind: OCIRepository
+    name: vikunja
+  values:
+    postgresql:
+      enabled: false
+      global:
+        postgresql:
+          auth:
+            database: notinuse
+
+    vikunja:
+      env:
+        VIKUNJA_DATABASE_TYPE: sqlite
+        VIKUNJA_DATABASE_PATH: ./files/vikunja.db
+      persistence:
+        config:
+          type: secret
+          name: vikunja-config
+      ingress:
+        main:
+          annotations:
+            cert-manager.io/cluster-issuer: "letsencrypt"
+          ingressClassName: "nginx"
+          hosts:
+            - host: todo.${my_domain}
+              paths:
+                - path: "/"
+          tls:
+            - hosts:
+                - todo.${my_domain}
+              secretName: todo.${my_domain}-cert

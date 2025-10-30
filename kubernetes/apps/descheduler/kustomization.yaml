@@ -1,12 +1,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: kube-system
 
-helmCharts:
-  - namespace: kube-system
-    name: descheduler
-    releaseName: descheduler
-    repo: https://kubernetes-sigs.github.io/descheduler
-    includeCRDs: true
-    valuesFile: values.yaml
-    version: 0.33.0
+resources:
+  - namespace.yaml
+  - flux-kustomization.yaml

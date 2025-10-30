@@ -1,21 +1,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: piraeus
 
 resources:
-  - https://github.com/piraeusdatastore/piraeus-operator/config/extras/monitoring?ref=v2
-  - https://github.com/piraeusdatastore/piraeus-operator/releases/download/v2.9.1/manifest.yaml
-  - cluster.yaml
-  - lvmthin-pool.yaml
-  - talos-loader.yaml
-  - storageClass.yaml
-  - disable-talos3.yaml
-  - volumeSnapshotClass.yaml
-
-patches:
-  - patch: |
-      $patch: delete
-      apiVersion: monitoring.coreos.com/v1
-      kind: PodMonitor
-      metadata:
-        name: linstor-affinity-controller
+  - namespace.yaml
+  - flux-kustomization.yaml

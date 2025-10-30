@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: vikunja
+  namespace: flux
+spec:
+  interval: 1h
+  url: oci://kolaente.dev/vikunja/vikunja
+  ref:
+    tag: 1.0.0

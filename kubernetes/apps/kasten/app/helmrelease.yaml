@@ -1,0 +1,70 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kasten
+spec:
+  interval: 10m
+  chart:
+    spec:
+      chart: k10
+      version: 8.0.11
+      sourceRef:
+        kind: HelmRepository
+        name: kasten
+        namespace: kasten
+      interval: 1h
+  releaseName: k10
+  values:
+    global:
+      prometheus:
+        external:
+          host: vmsingle-victoria-metrics-k8s-stack.victoria-metrics.svc.cluster.local
+          port: "8428"
+    prometheus:
+      server:
+        enabled: false
+    grafana:
+      enabled: false
+    gateway:
+      service:
+        externalPort: 8000
+    ingress:
+      create: true
+      class: nginx
+      host: kasten.${my_domain}
+      pathType: Prefix
+      urlPath: ""
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt"
+      tls:
+        enabled: true
+        secretName: kasten.${my_domain}-cert
+    auth:
+      tokenAuth:
+        enabled: false
+      oidcAuth:
+        enabled: true
+        secretName: "kasten-oidc"
+        refreshTokenSupport: true
+    excludedApps:
+      [
+        "1password",
+        "cert-manager",
+        "default",
+        "descheduler",
+        "external-dns",
+        "flux",
+        "github-arc",
+        "grafana",
+        "ingress-nginx",
+        "kromgo",
+        "kube-node-lease",
+        "kube-public",
+        "kube-system",
+        "longhorn",
+        "metallb",
+        "morphos",
+        "piraeus",
+        "renovate",
+        "snapshot-controller",
+      ]

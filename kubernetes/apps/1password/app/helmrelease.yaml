@@ -2,7 +2,6 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: 1password
-  namespace: 1password
 spec:
   interval: 10m
   chart:
@@ -14,8 +13,6 @@ spec:
         name: 1password
         namespace: 1password
       interval: 1h
-  install:
-    createNamespace: true
   values:
     operator:
       create: true

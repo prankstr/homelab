@@ -1,0 +1,127 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: victoria-metrics-k8s-stack
+  namespace: victoria-metrics
+spec:
+  interval: 10m
+  chart:
+    spec:
+      chart: victoria-metrics-k8s-stack
+      version: 0.61.11
+      sourceRef:
+        kind: HelmRepository
+        name: victoria-metrics
+      interval: 1h
+  releaseName: victoria-metrics-k8s-stack
+  values:
+    fullnameOverride: "victoria-metrics-k8s-stack"
+    kubeEtcd:
+      enabled: false
+    kubeControllerManager:
+      enabled: false
+    kubeScheduler:
+      enabled: false
+    defaultRules:
+      disabled:
+        Watchdog: true
+    vmsingle:
+      spec:
+        retentionPeriod: "1" # month
+        resources:
+          requests:
+            memory: "1.5Gi"
+            cpu: "100m"
+        storage:
+          resources:
+            requests:
+              storage: 30Gi
+      ingress:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt"
+          nginx.ingress.kubernetes.io/proxy-body-size: 1g
+        ingressClassName: nginx
+        hosts:
+          - metrics.${my_domain}
+        tls:
+          - secretName: metrics.${my_domain}-cert
+            hosts:
+              - metrics.${my_domain}
+    vmagent:
+      spec:
+        externalLabels:
+          cluster: "molntuss-k8s"
+        resources:
+          limits:
+            memory: "200Mi"
+          requests:
+            cpu: "200m"
+            memory: "200Mi"
+      ingress:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt"
+        ingressClassName: nginx
+        hosts:
+          - vmagent.${my_domain}
+        tls:
+          - secretName: vmagent.${my_domain}-cert
+            hosts:
+              - vmagent.${my_domain}
+    vmalert:
+      spec:
+        resources:
+          limits:
+            memory: "200Mi"
+          requests:
+            cpu: "100m"
+            memory: "100Mi"
+    alertmanager:
+      spec:
+        configSecret: "alertmanager-config"
+      templateFiles:
+        telegram.yaml: |-
+          {{ define "__alert_list" }}{{ range . }}
+
+          <b>{{ .Labels.alertname }}</b>
+          {{- if .Annotations.summary }}
+          Summary: {{ .Annotations.summary }}
+          {{ end }}
+          {{- if .Annotations.description }}
+          Description: {{ .Annotations.description }}
+          {{ end }}
+          Labels:
+          {{ range .Labels.SortedPairs }}   <i>{{ .Name }}</i>: <code>{{ .Value }}</code>{{ end }}
+          RunBook: {{ .Annotations.runbook }}
+          {{ end }}
+          🛠 <a href="https://grafana.${my_domain}/">Grafana</a> 🛠
+          {{ end }}
+
+          {{ define "telegram.message" }}
+          {{ if gt (len .Alerts.Firing) 0 }}
+          🔥 Alerts Firing 🔥
+          {{ template "__alert_list" .Alerts.Firing }}
+          {{ end }}
+          {{ if gt (len .Alerts.Resolved) 0 }}
+          ✅ Alerts Resolved ✅
+          {{ template "__alert_list" .Alerts.Resolved }}
+          {{ end }}
+          {{ end }}
+      ingress:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt"
+        ingressClassName: nginx
+        hosts:
+          - alertmanager.${my_domain}
+        tls:
+          - secretName: alertmanager.${my_domain}-cert
+            hosts:
+              - alertmanager.${my_domain}
+    grafana:
+      enabled: false
+      forceDeployDatasource: false
+      sidecar:
+        dashboards:
+          label: "grafana_dashboard"

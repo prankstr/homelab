@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: piraeus
+  namespace: piraeus
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: piraeus.${my_domain}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: linstor-controller
+                port:
+                  name: api
+  tls:
+    - hosts:
+        - piraeus.${my_domain}
+      secretName: piraeus.${my_domain}-cert

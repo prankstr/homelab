@@ -3,7 +3,9 @@ kind: Namespace
 metadata:
   name: victoria-metrics
   labels:
-    name: victoria-metrics
     pod-security.kubernetes.io/enforce: privileged
-    pod-security.kubernetes.io/warn: baseline
-
+    pod-security.kubernetes.io/enforce-version: latest
+    pod-security.kubernetes.io/audit: privileged
+    pod-security.kubernetes.io/audit-version: latest
+    pod-security.kubernetes.io/warn: privileged
+    pod-security.kubernetes.io/warn-version: latest

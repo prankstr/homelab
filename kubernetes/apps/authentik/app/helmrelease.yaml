@@ -1,0 +1,59 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: authentik
+  namespace: authentik
+spec:
+  interval: 10m
+  chart:
+    spec:
+      chart: authentik
+      version: 2025.8.4
+      sourceRef:
+        kind: HelmRepository
+        name: authentik
+        namespace: authentik
+      interval: 1h
+  values:
+    global:
+      envFrom:
+        - secretRef:
+            name: authentik-secret
+
+    server:
+      ingress:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt"
+        ingressClassName: nginx
+        hosts:
+          - auth.${my_domain}
+        tls:
+          - hosts:
+              - auth.${my_domain}
+            secretName: auth.${my_domain}-cert
+      resources:
+        requests:
+          cpu: 100m
+          memory: 512Mi
+        limits:
+          memory: 1Gi
+
+    worker:
+      resources:
+        requests:
+          cpu: 100m
+          memory: 512Mi
+        limits:
+          memory: 512Mi
+
+    postgresql:
+      enabled: true
+      auth:
+        enablePostgresUser: false
+        existingSecret: authentik-secret
+        secretKeys:
+          userPasswordKey: AUTHENTIK_POSTGRESQL__PASSWORD
+
+    redis:
+      enabled: true

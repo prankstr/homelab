@@ -29,7 +29,7 @@
 
 ## 📖 Overview
 
-Kubernetes Homelab built on Talos Linux, managed with GitOps using ArgoCD and Renovate.
+Kubernetes Homelab built on Talos Linux, managed with GitOps using Flux and Renovate.
 
 This repo is the source for my GitOps deployments as well as my personal knowledge bank with notes for my homelab. I decided to make it public in case someone finds it useful or interesting.
 
@@ -68,7 +68,7 @@ Here is an overview of the services I run, some of them have more detailed expla
 _(i.e stuff that enables me to deploy and manage other stuff)_
 
 - [1Password Connect & 1Password Operator](https://github.com/1Password/onepassword-operator): Secret management. Sync secrets from 1Password to Kubernetes.
-- [Argo CD](https://github.com/argoproj/argo-cd): Facilitates GitOps. Automating the deployment of applications based on manifests in this git repo.
+- [Flux](https://github.com/fluxcd/flux2): Facilitates GitOps. Automating the deployment of applications based on manifests in this git repo.
 - [cert-manager](https://github.com/cert-manager/cert-manager): Automatically provisions and renews certificates.
 - [Piraeus](https://github.com/piraeusdatastore/piraeus-operator): Operator for running [LINSTOR](https://github.com/LINBIT/linstor-server) cluster in Kubernetes.
 - [ExternalDNS](https://github.com/kubernetes-sigs/external-dns): Integrated with AdGuard Home and automatically configures DNS records from Kubernetes.
@@ -90,3 +90,23 @@ _(i.e stuff that enables me to deploy and manage other stuff)_
 - [Vikunja](https://vikunja.io/): Self-hosted todo app.
 
 The ratio is a bit skewed but the platform stuff is where the learning is at 😎
+
+#### Structure and Deployment Flow
+
+All Kubernetes manifests are placed under `kubernetes/apps/` and each application lives in its own directory named after the namespace it will be deployed to.
+
+Each application directory typically contains:
+
+- A `kustomization.yaml` that serves as the base entry point.
+- A `namespace.yaml` defining the namespace for the app.
+- A `flux-kustomization.yaml` defining the Flux `Kustomization` resource that applies the app manifests.
+- An `app/` subdirectory containing the actual Kubernetes manifests.
+
+Flux is bootstrapped to `kubernetes/apps/`, and from there it automatically discovers each top-level `kustomization.yaml` within the application directories.
+
+Each of these base Kustomizations is responsible for:
+
+1. Creating the target namespace.
+2. Applying the corresponding Flux `Kustomization` resource defined in `flux-kustomization.yaml`.
+
+The Flux Kustomization then deploys the application itself using either **HelmReleases** or plain **Kustomize** depending on the app.
