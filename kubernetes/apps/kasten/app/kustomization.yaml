@@ -9,13 +9,13 @@ resources:
   - vmscrapeconfig.yaml
   - helmrelease.yaml
   - helmrepository.yaml
-#  - policies-and-profiles/backblaze-credentials-secret.yaml
-#  - policies-and-profiles/backblaze-location-profile.yaml
+  #  - policies-and-profiles/backblaze-credentials-secret.yaml
+  #  - policies-and-profiles/backblaze-location-profile.yaml
   - policies-and-profiles/standard-preset.yaml
-  - policies-and-profiles/argocd.yaml
   - policies-and-profiles/authentik.yaml
   - policies-and-profiles/headscale.yaml
   - policies-and-profiles/mealie.yaml
+  - policies-and-profiles/opencloud.yaml
   - policies-and-profiles/victoria-metrics.yaml
   - policies-and-profiles/vikunja.yaml
 
