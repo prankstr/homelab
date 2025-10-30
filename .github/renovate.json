@@ -1,7 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended", ":automergeMinor", ":semanticCommits"],
-  "enabledManagers": ["kustomize", "docker-compose", "regex"],
+  "enabledManagers": ["kustomize", "docker-compose", "regex", "flux"],
   "packageRules": [
     { "matchManagers": ["docker-compose"], "ignoreTests": true }
   ],
