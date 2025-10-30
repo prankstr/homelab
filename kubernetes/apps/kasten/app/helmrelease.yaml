@@ -25,9 +25,6 @@ spec:
         enabled: false
     grafana:
       enabled: false
-    gateway:
-      service:
-        externalPort: 8000
     ingress:
       create: true
       class: nginx
