@@ -110,5 +110,3 @@ Each of these base Kustomizations is responsible for:
 2. Applying the corresponding Flux `Kustomization` resource defined in `flux-kustomization.yaml`.
 
 The Flux Kustomization then deploys the application itself using either **HelmReleases** or plain **Kustomize** depending on the app.
-
-This layout isn't a typical Flux structure but it works well for a single-cluster homelab setup. It keeps everything relatively simple to manage without introducing unnecessary complexity.
