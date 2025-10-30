@@ -61,10 +61,7 @@ jobs:
           fetch-depth: 0
 
       - name: Kustomize Build
-        run: |
-          kustomize build --enable-helm ${{ matrix.app }} > ${{ matrix.app }}/bundle.yaml
-          echo "---" >> ${{ matrix.app }}/bundle.yaml 
-          kustomize build --enable-helm ${{ matrix.app }}/app >> ${{ matrix.app }}/bundle.yaml
+        run: kustomize build --enable-helm ${{ matrix.app }} > ${{ matrix.app }}/bundle.yaml
 
       - name: Dry-run kubectl apply
         run: |
