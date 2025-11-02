@@ -53,6 +53,7 @@ spec:
         "flux",
         "github-arc",
         "grafana",
+        "headlamp",
         "ingress-nginx",
         "kromgo",
         "kube-node-lease",
