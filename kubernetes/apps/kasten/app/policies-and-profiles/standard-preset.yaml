@@ -9,10 +9,10 @@ spec:
     frequency: "@daily"
     backupWindow:
       start:
-        hour: 0
+        hour: 6
         minute: 0
       end:
-        hour: 6
+        hour: 8
         minute: 0
     enableStaggering: true
     retention:
