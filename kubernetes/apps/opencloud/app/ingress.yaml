@@ -5,6 +5,7 @@ metadata:
   namespace: opencloud
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt"
+    nginx.ingress.kubernetes.io/proxy-body-size: "15G"
 spec:
   ingressClassName: nginx
   rules:
