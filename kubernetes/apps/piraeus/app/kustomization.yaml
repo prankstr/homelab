@@ -13,6 +13,13 @@ resources:
   - volumeSnapshotClass.yaml
 
 patches:
+  - target:
+      kind: Deployment
+      name: piraeus-operator-controller-manager
+    patch: |
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/limits/cpu
+        value: "1"
   - patch: |
       $patch: delete
       apiVersion: monitoring.coreos.com/v1
