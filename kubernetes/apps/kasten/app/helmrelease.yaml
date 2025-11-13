@@ -11,7 +11,6 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: kasten
-        namespace: kasten
       interval: 1h
   releaseName: k10
   values:

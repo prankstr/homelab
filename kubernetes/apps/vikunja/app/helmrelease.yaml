@@ -14,11 +14,11 @@ spec:
         postgresql:
           auth:
             database: notinuse
-
     vikunja:
       env:
         VIKUNJA_DATABASE_TYPE: sqlite
         VIKUNJA_DATABASE_PATH: ./files/vikunja.db
+        VIKUNJA_DATABASE_HOST: ""
       persistence:
         config:
           type: secret

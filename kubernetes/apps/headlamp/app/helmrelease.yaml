@@ -11,7 +11,6 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: headlamp
-        namespace: headlamp
       interval: 1h
   values:
     config:

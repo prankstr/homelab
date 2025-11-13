@@ -12,7 +12,6 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: authentik
-        namespace: authentik
       interval: 1h
   values:
     global:
