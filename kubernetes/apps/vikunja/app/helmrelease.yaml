@@ -20,6 +20,9 @@ spec:
         VIKUNJA_DATABASE_PATH: ./files/vikunja.db
         VIKUNJA_DATABASE_HOST: ""
       persistence:
+        data:
+          enabled: true
+          size: 10Gi
         config:
           type: secret
           name: vikunja-config
