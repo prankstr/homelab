@@ -34,3 +34,8 @@ patches:
     target:
       kind: ConfigMap
       name: piraeus-datastore-dashboard
+
+images:
+  - name: quay.io/piraeusdatastore/piraeus-csi
+    newTag: 1.10.0 # renovate: ignore
+
