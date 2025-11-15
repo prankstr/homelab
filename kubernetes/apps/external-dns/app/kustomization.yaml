@@ -6,7 +6,7 @@ images:
   - name: registry.k8s.io/external-dns/external-dns
     newTag: v0.20.0
   - name: ghcr.io/muhlba91/external-dns-provider-adguard
-    newTag: v9.1.0
+    newTag: v9.2.0
 
 resources:
   - bundle.yaml
