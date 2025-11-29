@@ -4,7 +4,7 @@ namespace: piraeus
 
 resources:
   - https://github.com/piraeusdatastore/piraeus-operator/config/extras/monitoring?ref=v2
-  - https://github.com/piraeusdatastore/piraeus-operator/releases/download/v2.10.1/manifest.yaml
+  - https://github.com/piraeusdatastore/piraeus-operator/releases/download/v2.10.2/manifest.yaml
   - cluster.yaml
   - lvmthin-pool.yaml
   - talos-loader.yaml
@@ -37,5 +37,5 @@ patches:
 
 images:
   - name: quay.io/piraeusdatastore/piraeus-csi
-    newTag: 1.10.2 # renovate: ignore
+    newTag: 1.10.3 # renovate: ignore
 
