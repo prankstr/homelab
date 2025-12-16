@@ -37,5 +37,5 @@ patches:
 
 images:
   - name: quay.io/piraeusdatastore/piraeus-csi
-    newTag: 1.10.4 # renovate: ignore
+    newTag: 1.10.5 # renovate: ignore
 
