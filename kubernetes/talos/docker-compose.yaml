@@ -26,8 +26,10 @@ services:
       --initial-users=${ADMIN_EMAIL}
       --join-tokens-mode=legacyAllowed
       --enable-break-glass-configs
+      --sqlite-storage-path=/_out/db/omni-sqlite.db
     volumes:
       - /etc/etcd:/_out/etcd
+      - $PWD/db:/_out/db
       - $PWD/fullchain.pem:/tls.crt
       - $PWD/tls.key:/tls.key
       - $PWD/omni.asc:/omni.asc
