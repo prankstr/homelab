@@ -1,5 +1,6 @@
 services:
   omni:
+    container_name: omni
     restart: unless-stopped
     network_mode: host
     image: ghcr.io/siderolabs/omni:v1.4.7
@@ -19,10 +20,14 @@ services:
       --siderolink-api-advertised-url=https://omni.${MY_DOMAIN}:8090/
       --siderolink-wireguard-advertised-addr=192.168.20.10:50180
       --advertised-kubernetes-proxy-url=https://omni.${MY_DOMAIN}:8100/
-      --auth-saml-enabled=true
-      --auth-saml-url=https://auth.${MY_DOMAIN}/application/saml/omni/metadata/
+      --auth-auth0-enabled=true
+      --auth-auth0-domain=${AUTH0_DOMAIN}
+      --auth-auth0-client-id=${AUTH0_CLIENT_ID}
+      --initial-users=${ADMIN_EMAIL}
+      --join-tokens-mode=legacyAllowed
+      --enable-break-glass-configs
     volumes:
-      - $PWD/etcd:/_out/etcd
+      - /etc/etcd:/_out/etcd
       - $PWD/fullchain.pem:/tls.crt
       - $PWD/tls.key:/tls.key
       - $PWD/omni.asc:/omni.asc
