@@ -6,7 +6,7 @@ metadata:
 spec:
   interval: 10m0s
   prune: true
-  path: .kubernetes/apps/kgateway/app
+  path: ./kubernetes/apps/kgateway/app
   sourceRef:
     kind: GitRepository
     name: flux
@@ -24,7 +24,7 @@ metadata:
 spec:
   interval: 10m0s
   prune: true
-  path: .kubernetes/apps/kgateway/gateways
+  path: ./kubernetes/apps/kgateway/gateways
   sourceRef:
     kind: GitRepository
     name: flux
