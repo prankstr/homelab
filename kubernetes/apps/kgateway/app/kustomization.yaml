@@ -3,4 +3,4 @@ kind: Kustomization
 namespace: kgateway
 resources:
   - helmrelease.yaml
-  - ocirepo.yaml
+  - helmrepo.yaml
