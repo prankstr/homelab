@@ -17,6 +17,7 @@ spec:
         selector:
           dnsZones:
             - "${my_domain}"
+            - "p6r.dev"
 ---
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
