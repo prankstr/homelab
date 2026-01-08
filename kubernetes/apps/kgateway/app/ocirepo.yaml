@@ -16,4 +16,4 @@ spec:
   interval: 5m0s
   url: oci://cr.kgateway.dev/kgateway-dev/charts/kgateway
   ref:
-    tag: v2.1.1
+    tag: v2.1.2
