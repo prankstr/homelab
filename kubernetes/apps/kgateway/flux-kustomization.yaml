@@ -1,0 +1,37 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: kgateway
+  namespace: flux
+spec:
+  interval: 10m0s
+  prune: true
+  path: ./kubernetes/apps/kgateway/app
+  sourceRef:
+    kind: GitRepository
+    name: flux
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: cluster-vars
+        optional: true
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: kgateway-gateways
+  namespace: flux
+spec:
+  interval: 10m0s
+  prune: true
+  path: ./kubernetes/apps/kgateway/gateways
+  sourceRef:
+    kind: GitRepository
+    name: flux
+  dependsOn:
+    - name: kgateway
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: cluster-vars
+        optional: true

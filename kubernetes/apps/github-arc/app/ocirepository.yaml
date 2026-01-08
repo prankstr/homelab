@@ -7,7 +7,7 @@ spec:
   interval: 1h
   url: oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set-controller
   ref:
-    tag: 0.13.0
+    tag: 0.13.1
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
@@ -18,4 +18,4 @@ spec:
   interval: 1h
   url: oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set
   ref:
-    tag: 0.13.0
+    tag: 0.13.1

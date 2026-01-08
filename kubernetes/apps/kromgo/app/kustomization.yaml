@@ -9,6 +9,7 @@ images:
 resources:
   - deployment.yaml
   - service.yaml
+  - httproute.yaml
 
 configMapGenerator:
   - name: kromgo-config

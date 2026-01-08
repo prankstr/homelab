@@ -82,7 +82,6 @@ _(i.e stuff that enables me to deploy and manage other stuff)_
 #### Actual applications
 
 - [Authentik](https://github.com/goauthentik/authentik): Self-hosted IDP(Identity provider). Borderline infra app but I mainly set it up for fun.
-- [Headscale](https://github.com/juanfont/headscale): Self-hosted Tailscale control server.
 - [Kromgo](https://github.com/kashalls/kromgo): Sort of a reverse proxy for prometheus metrics.
 - [Mealie](https://github.com/mealie-recipes/mealie): Self-hosted recepie manager.
 - [Morphos](https://github.com/danvergara/morphos): Self-hosted file converter.
