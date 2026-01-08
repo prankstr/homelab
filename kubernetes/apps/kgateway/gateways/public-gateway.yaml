@@ -1,0 +1,21 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: public
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+spec:
+  gatewayClassName: public
+  listeners:
+    - protocol: HTTPS
+      port: 8443
+      name: https
+      hostname: kromgo.p6r.dev
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: kromgo-tls-cert
+            kind: Secret
+      allowedRoutes:
+        namespaces:
+          from: All
