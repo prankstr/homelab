@@ -4,3 +4,6 @@
 - op: add
   path: /spec/template/spec/containers/0/args/-
   value: --dns01-recursive-nameservers="9.9.9.9:53"
+- op: add
+  path: /spec/template/spec/containers/0/args/-
+  value: --enable-gateway-api
