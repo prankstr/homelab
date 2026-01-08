@@ -4,8 +4,8 @@ metadata:
   name: kromgo
 spec:
   parentRefs:
-    - name: internet
-      namespace: kgateway-system
+    - name: public
+      namespace: kgateway
       sectionName: https
   hostnames:
     - kromgo.p6r.dev
