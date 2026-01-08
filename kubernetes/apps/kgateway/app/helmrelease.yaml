@@ -6,7 +6,7 @@ spec:
   chart:
     spec:
       chart: kgateway-crds
-      version: v2.1.1
+      version: v2.1.2
       sourceRef:
         kind: HelmRepository
         name: kgateway
