@@ -75,6 +75,7 @@ _(i.e stuff that enables me to deploy and manage other stuff)_
 - [Github ARC](https://github.com/actions/actions-runner-controller): Github Actions Runner Controller. Runs Github Actions runners in the cluster.
 - [Grafana](https://github.com/grafana/grafana): Visualization tool. Used to visualize metrics from the cluster and other sources.
 - [Ingress-Nginx](https://github.com/kubernetes/ingress-nginx): Ingress controller. A reverse proxy for services in the cluster.
+- [kgateway](https://kgateway.dev/): Gateway API implementation. Will replace ingress-nginx.
 - [Kasten K10](https://docs.kasten.io/latest/index.html): Backup solution for Kubernetes applications. Since I deploy with GitOps this is mainly used for backing up data.
 - [MetalLB](https://github.com/metallb/metallb): Load balancer for bare metal Kubernetes clusters.
 - [VictoriaMetrics](https://github.com/VictoriaMetrics/VictoriaMetrics): Monitoring system for metrics and logs. Drop-in replacement for Prometheus.
