@@ -54,6 +54,7 @@ spec:
         "grafana",
         "headlamp",
         "ingress-nginx",
+        "kgateway",
         "kromgo",
         "kube-node-lease",
         "kube-public",
