@@ -18,4 +18,4 @@ configMapGenerator:
 
 images:
   - name: opencloudeu/opencloud-rolling
-    newTag: 4.1.0
+    newTag: 5.0.1
