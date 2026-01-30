@@ -7,7 +7,7 @@ spec:
   chart:
     spec:
       chart: k10
-      version: 8.5.0
+      version: 8.5.1
       sourceRef:
         kind: HelmRepository
         name: kasten
@@ -54,6 +54,7 @@ spec:
         "grafana",
         "headlamp",
         "ingress-nginx",
+        "kgateway",
         "kromgo",
         "kube-node-lease",
         "kube-public",
