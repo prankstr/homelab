@@ -3,7 +3,7 @@ services:
     container_name: omni
     restart: unless-stopped
     network_mode: host
-    image: ghcr.io/siderolabs/omni:v1.4.7
+    image: ghcr.io/siderolabs/omni:v1.4.8
     command: --name=molntuss-omni
       --account-id=${OMNI_ACCOUNT_UUID}
       --cert=/tls.crt
