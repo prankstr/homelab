@@ -7,4 +7,4 @@ spec:
   interval: 15m
   url: oci://ghcr.io/prometheus-community/charts/prometheus-operator-crds
   ref:
-    tag: 26.0.0
+    tag: 27.0.0
