@@ -22,7 +22,7 @@ spec:
   chart:
     spec:
       chart: kgateway
-      version: v2.2.0
+      version: v2.2.1
       sourceRef:
         kind: HelmRepository
         name: kgateway
