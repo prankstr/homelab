@@ -4,7 +4,7 @@ namespace: mealie
 
 images:
   - name: ghcr.io/mealie-recipes/mealie
-    newTag: v1.12.0
+    newTag: v3.11.0
 
 resources:
   - ldap-secret.yaml
