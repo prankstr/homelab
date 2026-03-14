@@ -38,4 +38,9 @@ spec:
           tls:
             - hosts:
                 - todo.${my_domain}
-              secretName: todo.${my_domain}-cert
+      config:
+        enabled: true
+        data:
+          config.yml: |
+            service:
+              publicurl: "https://todo.${my_domain}"             secretName: todo.${my_domain}-cert
