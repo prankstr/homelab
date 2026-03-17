@@ -2,7 +2,7 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
   name: vikunja
-  namespace: flux
+  namespace: flux-system
 spec:
   interval: 1h
   url: oci://ghcr.io/go-vikunja/helm-chart/vikunja
