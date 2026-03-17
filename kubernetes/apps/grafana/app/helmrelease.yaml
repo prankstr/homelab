@@ -59,11 +59,11 @@ spec:
         cert-manager.io/cluster-issuer: "letsencrypt"
       ingressClassName: nginx
       hosts:
-        - grafana.${my_domain}
+        - grafana.${domain}
       tls:
-        - secretName: grafana.${my_domain}-cert
+        - secretName: grafana.${domain}-cert
           hosts:
-            - grafana.${my_domain}
+            - grafana.${domain}
 
     resources:
       requests:
@@ -79,9 +79,9 @@ spec:
 
     grafana.ini:
       server:
-        root_url: https://grafana.${my_domain}
+        root_url: https://grafana.${domain}
       auth:
-        signout_redirect_url: "https://auth.${my_domain}/application/o/grafana/end-session/"
+        signout_redirect_url: "https://auth.${domain}/application/o/grafana/end-session/"
         oauth_auto_login: true
         #https://github.com/grafana/grafana/issues/74154
         oauth_allow_insecure_email_lookup: true
@@ -91,9 +91,9 @@ spec:
         client_id: $__file{/etc/secrets/auth_generic_oauth/client_id}
         client_secret: $__file{/etc/secrets/auth_generic_oauth/client_secret}
         scopes: "openid profile email"
-        auth_url: "https://auth.${my_domain}/application/o/authorize/"
-        token_url: "https://auth.${my_domain}/application/o/token/"
-        api_url: "https://auth.${my_domain}/application/o/userinfo/"
+        auth_url: "https://auth.${domain}/application/o/authorize/"
+        token_url: "https://auth.${domain}/application/o/token/"
+        api_url: "https://auth.${domain}/application/o/userinfo/"
         # Optionally map user groups to Grafana roles
         role_attribute_path: contains(groups, 'authentik Admins') && 'Admin'
         email_attribute_path: contains(keys(@), 'email') && email || name

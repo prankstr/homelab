@@ -16,8 +16,8 @@ spec:
                 name: morphos
                 port:
                   name: http
-      host: morphos.${my_domain}
+      host: morphos.${domain}
   tls:
     - hosts:
-        - morphos.${my_domain}
-      secretName: morphos.${my_domain}-cert
+        - morphos.${domain}
+      secretName: morphos.${domain}-cert

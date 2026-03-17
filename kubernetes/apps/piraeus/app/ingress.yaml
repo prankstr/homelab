@@ -8,7 +8,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: piraeus.${my_domain}
+    - host: piraeus.${domain}
       http:
         paths:
           - path: /
@@ -20,5 +20,5 @@ spec:
                   name: api
   tls:
     - hosts:
-        - piraeus.${my_domain}
-      secretName: piraeus.${my_domain}-cert
+        - piraeus.${domain}
+      secretName: piraeus.${domain}-cert

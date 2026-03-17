@@ -34,14 +34,14 @@ spec:
         cert-manager.io/cluster-issuer: "letsencrypt"
       ingressClassName: nginx
       hosts:
-        - host: headlamp.${my_domain}
+        - host: headlamp.${domain}
           paths:
             - path: /
               type: Prefix
       tls:
         - hosts:
-            - headlamp.${my_domain}
-          secretName: headlamp.${my_domain}-cert
+            - headlamp.${domain}
+          secretName: headlamp.${domain}-cert
 
     initContainers:
       - command:

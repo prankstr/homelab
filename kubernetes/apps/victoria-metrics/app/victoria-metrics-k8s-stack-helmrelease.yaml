@@ -43,11 +43,11 @@ spec:
           nginx.ingress.kubernetes.io/proxy-body-size: 1g
         ingressClassName: nginx
         hosts:
-          - metrics.${my_domain}
+          - metrics.${domain}
         tls:
-          - secretName: metrics.${my_domain}-cert
+          - secretName: metrics.${domain}-cert
             hosts:
-              - metrics.${my_domain}
+              - metrics.${domain}
     vmagent:
       spec:
         externalLabels:
@@ -64,11 +64,11 @@ spec:
           cert-manager.io/cluster-issuer: "letsencrypt"
         ingressClassName: nginx
         hosts:
-          - vmagent.${my_domain}
+          - vmagent.${domain}
         tls:
-          - secretName: vmagent.${my_domain}-cert
+          - secretName: vmagent.${domain}-cert
             hosts:
-              - vmagent.${my_domain}
+              - vmagent.${domain}
     vmalert:
       spec:
         resources:
@@ -95,7 +95,7 @@ spec:
           {{ range .Labels.SortedPairs }}   <i>{{ .Name }}</i>: <code>{{ .Value }}</code>{{ end }}
           RunBook: {{ .Annotations.runbook }}
           {{ end }}
-          🛠 <a href="https://grafana.${my_domain}/">Grafana</a> 🛠
+          🛠 <a href="https://grafana.${domain}/">Grafana</a> 🛠
           {{ end }}
 
           {{ define "telegram.message" }}
@@ -114,11 +114,11 @@ spec:
           cert-manager.io/cluster-issuer: "letsencrypt"
         ingressClassName: nginx
         hosts:
-          - alertmanager.${my_domain}
+          - alertmanager.${domain}
         tls:
-          - secretName: alertmanager.${my_domain}-cert
+          - secretName: alertmanager.${domain}-cert
             hosts:
-              - alertmanager.${my_domain}
+              - alertmanager.${domain}
     grafana:
       enabled: false
       forceDeployDatasource: false

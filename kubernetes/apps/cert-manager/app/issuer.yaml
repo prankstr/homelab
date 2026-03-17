@@ -16,7 +16,7 @@ spec:
               key: api-token
         selector:
           dnsZones:
-            - "${my_domain}"
+            - "${domain}"
             - "p6r.dev"
 ---
 apiVersion: cert-manager.io/v1

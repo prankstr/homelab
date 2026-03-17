@@ -28,13 +28,13 @@ spec:
           cert-manager.io/cluster-issuer: "letsencrypt"
         ingressClassName: nginx
         hosts:
-          - name: logs.${my_domain}
+          - name: logs.${domain}
             path: /select
             port: http
         tls:
-          - secretName: logs.${my_domain}-cert
+          - secretName: logs.${domain}-cert
             hosts:
-              - logs.${my_domain}
+              - logs.${domain}
 
     fluent-bit:
       enabled: true

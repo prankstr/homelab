@@ -29,13 +29,13 @@ spec:
         annotations:
           cert-manager.io/cluster-issuer: "letsencrypt"
         hosts:
-          - name: metrics-lts.${my_domain}
+          - name: metrics-lts.${domain}
             path: /
             port: http
         tls:
-          - secretName: metrics-lts.${my_domain}-cert
+          - secretName: metrics-lts.${domain}-cert
             hosts:
-              - metrics-lts.${my_domain}
+              - metrics-lts.${domain}
         ingressClassName: nginx
         pathType: Prefix
       extraVolumes:
@@ -52,7 +52,7 @@ spec:
             - job_name: homeassistant
               static_configs:
                 - targets:
-                    - homeassistant.${my_domain}
+                    - homeassistant.${domain}
               scheme: https
               bearer_token_file: /homeassistant/token
               metrics_path: /api/prometheus
@@ -61,4 +61,4 @@ spec:
             - job_name: husdata-exporter
               static_configs:
                 - targets:
-                    - homeassistant.${my_domain}:9101
+                    - homeassistant.${domain}:9101

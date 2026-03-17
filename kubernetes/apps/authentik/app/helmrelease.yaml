@@ -26,11 +26,11 @@ spec:
           cert-manager.io/cluster-issuer: "letsencrypt"
         ingressClassName: nginx
         hosts:
-          - auth.${my_domain}
+          - auth.${domain}
         tls:
           - hosts:
-              - auth.${my_domain}
-            secretName: auth.${my_domain}-cert
+              - auth.${domain}
+            secretName: auth.${domain}-cert
       resources:
         requests:
           cpu: 100m

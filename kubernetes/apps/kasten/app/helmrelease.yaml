@@ -27,14 +27,14 @@ spec:
     ingress:
       create: true
       class: nginx
-      host: kasten.${my_domain}
+      host: kasten.${domain}
       pathType: Prefix
       urlPath: ""
       annotations:
         cert-manager.io/cluster-issuer: "letsencrypt"
       tls:
         enabled: true
-        secretName: kasten.${my_domain}-cert
+        secretName: kasten.${domain}-cert
     auth:
       tokenAuth:
         enabled: false

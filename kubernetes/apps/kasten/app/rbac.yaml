@@ -9,4 +9,4 @@ roleRef:
 subjects:
   - apiGroup: rbac.authorization.k8s.io
     kind: User
-    name: https://auth.${my_domain}/application/o/kasten/#david
+    name: https://auth.${domain}/application/o/kasten/#david

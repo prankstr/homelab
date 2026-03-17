@@ -32,16 +32,16 @@ spec:
             cert-manager.io/cluster-issuer: "letsencrypt"
           ingressClassName: "nginx"
           hosts:
-            - host: todo.${my_domain}
+            - host: todo.${domain}
               paths:
                 - path: "/"
           tls:
             - hosts:
-                - todo.${my_domain}
-              secretName: todo.${my_domain}-cert
+                - todo.${domain}
+              secretName: todo.${domain}-cert
       config:
         enabled: true
         data:
           config.yml: |
             service:
-              publicurl: "https://todo.${my_domain}"
+              publicurl: "https://todo.${domain}"

@@ -16,8 +16,8 @@ spec:
                 name: mealie
                 port:
                   name: http
-      host: recept.${my_domain}
+      host: recept.${domain}
   tls:
     - hosts:
-        - recept.${my_domain}
-      secretName: recept.${my_domain}-cert
+        - recept.${domain}
+      secretName: recept.${domain}-cert

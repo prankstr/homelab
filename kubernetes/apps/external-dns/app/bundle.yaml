@@ -54,7 +54,7 @@ spec:
           image: registry.k8s.io/external-dns/external-dns:v0.14.0
           args:
             - --source=ingress
-            - --domain-filter=${my_domain}
+            - --domain-filter=${domain}
             - --provider=webhook
             - --webhook-provider-url=http://localhost:8888
         # https://github.com/muhlba91/external-dns-provider-adguard
@@ -81,7 +81,7 @@ spec:
             - name: LOG_LEVEL
               value: debug
             - name: ADGUARD_URL
-              value: "http://adguard.${my_domain}"
+              value: "http://adguard.${domain}"
             - name: ADGUARD_USER
               valueFrom:
                 secretKeyRef:
