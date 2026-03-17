@@ -1,0 +1,91 @@
+global:
+  domain: csi-lab-argocd.${domain}
+
+  logging:
+    format: json
+    level: warn
+
+  # Default network policy rules used by all components
+  networkPolicy:
+    create: true
+    defaultDenyIngress: false
+
+## Application controller
+controller:
+  containerPorts:
+    metrics: 8082
+
+  ## Application controller metrics configuration
+  metrics:
+    enabled: true
+
+    serviceMonitor:
+      enabled: true
+
+    rules:
+      enabled: true
+
+      spec:
+        - alert: ArgoAppMissing
+          expr: |
+            absent(argocd_app_info) == 1
+          for: 15m
+          labels:
+            severity: critical
+          annotations:
+            summary: "[Argo CD] No reported applications"
+            description: >
+              Argo CD has not reported any applications data for the past 15 minutes which
+              means that it must be down or not functioning properly.  This needs to be
+              resolved for this cloud to continue to maintain state.
+        - alert: ArgoAppNotSynced
+          expr: |
+            argocd_app_info{sync_status!="Synced"} == 1
+          for: 12h
+          labels:
+            severity: warning
+          annotations:
+            summary: "[{{`{{$labels.name}}`}}] Application not synchronized"
+            description: >
+              The application [{{`{{$labels.name}}`}} has not been synchronized for over
+              12 hours which means that the state of this cloud has drifted away from the
+              state inside Git.
+
+dex:
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+
+server:
+  insecure: true
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+
+  httproute:
+    enabled: true
+    parentRefs:
+      - name: http
+        namespace: kgateway-system
+    hostnames:
+      - csi-lab-argocd.${domain}
+
+repoServer:
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+
+applicationSet:
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+
+notifications:
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true

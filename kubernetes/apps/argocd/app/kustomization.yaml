@@ -1,0 +1,15 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: argocd
+resources:
+  - ns.yaml
+  - helmrelease.yaml
+  - ocirepo.yaml
+configMapGenerator:
+  - name: argocd-values
+    options:
+      disableNameSuffixHash: true
+      labels:
+        reconcile.fluxcd.io/watch: Enabled
+    files:
+      - values.yaml
