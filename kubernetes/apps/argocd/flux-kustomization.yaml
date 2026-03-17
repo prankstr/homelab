@@ -6,7 +6,7 @@ metadata:
 spec:
   interval: 10m0s
   prune: true
-  path: ./apps/argocd/app
+  path: ./kubernetes/apps/argocd/app
   sourceRef:
     kind: GitRepository
     name: cluster-addons
