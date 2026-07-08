@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: cert-manager
 
 resources:
-  - https://github.com/cert-manager/cert-manager/releases/download/v1.20.3/cert-manager.yaml
+  - https://github.com/cert-manager/cert-manager/releases/download/v1.21.0/cert-manager.yaml
   - issuer.yaml
   - secret.yaml
 
