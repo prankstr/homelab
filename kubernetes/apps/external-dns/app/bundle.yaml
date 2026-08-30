@@ -54,6 +54,7 @@ spec:
           image: registry.k8s.io/external-dns/external-dns:v0.14.0
           args:
             - --source=ingress
+            - --policy=sync
             - --domain-filter=${my_domain}
             - --provider=webhook
             - --webhook-provider-url=http://localhost:8888
