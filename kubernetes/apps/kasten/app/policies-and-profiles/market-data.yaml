@@ -1,0 +1,19 @@
+# Installed under kubernetes/apps/kasten/app/policies-and-profiles/.
+apiVersion: config.kio.kasten.io/v1alpha1
+kind: Policy
+metadata:
+  name: market-data
+  namespace: kasten
+spec:
+  actions:
+    - action: backup
+    - action: export
+  presetRef:
+    name: standard
+    namespace: kasten
+  selector:
+    matchExpressions:
+      - key: k10.kasten.io/appNamespace
+        operator: In
+        values:
+          - market-data

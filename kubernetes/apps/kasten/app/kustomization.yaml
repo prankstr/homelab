@@ -17,6 +17,7 @@ resources:
   - policies-and-profiles/opencloud.yaml
   - policies-and-profiles/victoria-metrics.yaml
   - policies-and-profiles/vikunja.yaml
+  - policies-and-profiles/market-data.yaml
 
 generatorOptions:
   disableNameSuffixHash: true

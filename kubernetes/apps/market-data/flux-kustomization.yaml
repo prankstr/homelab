@@ -1,0 +1,14 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: market-data
+  namespace: flux
+spec:
+  interval: 10m
+  sourceRef:
+    kind: GitRepository
+    name: flux
+  path: ./kubernetes/apps/market-data/app
+  prune: true
+  wait: false # PVC uses WaitForFirstConsumer; do not wait on a suspended CronJob.
+  targetNamespace: market-data

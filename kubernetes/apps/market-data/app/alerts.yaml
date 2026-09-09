@@ -1,0 +1,30 @@
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMRule
+metadata:
+  name: market-data
+spec:
+  groups:
+    - name: market-data
+      rules:
+        - alert: ExchangeArchiveNoSuccessfulCollection
+          expr: >-
+            (time() - kube_cronjob_status_last_successful_time{namespace="market-data",cronjob="market-data"} > 21600)
+            or
+            ((time() - kube_cronjob_created{namespace="market-data",cronjob="market-data"} > 21600)
+            unless on(namespace,cronjob) kube_cronjob_status_last_successful_time{namespace="market-data",cronjob="market-data"})
+          for: 15m
+          labels:
+            severity: warning
+          annotations:
+            summary: Swedish exchange archive has not completed collection for six hours
+            description: Inspect CronJob logs and /data/progress.json. Public files expire within 24–72 hours; resolve before the recovery window closes.
+        - alert: ExchangeArchiveDiskSpaceLow
+          expr: >-
+            kubelet_volume_stats_available_bytes{namespace="market-data",persistentvolumeclaim="market-data"}
+            / kubelet_volume_stats_capacity_bytes{namespace="market-data",persistentvolumeclaim="market-data"} < 0.15
+          for: 15m
+          labels:
+            severity: warning
+          annotations:
+            summary: Swedish exchange archive volume has less than 15 percent free
+            description: Increase the GitOps PVC storage request. Collection stops below 2 GiB free and never deletes historical evidence.

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: market-data
+  annotations:
+    kustomize.toolkit.fluxcd.io/prune: disabled
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: piraeus
+  volumeName: pvc-e968e0f2-7001-40c2-b2bc-890be7f1cc5e
+  resources:
+    requests:
+      storage: 100Gi
