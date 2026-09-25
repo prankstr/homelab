@@ -35,6 +35,9 @@ spec:
               name: http
           imagePullPolicy: IfNotPresent
           name: mealie
+          resources:
+            requests:
+              memory: 320Mi
           volumeMounts:
             - mountPath: /app/data
               name: data
