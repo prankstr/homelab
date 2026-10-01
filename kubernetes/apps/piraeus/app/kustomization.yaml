@@ -9,7 +9,6 @@ resources:
   - lvmthin-pool.yaml
   - talos-loader.yaml
   - storageClass.yaml
-  - disable-talos3.yaml
   - volumeSnapshotClass.yaml
 
 patches:

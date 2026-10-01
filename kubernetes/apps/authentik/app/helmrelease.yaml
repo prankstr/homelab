@@ -53,6 +53,10 @@ spec:
         existingSecret: authentik-secret
         secretKeys:
           userPasswordKey: AUTHENTIK_POSTGRESQL__PASSWORD
+      primary:
+        resources:
+          requests:
+            memory: 256Mi
 
     redis:
       enabled: true

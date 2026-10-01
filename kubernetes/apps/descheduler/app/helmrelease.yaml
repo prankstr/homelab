@@ -40,14 +40,17 @@ spec:
             - name: RemovePodsViolatingTopologySpreadConstraint
             - name: LowNodeUtilization
               args:
+                # Thresholds are relative to the cluster average (percentage points of
+                # memory requests) instead of absolute, so they don't need retuning as
+                # workloads change. A node is overutilized above avg+15 and underutilized
+                # below avg-15. Memory only: a node must be below the lower bound on
+                # *every* listed resource to count as underutilized, and cpu/pods rarely
+                # deviate that much on 3 nodes, which would make the plugin inert.
+                useDeviationThresholds: true
                 thresholds:
-                  cpu: 35
-                  memory: 40
-                  pods: 40
+                  memory: 15
                 targetThresholds:
-                  cpu: 40
-                  memory: 55
-                  pods: 50
+                  memory: 15
           plugins:
             balance:
               enabled:
