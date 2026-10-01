@@ -82,31 +82,39 @@ spec:
         configSecret: "alertmanager-config"
       templateFiles:
         telegram.yaml: |-
-          {{ define "__alert_list" }}{{ range . }}
-
+          {{/* Telegram rejects messages over 4096 chars, so show at most 3 alerts
+               per section and skip labels that are noise in a chat message. */}}
+          {{ define "__alert" }}
           <b>{{ .Labels.alertname }}</b>
           {{- if .Annotations.summary }}
           Summary: {{ .Annotations.summary }}
-          {{ end }}
+          {{- end }}
           {{- if .Annotations.description }}
           Description: {{ .Annotations.description }}
-          {{ end }}
-          Labels:
-          {{ range .Labels.SortedPairs }}   <i>{{ .Name }}</i>: <code>{{ .Value }}</code>{{ end }}
-          RunBook: {{ .Annotations.runbook }}
-          {{ end }}
-          🛠 <a href="https://grafana.${my_domain}/">Grafana</a> 🛠
+          {{- end }}
+          Labels:{{ range .Labels.SortedPairs }}{{ if not (match "^(alertname|alertgroup|cluster|prometheus|endpoint|service|container|victoriametrics_app|job)$" .Name) }} <i>{{ .Name }}</i>=<code>{{ .Value }}</code>{{ end }}{{ end }}
+          {{- if .Annotations.runbook_url }}
+          <a href="{{ .Annotations.runbook_url }}">Runbook</a>
+          {{- end }}
           {{ end }}
 
+          {{ define "__alert_list" }}
+          {{- range $i, $a := . }}{{ if lt $i 3 }}{{ template "__alert" $a }}{{ end }}{{ end }}
+          {{- if gt (len .) 3 }}
+          <i>…showing 3 of {{ len . }}, see Alertmanager for the rest</i>
+          {{ end }}
+          {{- end }}
+
           {{ define "telegram.message" }}
-          {{ if gt (len .Alerts.Firing) 0 }}
-          🔥 Alerts Firing 🔥
+          {{- if gt (len .Alerts.Firing) 0 }}
+          🔥 Alerts Firing ({{ len .Alerts.Firing }}) 🔥
           {{ template "__alert_list" .Alerts.Firing }}
-          {{ end }}
-          {{ if gt (len .Alerts.Resolved) 0 }}
-          ✅ Alerts Resolved ✅
+          {{- end }}
+          {{- if gt (len .Alerts.Resolved) 0 }}
+          ✅ Alerts Resolved ({{ len .Alerts.Resolved }}) ✅
           {{ template "__alert_list" .Alerts.Resolved }}
-          {{ end }}
+          {{- end }}
+          🛠 <a href="https://alertmanager.${my_domain}/">Alertmanager</a> | <a href="https://grafana.${my_domain}/">Grafana</a> 🛠
           {{ end }}
       ingress:
         enabled: true
