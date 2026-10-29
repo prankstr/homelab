@@ -8,6 +8,9 @@ metadata:
     app: opencloud
 spec:
   replicas: 1
+  # RWO volumes: the new pod can't attach them until the old one is gone
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: opencloud
