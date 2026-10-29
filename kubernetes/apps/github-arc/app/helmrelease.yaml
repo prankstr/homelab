@@ -8,6 +8,10 @@ spec:
     name: github-runner-scale-set-controller
     kind: OCIRepository
   releaseName: arc
+  install:
+    crds: CreateReplace
+  upgrade:
+    crds: CreateReplace
   values:
     flags:
       excludeLabelPropagationPrefixes:
@@ -19,10 +23,15 @@ metadata:
   name: github-arc-runner
 spec:
   interval: 10m
+  dependsOn:
+    - name: github-arc-controller
   chartRef:
     name: github-runner-scale-set
     kind: OCIRepository
   releaseName: arc-runner-set
+  upgrade:
+    remediation:
+      retries: 3
   values:
     githubConfigUrl: https://github.com/prankstr/homelab
     githubConfigSecret: github-runner-controller-manager
