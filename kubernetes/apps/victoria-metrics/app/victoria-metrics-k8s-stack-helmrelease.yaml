@@ -39,7 +39,7 @@ spec:
               metricRelabelConfigs:
                 - action: drop
                   source_labels: [__name__]
-                  regex: (apiserver_request_duration_seconds|apiserver_request_sli_duration_seconds|apiserver_response_sizes|apiserver_watch_events_sizes|apiserver_request_body_size_bytes|etcd_request_duration_seconds|apiserver_watch_list_duration_seconds)_bucket
+                  regex: (apiserver|etcd|informer)_.+_bucket
     defaultRules:
       disabled:
         Watchdog: true
