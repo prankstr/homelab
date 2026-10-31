@@ -14,6 +14,10 @@ spec:
         name: victoria-metrics
       interval: 1h
   releaseName: victoria-metrics-k8s-stack
+  install:
+    crds: CreateReplace
+  upgrade:
+    crds: CreateReplace
   values:
     fullnameOverride: "victoria-metrics-k8s-stack"
     kubeEtcd:
