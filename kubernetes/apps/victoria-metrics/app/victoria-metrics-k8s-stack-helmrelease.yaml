@@ -26,6 +26,20 @@ spec:
       enabled: false
     kubeScheduler:
       enabled: false
+    kubeApiServer:
+      vmScrape:
+        spec:
+          endpoints:
+            - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+              port: https
+              scheme: https
+              tlsConfig:
+                caFile: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+                serverName: kubernetes
+              metricRelabelConfigs:
+                - action: drop
+                  source_labels: [__name__]
+                  regex: (apiserver_request_duration_seconds|apiserver_request_sli_duration_seconds|apiserver_response_sizes|apiserver_watch_events_sizes|apiserver_request_body_size_bytes|etcd_request_duration_seconds|apiserver_watch_list_duration_seconds)_bucket
     defaultRules:
       disabled:
         Watchdog: true
@@ -54,6 +68,7 @@ spec:
               - metrics.${my_domain}
     vmagent:
       spec:
+        scrapeInterval: 30s
         externalLabels:
           cluster: "molntuss-k8s"
         resources:
